@@ -108,7 +108,7 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'abra/vim-obsidian'
-
+NeoBundle 'flazz/vim-colorschemes'
 
 NeoBundle 'vim-scripts/AnsiEsc.vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
@@ -573,7 +573,7 @@ endif
 " 色
 """"""""""""""""""""""""""""""""""""""
 "{{{
-colorscheme antares
+colorscheme one
 set background=dark
 " カーソル行にアンダーラインを引く
 set cursorline
@@ -594,11 +594,15 @@ hi PmenuSbar ctermbg=0 ctermfg=9
 hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
 "}}}
 
+" one.vim
+let g:airline_theme='one'
+let g:one_allow_italics = 1
+
 """"""""""""""""""""""""""""""""""""""
 " マッピング
 """"""""""""""""""""""""""""""""""""""
 "{{{
-nnoremap <C-r> :! 
+nnoremap <C-q> :! 
 
 inoremap <silent> jj <ESC>
 
@@ -691,7 +695,7 @@ set clipboard=unnamed,autoselect  " ヤンクした文字は、システムの�
 set visualbell t_vb=              " エラービープ音を鳴らさない
 set noerrorbells
 set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileencodings=utf-8
 set fileformats=unix,dos,mac
 
 

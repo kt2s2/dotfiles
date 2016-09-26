@@ -198,6 +198,13 @@ alias rm='rmtrash'
 
 alias phis='percol_insert_history'
 
+# System
+# toggle WiFi network on/off
+# to enter network, `SSID PASS` follows
+alias ns="networksetup -setairportpower en0"
+# show your network interface name
+alias shownetname="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan"
+
 ####### percol
 #
 # {{{
