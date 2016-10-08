@@ -573,7 +573,7 @@ endif
 " 色
 """"""""""""""""""""""""""""""""""""""
 "{{{
-colorscheme one
+colorscheme jellybeans
 set background=dark
 " カーソル行にアンダーラインを引く
 set cursorline
@@ -593,10 +593,6 @@ hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg
 hi PmenuSbar ctermbg=0 ctermfg=9
 hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
 "}}}
-
-" one.vim
-let g:airline_theme='one'
-let g:one_allow_italics = 1
 
 """"""""""""""""""""""""""""""""""""""
 " マッピング
