@@ -75,6 +75,7 @@ homebrew_package_names:
   - mongodb
   - git-flow-avh
   - rmtrash
+  - doxygen
 login_item_names:
   - 'Alfred 3'
   - Dropbox
