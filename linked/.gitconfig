@@ -1,22 +1,15 @@
-# This is Git's per-user configuration file.
 [user]
-	name = sa-inu
-	email = uovo.aureo.000@gmail.com
+  name = sa-inu
+  email = uovo.aureo.000@gmail.com
 [core]
-	excludesfile = /Users/saino/.gitignore
+  excludesfile = /Users/saino/.gitignore
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
-[pager]
-	log = diff-highlight | less
-	show = diff-highlight | less
-	diff = diff-highlight | less
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
 [diff]
-	compactionHeuristic = true
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  compactionHeuristic = true
+[ghq]
+  root = /Users/sainokatsutoshi/src
+[color]
+  ui = true
