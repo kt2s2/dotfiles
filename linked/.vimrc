@@ -573,7 +573,7 @@ endif
 " 色
 """"""""""""""""""""""""""""""""""""""
 "{{{
-colorscheme jellybeans
+colorscheme hybrid
 set background=dark
 " カーソル行にアンダーラインを引く
 set cursorline
