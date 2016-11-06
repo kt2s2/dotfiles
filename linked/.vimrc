@@ -598,7 +598,7 @@ hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
 " マッピング
 """"""""""""""""""""""""""""""""""""""
 "{{{
-nnoremap <C-q> :! 
+nnoremap <S-q> :! 
 
 inoremap <silent> jj <ESC>
 
