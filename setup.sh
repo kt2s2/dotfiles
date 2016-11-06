@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DOT_FILES=(.bashrc .bash_profile .zshrc .vimrc .gvimrc .gitconfig .gitignore .vim .tmux.conf getwifi.sh get_volume_tmux.sh)
+DOT_FILES=(.bashrc .bash_profile .zshrc .vimrc .gvimrc .gitconfig .gitignore .vim .tmux.conf getwifi.sh get_volume_tmux.sh .pryrc)
 
 for file in ${DOT_FILES[@]}
 do
@@ -10,3 +10,4 @@ done
 source $HOME/.bash_profile
 source $HOME/.bashrc
 source $HOME/.zshrc
+exec $SHELL
