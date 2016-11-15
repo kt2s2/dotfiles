@@ -23,6 +23,7 @@ NeoBundle "ctrlpvim/ctrlp.vim"
 
 " cssサポート
 NeoBundleLazy 'hail2u/vim-css3-syntax'
+" カラーコード#fffをハイライト
 NeoBundle 'gorodinskiy/vim-coloresque', {'autoload': { 'filetypes': ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim'] },}
 
 " jsサポート
@@ -46,6 +47,9 @@ NeoBundle 'matthewsimo/angular-vim-snippets'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'jason0x43/vim-js-indent'
 
+" goサポート
+NeoBundle 'fatih/vim-go'
+
 " rubyサポート
 NeoBundleLazy 'vim-ruby/vim-ruby' , {'autoload':{'filetypes':['ruby']}}
 
@@ -56,13 +60,13 @@ NeoBundle 'ujihisa/unite-rake'
 NeoBundle 'basyura/unite-rails'
 
 " slimサポート
-NeoBundle 'slim-template/vim-slim'
+NeoBundle 'slim-template/vim-slim', {'autoload':{'filetypes':['slim']}}
 
 " yamlサポート
-NeoBundle 'yaml.vim'
+NeoBundle 'yaml.vim', {'autoload':{'filetypes':['yml']}}
 
 " markdownサポート
-NeoBundle 'plasticboy/vim-markdown' , {'autoload':{'filetypes':['markdown']}}
+NeoBundle 'plasticboy/vim-markdown', {'autoload':{'filetypes':['md']}}
 NeoBundle 'kannokanno/previm'
 NeoBundle 'tyru/open-browser.vim'
 
@@ -108,6 +112,8 @@ NeoBundle 'jpo/vim-railscasts-theme'
 NeoBundle 'therubymug/vim-pyte'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'abra/vim-obsidian'
+NeoBundle 'desert.vim'
+NeoBundle 'molokai'
 NeoBundle 'flazz/vim-colorschemes'
 
 NeoBundle 'vim-scripts/AnsiEsc.vim'
@@ -444,20 +450,18 @@ let Tlist_Use_Right_Window = 1
 let Tlist_Exit_OnlyWindow = 1
 "}}}
 
+" grep検索
+" 検索後自動でquickfix windowを開く
+autocmd QuickFixCmdPost *grep* cwindow
+nnoremap P :cprevious<CR>
+nnoremap N :cnext<CR>
+nnoremap F :<C-u>cfirst<CR>
+nnoremap L :<C-u>clast<CR>
+
 " unite
-"{{{
 " 大文字小文字を区別しない
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
-" grep検索
-nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
-" unite grep に ag(The Silver Searcher) を使う
-if executable('ag')
-  let g:unite_source_grep_command = 'ag'
-  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
-endif
-"}}}
 
 " unite-rails
 "{{{
