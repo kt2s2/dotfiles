@@ -158,7 +158,7 @@ NeoBundle 'guileen/vim-node-dict'
 NeoBundle 'scrooloose/nerdtree'
 
 " 自動保存
-NeoBundle 'vim-scripts/vim-auto-save'
+" NeoBundle 'vim-scripts/vim-auto-save'
 
 " 複数カーソル操作
 NeoBundle 'terryma/vim-multiple-cursors'
