@@ -165,6 +165,8 @@ NeoBundleCheck
 " ctrl+t 新しいタブで開く
 " f5 ファイルの再読み込み
 
+
+
 " === emmet ===
 "{{{
 let g:user_emmet_mode = 'iv'
@@ -188,6 +190,7 @@ augroup EmmitVim
   autocmd FileType * let g:user_emmet_settings.indentation = '               '[:&tabstop]
 augroup END
 "}}}
+
 
 
 " === committia ===
@@ -220,6 +223,8 @@ function! g:committia_hooks.edit_open(info)
 
 endfunction
 "}}}
+
+
 
 " === neocomplete ===
 "{{{
@@ -288,6 +293,8 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "}}}
 
+
+
 " === neocomplete-rsense ===
 "{{{
 " let g:rsenseUseOmniFunc = 1
@@ -301,6 +308,8 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
 "}}}
 
+
+
 " === nerdtree ===
 "{{{
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -313,6 +322,8 @@ if !argc()
 endif
 "}}}
 
+
+
 " === grep検索 ===
 " {{{
 " 検索後自動でquickfix windowを開く
@@ -322,11 +333,15 @@ nnoremap N :cnext<CR>
 nnoremap F :<C-u>cfirst<CR>
 nnoremap L :<C-u>clast<CR>"}}}
 
+
+
 " === vim-autoclose ===
 "{{{
 let g:auto_save = 1                     " デフォルトで有効にする
 let g:auto_save_in_insert_mode = 0      " インサートモード時は保存しない
 "}}}
+
+
 
 " === vim-gitgutter ===
 "{{{
@@ -334,15 +349,20 @@ nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 "}}}
 
+
+
 " === vim-trailing-whitespace ===
 "{{{
 " Execute :FixWhitespace command before writing file to buffer
 autocmd BufWritePre * :FixWhitespace
 "}}}
 
+
+
 """"""""""""""""""""""""""""""""""""""
 " 表示設定
 """"""""""""""""""""""""""""""""""""""
+
 "{{{
 set ambiwidth=double    "文脈によって解釈が異なる全角文字の幅を、２に固定する
 set backspace=indent,eol,start "バックスペースにてインデントを削除可能にする
@@ -375,6 +395,8 @@ autocmd InsertLeave * set nopaste
 "}}}
 
 
+
+
 "http://io-fia.blogspot.jp/2012/11/vimvimrc.html
 """"""""""""""""""""""""""""""
 " 入力補完を自動化
@@ -385,6 +407,8 @@ for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
   exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
 endfor
 "}}}
+
+
 
 
 " http://inari.hatenablog.com/entry/2014/05/05/231307
@@ -407,6 +431,8 @@ endif
 "}}}
 
 
+
+
 """"""""""""""""""""""""""""""""""""""
 " 色
 """"""""""""""""""""""""""""""""""""""
@@ -425,11 +451,14 @@ syntax enable
 " hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
 "}}}
 
+
+
+
 """"""""""""""""""""""""""""""""""""""
 " マッピング
 """"""""""""""""""""""""""""""""""""""
 "{{{
-nnoremap <S-q> :! 
+nnoremap <S-q> :!
 
 inoremap <silent> jj <ESC>
 
@@ -448,6 +477,9 @@ inoremap <silent> <C-y>1 <Esc>ly0<Insert>
 inoremap <silent> <C-y>0 <Esc>ly$<Insert>
 "}}}
 
+
+
+
 """"""""""""""""""""""""""""""""""""""
 " 検索設定
 """"""""""""""""""""""""""""""""""""""
@@ -464,6 +496,9 @@ set hlsearch    " 検索結果をハイライト
 " 検索結果を中央にくるようにする
 nmap n nzz
 "}}}
+
+
+
 
 """"""""""""""""""""""""""""""""""""""
 " かっこ補完
@@ -510,6 +545,9 @@ endfunction
 inoremap <silent> <C-h> <C-R>=DeleteParenthesesAdjoin()<CR>
 "}}}
 
+
+
+
 """"""""""""""""""""""""""""""""""""""
 " その他
 """"""""""""""""""""""""""""""""""""""
@@ -543,6 +581,9 @@ if &term =~ "xterm"
     cnoremap <special> <Esc>[201~ <nop>
 endif
 "}}}
+
+
+
 
 """"""""""""""""""""""""""""""
 " 最後のカーソル位置を復元する
