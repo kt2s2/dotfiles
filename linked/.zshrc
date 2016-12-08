@@ -195,7 +195,7 @@ alias ta='tmux a -t'
 alias tr='tmux rename -t'
 alias tk='tmux kill-session -t'
 
-alias rm='rmtrash'
+# alias rm='rmtrash'
 
 alias phis='percol_insert_history'
 
