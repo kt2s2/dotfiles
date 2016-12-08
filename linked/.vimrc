@@ -7,121 +7,14 @@ if has('vim_starting')
   "初回起動時飲みruntimepathにneobundleのパスを指定する
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-"NeoBundleを初期化
+" === Init Neobundle ===
 call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" htmlサポート
-NeoBundle 'mattn/emmet-vim'
-" バグのためコメントアウト
-" NeoBundle 'taichouchou2/html5.vim', {
-" \'autoload': { 'filetypes': ['html'] },
-" \}
-
-" 検索系
-NeoBundle "ctrlpvim/ctrlp.vim"
-
-" cssサポート
-NeoBundleLazy 'hail2u/vim-css3-syntax'
-" カラーコード#fffをハイライト
-NeoBundle 'gorodinskiy/vim-coloresque', {'autoload': { 'filetypes': ['css', 'html', 'less', 'sass', 'scss', 'stylus', 'vim'] },}
-
-" jsサポート
-NeoBundleLazy 'JavaScript-syntax', {'autoload':{'filetypes':['javascript']}}
-NeoBundleLazy 'pangloss/vim-javascript', {'autoload':{'filetypes':['javascript']}}
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
-NeoBundle 'marijnh/tern_for_vim'
-NeoBundle 'vim-scripts/JSON.vim'
-NeoBundle 'othree/yajs.vim', {'autoload':{'filetypes':['javascript']}}
-NeoBundle 'isRuslan/vim-es6'
-NeoBundleLazy "mxw/vim-jsx", {'autoload':{'filetypes':['javascript']}}
-NeoBundleLazy 'walm/jshint.vim', {'autoload':{'filetypes':['javascript']}}
-NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': { 'filetypes': ['coffee'] },}
-NeoBundleLazy 'heavenshell/vim-jsdoc', {'autoload':{'filetypes':['javascript']}}
-NeoBundle 'moll/vim-node'
-NeoBundle 'mattn/jscomplete-vim', {'autoload':{'filetypes':['javascript']}}
-NeoBundle 'myhere/vim-nodejs-complete'
-NeoBundle 'burnettk/vim-angular'
-NeoBundle 'seratch/vim-angular-coffee'
-NeoBundle 'matthewsimo/angular-vim-snippets'
-NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'jason0x43/vim-js-indent'
-
-" goサポート
-NeoBundle 'fatih/vim-go'
-
-" rubyサポート
-NeoBundleLazy 'vim-ruby/vim-ruby' , {'autoload':{'filetypes':['ruby']}}
-
-" railsサポート
-NeoBundle 'taichouchou2/vim-rails'
-NeoBundle 'romanvbabenko/rails.vim'
-NeoBundle 'ujihisa/unite-rake'
-NeoBundle 'basyura/unite-rails'
-
-" slimサポート
-NeoBundle 'slim-template/vim-slim', {'autoload':{'filetypes':['slim']}}
-
-" yamlサポート
-NeoBundle 'yaml.vim', {'autoload':{'filetypes':['yml']}}
-
-" markdownサポート
-NeoBundle 'plasticboy/vim-markdown', {'autoload':{'filetypes':['md']}}
-NeoBundle 'kannokanno/previm'
-NeoBundle 'tyru/open-browser.vim'
-
-" gitサポート
-NeoBundle 'airblade/vim-gitgutter'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'cohama/agit.vim'
-NeoBundle 'rhysd/committia.vim'
-NeoBundle 'tpope/vim-fugitive.git'
-NeoBundle 'gregsexton/gitv.git'
-
-" cサポート
-NeoBundleLazy 'vim-jp/cpp-vim', {
-            \ 'autoload' : {'filetypes' : 'cpp'}
-            \ }
-NeoBundleLazy 'osyo-manga/vim-stargate', {
-            \ 'autoload' : {'filetypes' : 'cpp'}
-            \ }
 
 
-" コメントアウト
-NeoBundle 'tomtom/tcomment_vim'
-
-" 補完
-NeoBundle 'marcus/rsense'
-NeoBundle 'Shougo/neocomplete.vim'
-" NeoBundle 'supermomonga/neocomplete-rsense.vim'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'Townk/vim-autoclose'
-
-" ハイライト
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'jeffreyiacono/vim-colors-wombat'
-NeoBundle 'croaker/mustang-vim'
-NeoBundle 'nanotech/jellybeans.vim'
-NeoBundle 'vim-scripts/Lucius'
-NeoBundle 'vim-scripts/Zenburn'
-NeoBundle 'mrkn/mrkn256.vim'
-NeoBundle 'jpo/vim-railscasts-theme'
-NeoBundle 'therubymug/vim-pyte'
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'abra/vim-obsidian'
-NeoBundle 'desert.vim'
-NeoBundle 'molokai'
-NeoBundle 'flazz/vim-colorschemes'
-
-NeoBundle 'vim-scripts/AnsiEsc.vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'itchyny/lightline.vim'
-" NeoBundle 'nathanaelkane/vim-indent-guides'
-
-" 非同期処理
+" === Asynchronous processing to eliminate that vim stopped by performing
+" time-consuming process ===
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
 \     'windows' : 'tools\\update-dll-mingw',
@@ -131,53 +24,135 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
+
+
+
+" === Open shell in vim ===
+" using) :VimShell
 NeoBundle 'Shougo/vimshell.vim'
 
-" 静的解析
-" NeoBundle 'scrooloose/syntastic'
-"
-NeoBundleLazy 'Shougo/unite.vim', {
-\'autoload': { 'commands': ['Unite']},
-\}
-NeoBundle 'Shougo/unite-outline'
 
-NeoBundle 'Shougo/vimfiler'
 
-" ドキュメント参照
-NeoBundle 'thinca/vim-ref'
-NeoBundle 'yuku-t/vim-ref-ri'
-NeoBundle 'guileen/vim-node-dict'
+" === Easy to mark up ===
+NeoBundle 'mattn/emmet-vim'
 
-" メソッド定義元へのジャンプ
-" NeoBundle 'szw/vim-tags'
 
-" taglist.vim -- 画面左に関数や変数の一覧を出す
-" NeoBundle 'vim-scripts/taglist.vim'
 
-" ツリー構造で表示
+" === Easy to search files from dir or buffer ===
+NeoBundle "ctrlpvim/ctrlp.vim"
+
+
+
+" === Easy to comment out codes ===
+NeoBundle 'tomtom/tcomment_vim'
+
+
+
+" === Triming unnecessary whitespaces at the end of the line ===
+NeoBundle 'bronson/vim-trailing-whitespace'
+
+
+
+" === Show tree of directory ===
 NeoBundle 'scrooloose/nerdtree'
 
-" 自動保存
-" NeoBundle 'vim-scripts/vim-auto-save'
 
-" 複数カーソル操作
-NeoBundle 'terryma/vim-multiple-cursors'
 
-" 整形
-NeoBundle 'junegunn/vim-easy-align'
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <Enter> <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-NeoBundle 'ConradIrwin/vim-bracketed-paste'
-NeoBundle 'drillbits/nyan-modoki.vim'
-" NeoBundle 'tell-k/vim-browsereload-mac'
-NeoBundle 'mattn/webapi-vim'
+" === Power up completion ===
+NeoBundle 'marcus/rsense'
+NeoBundle 'Shougo/neocomplete.vim'
+" NeoBundle 'supermomonga/neocomplete-rsense.vim'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-endwise'
+
+
+
+" === Show dictionary in vim ===
+NeoBundle 'thinca/vim-ref'
+
+
+
+" === Close parentthese automatically ===
+NeoBundle 'Townk/vim-autoclose'
+
+
+
+" === Color schemes ===
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'abra/vim-obsidian'
+NeoBundle 'flazz/vim-colorschemes'
+
+
+
+" === Coloring color code ===
+NeoBundle 'gorodinskiy/vim-coloresque', {
+      \ 'autoload':{
+      \   'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus']
+      \ }}
+
+
+
+" =========================
+" Language supports plugins
+" =========================
+
+
+
+" === Golang supports ===
+NeoBundle 'fatih/vim-go'
+
+
+
+" === Ruby supports ===
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+      \ 'autoload':{
+      \   'filetypes':['ruby']
+      \ }}
+
+
+
+" === Rails supports ===
+NeoBundle 'taichouchou2/vim-rails'
+NeoBundle 'romanvbabenko/rails.vim'
+
+
+
+" === Slim supports ===
+NeoBundle 'slim-template/vim-slim', {
+      \ 'autoload':{
+      \   'filetypes':['slim']
+      \ }}
+
+
+
+" === Yaml supports ===
+NeoBundle 'yaml.vim', {
+      \ 'autoload':{
+      \   'filetypes':['yml']
+      \ }}
+
+
+
+" === Git supports ===
+NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'cohama/agit.vim'
+NeoBundle 'rhysd/committia.vim'
+NeoBundle 'tpope/vim-fugitive.git'
+NeoBundle 'gregsexton/gitv.git'
+
+
+
 call neobundle#end()
+
 
 "ファイルタイプ別のプラグイン/インデントを有効にする
 filetype plugin indent on
-" vim起動時に未インストールのプラグインをインストールする
+
+" === Install NeoBundle plugins not yet installed when vim is started ===
 NeoBundleCheck
 
 
@@ -190,7 +165,7 @@ NeoBundleCheck
 " ctrl+t 新しいタブで開く
 " f5 ファイルの再読み込み
 
-" emmet
+" === emmet ===
 "{{{
 let g:user_emmet_mode = 'iv'
 let g:user_emmet_leader_key = '<C-Y>'
@@ -215,83 +190,7 @@ augroup END
 "}}}
 
 
-" lightline
-"{{{
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'mode_map': { 'c': 'NORMAL' },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
-      \ },
-      \ 'component_function': {
-      \   'modified': 'LightLineModified',
-      \   'readonly': 'LightLineReadonly',
-      \   'fugitive': 'LightLineFugitive',
-      \   'filename': 'LightLineFilename',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \   'mode': 'LightLineMode',
-      \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-      \ }
-
-function! LightLineModified()
-  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
-endfunction
-
-function! LightLineReadonly()
-  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? '⭤' : ''
-endfunction
-
-function! LightLineFilename()
-  return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \  &ft == 'unite' ? unite#get_status_string() :
-        \  &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
-endfunction
-
-function! LightLineFugitive()
-  if &ft !~? 'vimfiler\|gundo' && exists("*fugitive#head")
-    let _ = fugitive#head()
-    return strlen(_) ? '⭠ '._ : ''
-  endif
-  return ''
-endfunction
-
-function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
-endfunction
-
-function! LightLineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
-endfunction
-
-function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
-endfunction
-
-function! LightLineMode()
-  return winwidth(0) > 60 ? lightline#mode() : ''
-endfunction
-"}}}
-
-" nyan-modoki
-set laststatus=2"{{{
-set statusline=%F%m%r%h%w[%{&ff}]%=%{g:NyanModoki()}(%l,%c)[%P]
-let g:nyan_modoki_select_cat_face_number = 2
-let g:nayn_modoki_animation_enabled= 1"}}}
-
-" cpp-vim
-augroup cpp-path"{{{
-  autocmd!
-  autocmd FileType cpp setlocal path=.,/usr/include,/usr/local/include,/usr/lib/c++/v1
-augroup END"}}}
-
-" committia
+" === committia ===
 " You can get the information about the windows with first argument as a dictionary."{{{
 "
 "   KEY              VALUE                      AVAILABILITY
@@ -319,9 +218,10 @@ function! g:committia_hooks.edit_open(info)
     imap <buffer><C-j> <Plug>(committia-scroll-diff-down-half)
     imap <buffer><C-k> <Plug>(committia-scroll-diff-up-half)
 
-endfunction"}}}
+endfunction
+"}}}
 
-" neocomplete
+" === neocomplete ===
 "{{{
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -375,13 +275,6 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 "let g:neocomplete#disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
 " Enable heavy omni completion.
 if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns = {}
@@ -395,27 +288,24 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "}}}
 
-" neocomplete-rsense
+" === neocomplete-rsense ===
 "{{{
-let g:rsenseUseOmniFunc = 1
-" .や::を入力したときにオムニ補完が有効になるようにする
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-
-" 環境変数RSENSE_HOMEに'/usr/local/bin/rsense'を指定しても動く
-let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
+" let g:rsenseUseOmniFunc = 1
+" " .や::を入力したときにオムニ補完が有効になるようにする
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"   let g:neocomplete#force_omni_input_patterns = {}
+" endif
+" let g:neocomplete#force_omni_input_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
+"
+" " 環境変数RSENSE_HOMEに'/usr/local/bin/rsense'を指定しても動く
+" let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
 "}}}
 
-" nerdtree
+" === nerdtree ===
 "{{{
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " show bookmark from the beginning
 let g:NERDTreeShowBookmarks=1
-" move to tabs
-nnoremap <C-h> gt
-nnoremap <C-l> gT
 
 " ファイル指定で開かれた場合はNERDTreeは表示しない
 if !argc()
@@ -423,90 +313,32 @@ if !argc()
 endif
 "}}}
 
-" syntastic
-"{{{
-" let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
-" let g:syntastic_check_on_save=1 "保存時にはチェック
-" let g:syntastic_check_on_wq = 0 " wqではチェックしない
-" let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
-" let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
-" set statusline+=%#warningmsg# "エラーメッセージの書式
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_javascript_checkers = ['eslint'] "ESLintを使う
-" let g:syntastic_mode_map = {
-"       \ 'mode': 'active',
-"       \ 'active_filetypes': ['javascript'],
-"       \ 'passive_filetypes': []
-"       \ }
-"}}}
-
-" taglist
-"{{{
-" set tags = tags
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-let Tlist_Show_One_File = 1
-let Tlist_Use_Right_Window = 1
-let Tlist_Exit_OnlyWindow = 1
-"}}}
-
-" grep検索
+" === grep検索 ===
+" {{{
 " 検索後自動でquickfix windowを開く
 autocmd QuickFixCmdPost *grep* cwindow
 nnoremap P :cprevious<CR>
 nnoremap N :cnext<CR>
 nnoremap F :<C-u>cfirst<CR>
-nnoremap L :<C-u>clast<CR>
+nnoremap L :<C-u>clast<CR>"}}}
 
-" unite
-" 大文字小文字を区別しない
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
-
-" unite-rails
-"{{{
-"}}}
-
-" vim-autoclose
+" === vim-autoclose ===
 "{{{
 let g:auto_save = 1                     " デフォルトで有効にする
 let g:auto_save_in_insert_mode = 0      " インサートモード時は保存しない
 "}}}
 
-" vim-gitgutter
+" === vim-gitgutter ===
 "{{{
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 "}}}
 
-" vim-jsx
+" === vim-trailing-whitespace ===
 "{{{
-" js 拡張子でも有効にする
-let g:jsx_ext_required = 0
-let g:syntastic_javascript_checkers=['jsxhint']
-au BufRead,BufNewFile *.jsx set filetype=javascript.jsx
+" Execute :FixWhitespace command before writing file to buffer
+autocmd BufWritePre * :FixWhitespace
 "}}}
-
-" vim-indent-guides
-" let g:indent_guides_enable_on_vim_startup = 1
-
-" vim-markdown
-au BufRead,BufNewFile *.md set filetype=markdown
-let g:previm_open_cmd = 'open -a Google\ Chrome'
-
-" vim-nodejs-complete
-if !exists('g:neocomplcache_omni_functions')
-  let g:neocomplcache_omni_functions = {}
-endif
-let g:neocomplcache_omni_functions.javascript = 'nodejscomplete#CompleteJS'
-let g:node_usejscomplete = 1
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 """"""""""""""""""""""""""""""""""""""
 " 表示設定
@@ -542,6 +374,7 @@ set wildmenu            "コマンドライン補完を拡張モードにする
 autocmd InsertLeave * set nopaste
 "}}}
 
+
 "http://io-fia.blogspot.jp/2012/11/vimvimrc.html
 """"""""""""""""""""""""""""""
 " 入力補完を自動化
@@ -552,6 +385,7 @@ for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
   exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
 endfor
 "}}}
+
 
 " http://inari.hatenablog.com/entry/2014/05/05/231307
 """"""""""""""""""""""""""""""
@@ -579,23 +413,16 @@ endif
 "{{{
 colorscheme hybrid
 set background=dark
-" カーソル行にアンダーラインを引く
-set cursorline
-highlight CursorLine cterm=underline ctermfg=NONE ctermbg=NONE
+
 "コードの色分け
 syntax enable
 
-hi Comment ctermfg=DarkGrey
-
-" scssにハイライト
-au BufRead,BufNewFile *.scss set filetype=sass
-
 " 補完候補の色づけ for vim7
-hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
-hi PmenuSel ctermbg=blue ctermfg=black
-hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
-hi PmenuSbar ctermbg=0 ctermfg=9
-hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
+" hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
+" hi PmenuSel ctermbg=blue ctermfg=black
+" hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
+" hi PmenuSbar ctermbg=0 ctermfg=9
+" hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
 "}}}
 
 """"""""""""""""""""""""""""""""""""""
@@ -729,5 +556,3 @@ if has("autocmd")
 endif
 "}}}
 " vim:set foldmethod=marker:
-
-
