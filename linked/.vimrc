@@ -123,7 +123,7 @@ NeoBundle 'romanvbabenko/rails.vim'
 " === Slim supports ===
 NeoBundle 'slim-template/vim-slim', {
       \ 'autoload':{
-      \   'filetypes':['slim']
+      \   'filetypes':['slim', 'html']
       \ }}
 
 
@@ -133,7 +133,6 @@ NeoBundle 'tpope/vim-haml', {
       \ 'autoload':{
       \   'filetypes':['haml', 'html']
       \ }}
-
 
 
 
@@ -372,7 +371,9 @@ autocmd BufWritePre * :FixWhitespace
 """"""""""""""""""""""""""""""""""""""
 " Register filetype
 """"""""""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.html setf html
 au BufNewFile,BufRead *.haml setf haml
+au BufNewFile,BufRead *.slim setf slim
 
 
 
