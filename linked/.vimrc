@@ -128,6 +128,15 @@ NeoBundle 'slim-template/vim-slim', {
 
 
 
+" === Haml supports ===
+NeoBundle 'tpope/vim-haml', {
+      \ 'autoload':{
+      \   'filetypes':['haml', 'html']
+      \ }}
+
+
+
+
 " === Yaml supports ===
 NeoBundle 'yaml.vim', {
       \ 'autoload':{
@@ -356,6 +365,15 @@ nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 " Execute :FixWhitespace command before writing file to buffer
 autocmd BufWritePre * :FixWhitespace
 "}}}
+
+
+
+
+""""""""""""""""""""""""""""""""""""""
+" Register filetype
+""""""""""""""""""""""""""""""""""""""
+au BufNewFile,BufRead *.haml setf haml
+
 
 
 
