@@ -35,6 +35,7 @@ NeoBundle 'Shougo/vimshell.vim'
 
 " === Easy to mark up ===
 NeoBundle 'mattn/emmet-vim'
+NeoBundle 'tpope/vim-surround'
 
 
 
@@ -64,7 +65,6 @@ NeoBundle 'Shougo/neocomplete.vim'
 " NeoBundle 'supermomonga/neocomplete-rsense.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-endwise'
 
 
@@ -92,6 +92,11 @@ NeoBundle 'gorodinskiy/vim-coloresque', {
       \ 'autoload':{
       \   'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus']
       \ }}
+
+
+
+" === Show status line in vim ===
+NeoBundle 'itchyny/lightline.vim'
 
 
 
@@ -123,7 +128,7 @@ NeoBundle 'romanvbabenko/rails.vim'
 " === Slim supports ===
 NeoBundle 'slim-template/vim-slim', {
       \ 'autoload':{
-      \   'filetypes':['slim', 'html']
+      \   'filetypes':['slim']
       \ }}
 
 
@@ -131,7 +136,15 @@ NeoBundle 'slim-template/vim-slim', {
 " === Haml supports ===
 NeoBundle 'tpope/vim-haml', {
       \ 'autoload':{
-      \   'filetypes':['haml', 'html']
+      \   'filetypes':['haml']
+      \ }}
+
+
+
+" === Scss supports ===
+NeoBundle 'cakebaker/scss-syntax.vim', {
+      \ 'autoload':{
+      \   'filetypes':['scss']
       \ }}
 
 
@@ -141,6 +154,20 @@ NeoBundle 'yaml.vim', {
       \ 'autoload':{
       \   'filetypes':['yml']
       \ }}
+
+
+
+" === Coffeescript supports ===
+NeoBundle 'kchmck/vim-coffee-script', {
+      \ 'autoload':{
+      \   'filetypes':['coffee']
+      \ }}
+
+
+
+" === Markdown supports ===
+NeoBundle 'kannokanno/previm'
+NeoBundle 'tyru/open-browser.vim'
 
 
 
@@ -333,14 +360,20 @@ endif
 
 
 " === grep検索 ===
-" {{{
+"{{{
 " 検索後自動でquickfix windowを開く
 autocmd QuickFixCmdPost *grep* cwindow
 nnoremap P :cprevious<CR>
 nnoremap N :cnext<CR>
 nnoremap F :<C-u>cfirst<CR>
-nnoremap L :<C-u>clast<CR>"}}}
+nnoremap L :<C-u>clast<CR>
+"}}}
 
+
+" === lightline ===
+"{{{
+set laststatus=2
+"}}}
 
 
 " === vim-autoclose ===
@@ -369,11 +402,16 @@ autocmd BufWritePre * :FixWhitespace
 
 
 """"""""""""""""""""""""""""""""""""""
-" Register filetype
+" Register filetype or syntax
 """"""""""""""""""""""""""""""""""""""
 au BufNewFile,BufRead *.html setf html
 au BufNewFile,BufRead *.haml setf haml
 au BufNewFile,BufRead *.slim setf slim
+au BufNewFile,BufRead *.scss setf scss
+au BufNewFile,BufRead *.js setf javascript
+au BufNewFile,BufRead *.coffee setf coffee
+au BufNewFile,BufRead *.md setf markdown
+au BufNewFile,BufRead *.yml setf yaml
 
 
 
