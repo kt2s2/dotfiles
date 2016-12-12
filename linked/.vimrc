@@ -105,10 +105,6 @@ NeoBundle 'itchyny/lightline.vim'
 " =========================
 
 
-" === Syntastic supports ===
-NeoBundle 'scrooloose/syntastic'
-
-
 
 " === Golang supports ===
 NeoBundle 'fatih/vim-go'
@@ -120,7 +116,6 @@ NeoBundleLazy 'vim-ruby/vim-ruby', {
       \ 'autoload':{
       \   'filetypes':['ruby']
       \ }}
-NeoBundle 'ngmy/vim-rubocop'
 
 
 
@@ -378,19 +373,6 @@ nnoremap L :<C-u>clast<CR>
 " === lightline ===
 "{{{
 set laststatus=2
-"}}}
-
-
-
-" === syntastic ===
-"{{{
-" Rubocop check syntax when saving filetype is ruby
-let g:syntastic_mode_map = {
-      \   'mode' : 'passive',
-      \   'active_filetypes' : ['ruby']
-      \ }
-let g:vimrubocop_config = '~/.rubocop.yml'
-let g:syntastic_ruby_checkers=['rubocop']
 "}}}
 
 
