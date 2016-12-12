@@ -125,6 +125,14 @@ NeoBundle 'romanvbabenko/rails.vim'
 
 
 
+" === HTML supports ===
+NeoBundle 'taichouchou2/html5.vim', {
+      \ 'autoloat':{
+      \   'filetypes':['html']
+      \ }}
+
+
+
 " === Slim supports ===
 NeoBundle 'slim-template/vim-slim', {
       \ 'autoload':{
@@ -405,6 +413,7 @@ autocmd BufWritePre * :FixWhitespace
 " Register filetype or syntax
 """"""""""""""""""""""""""""""""""""""
 au BufNewFile,BufRead *.html setf html
+au BufNewFile,BufRead *.erb setf eruby.html
 au BufNewFile,BufRead *.haml setf haml
 au BufNewFile,BufRead *.slim setf slim
 au BufNewFile,BufRead *.scss setf scss
