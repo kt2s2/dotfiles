@@ -1,15 +1,8 @@
 [user]
   name = sa-inu
   email = uovo.aureo.000@gmail.com
-[core]
-	excludesfile = /Users/sainokatsutoshi/.gitignore
-[filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
-[diff]
-  compactionHeuristic = true
-[ghq]
-  root = /Users/sainokatsutoshi/src
 [color]
   ui = true
+  diff = auto
+  status = auto
+  branch = auto
