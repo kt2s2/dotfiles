@@ -100,6 +100,15 @@ NeoBundle 'itchyny/lightline.vim'
 
 
 
+" === auto paste mode in vim ===
+NeoBundle 'ConradIrwin/vim-bracketed-paste'
+
+
+
+" === twitter client ===
+NeoBundle 'TwitVim'
+
+
 " =========================
 " Language supports plugins
 " =========================
@@ -126,7 +135,7 @@ NeoBundle 'romanvbabenko/rails.vim'
 
 
 " === HTML supports ===
-NeoBundle 'taichouchou2/html5.vim', {
+NeoBundle 'othree/html5.vim', {
       \ 'autoloat':{
       \   'filetypes':['html']
       \ }}
@@ -162,6 +171,17 @@ NeoBundle 'yaml.vim', {
       \ 'autoload':{
       \   'filetypes':['yml']
       \ }}
+
+
+
+" === Javascript supports ===
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'mxw/vim-jsx'
+
+
+
+" === Json supports ===
+NeoBundle 'elzr/vim-json'
 
 
 
@@ -378,6 +398,14 @@ nnoremap L :<C-u>clast<CR>
 "}}}
 
 
+
+" === html5.vim ===
+let g:html5_event_handler_attributes_complete = 0
+let g:html5_rdfa_attributes_complete = 0
+let g:html5_microdata_attributes_complete = 0
+let g:html5_aria_attributes_complete = 0
+
+
 " === lightline ===
 "{{{
 set laststatus=2
@@ -400,12 +428,27 @@ nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 
 
 
+" === vim-jsx ===
+let g:jsx_ext_required = 0
+
+
+
+" === vim-json ===
+let g:vim_json_syntax_conceal = 0
+
+
+
 " === vim-trailing-whitespace ===
 "{{{
 " Execute :FixWhitespace command before writing file to buffer
 autocmd BufWritePre * :FixWhitespace
 "}}}
 
+
+" === TwitVim ===
+let twitvim_browser_cmd = 'open'
+let twitvim_force_ssl = 1
+" let twitvim_count = 40
 
 
 
@@ -418,6 +461,8 @@ au BufNewFile,BufRead *.haml setf haml
 au BufNewFile,BufRead *.slim setf slim
 au BufNewFile,BufRead *.scss setf scss
 au BufNewFile,BufRead *.js setf javascript
+au BufNewFile,BufRead *.jsx setf javascript
+au BufNewFile,BufRead *.json setf json
 au BufNewFile,BufRead *.coffee setf coffee
 au BufNewFile,BufRead *.md setf markdown
 au BufNewFile,BufRead *.yml setf yaml
@@ -526,7 +571,7 @@ syntax enable
 "{{{
 nnoremap <S-q> :!
 
-inoremap <silent> jj <ESC>
+inoremap <silent> jk <ESC>
 
 noremap <S-h> ^
 noremap <S-l> $
