@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # sudo yum update -y
 
 # install node
@@ -17,3 +19,11 @@ sudo yum install -y openssl-devel readline-devel zlib-devel
 rbenv install $(rbenv install -l | grep -v - | tail -1)
 rbenv rehash
 rbenv global $(rbenv install -l | grep -v - | tail -1)
+
+mkdir $HOME/vimbackup
+
+DOT_FILES=(.vimrc)
+for file in ${DOT_FILES[@]}
+do
+  ln -s $HOME/dotfiles/linked/$file $HOME/$file
+done
