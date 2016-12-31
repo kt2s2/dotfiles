@@ -22,7 +22,7 @@ rbenv global $(rbenv install -l | grep -v - | tail -1)
 
 mkdir $HOME/vimbackup
 
-DOT_FILES=(.vimrc)
+DOT_FILES=(.vimrc .gitconfig)
 for file in ${DOT_FILES[@]}
 do
   ln -s $HOME/dotfiles/linked/$file $HOME/$file
