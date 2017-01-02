@@ -466,6 +466,7 @@ au BufNewFile,BufRead *.json setf json
 au BufNewFile,BufRead *.coffee setf coffee
 au BufNewFile,BufRead *.md setf markdown
 au BufNewFile,BufRead *.yml setf yaml
+au BufNewFile,BufRead *.php setf php
 
 
 
@@ -503,6 +504,8 @@ set wildmenu            "コマンドライン補完を拡張モードにする
 
 " ペーストモードの挿入モードからノーマルモードに戻る時にペーストモードを解除する
 autocmd InsertLeave * set nopaste
+" convert tab to 2 spaces with saving
+autocmd BufWritePre * :%s/\t/  /ge
 "}}}
 
 
