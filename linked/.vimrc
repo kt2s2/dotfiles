@@ -32,6 +32,12 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/vimshell.vim'
 
 
+" === Check syntax ===
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
+
+
+
 
 " === Easy to mark up ===
 NeoBundle 'mattn/emmet-vim'
@@ -228,6 +234,22 @@ NeoBundleCheck
 " ctrl+t 新しいタブで開く
 " f5 ファイルの再読み込み
 
+
+
+" === syntastic ===
+" ref. https://github.com/scrooloose/syntastic#settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_enable_signs = 1 " show sign in the line having errors
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
+
+let g:syntastic_html_tidy_exec = 'tidy5'
 
 
 " === emmet ===
@@ -456,6 +478,7 @@ let twitvim_force_ssl = 1
 " Register filetype or syntax
 """"""""""""""""""""""""""""""""""""""
 au BufNewFile,BufRead *.html setf html
+au BufNewFile,BufRead *.ejs setf html
 au BufNewFile,BufRead *.erb setf eruby.html
 au BufNewFile,BufRead *.haml setf haml
 au BufNewFile,BufRead *.slim setf slim
