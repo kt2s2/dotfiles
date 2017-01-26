@@ -42,11 +42,15 @@ NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
 " === Easy to mark up ===
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'Townk/vim-autoclose'
 
 
 
 " === Easy to search files from dir or buffer ===
 NeoBundle "ctrlpvim/ctrlp.vim"
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'rking/ag.vim'
 
 
 
@@ -71,17 +75,11 @@ NeoBundle 'Shougo/neocomplete.vim'
 " NeoBundle 'supermomonga/neocomplete-rsense.vim'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'tpope/vim-endwise'
 
 
 
 " === Show dictionary in vim ===
 NeoBundle 'thinca/vim-ref'
-
-
-
-" === Close parentthese automatically ===
-NeoBundle 'Townk/vim-autoclose'
 
 
 
@@ -233,6 +231,18 @@ NeoBundleCheck
 " ctrl+p 起動
 " ctrl+t 新しいタブで開く
 " f5 ファイルの再読み込み
+let g:ctrlp_user_command = 'ag %s -l'
+
+
+" === Unit.vim ===
+" start with insert mode
+let g:unite_enable_start_insert = 1
+" don't distinguish up case and down case
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+" close this by clicking twice esc key
+au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
 
 
@@ -411,12 +421,20 @@ endif
 
 " === grep検索 ===
 "{{{
+
+" @example
+" :vim {pattern} %
+" :vim {pattern} **
+" :vim {pattern} app/views/**
+" :vim {pattern} app/views/users/*
+" :vim {pattern} app/views/**/*.erb
+" :vim {pattern} app/views/**/_*.erb
+
 " 検索後自動でquickfix windowを開く
 autocmd QuickFixCmdPost *grep* cwindow
-nnoremap P :cprevious<CR>
-nnoremap N :cnext<CR>
-nnoremap F :<C-u>cfirst<CR>
-nnoremap L :<C-u>clast<CR>
+set grepprg=ag
+nnoremap <C-k> :cprevious<CR>
+nnoremap <C-j> :cnext<CR>
 "}}}
 
 
