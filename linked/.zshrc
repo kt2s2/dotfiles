@@ -179,11 +179,12 @@ alias gaa='git add .'
 alias gc='git commit'
 alias gcmsg='git commit -m'
 alias gcam='git commit --amend'
-alias gl='git pull origin B'
+alias gfm='git pull origin B'
 alias gp='git push origin B'
 alias gpom='git push origin master'
 alias gphm='git push heroku master'
 alias glom='git pull origin master'
+alias gf='git fetch'
 fpath=(~/.zsh/completion $fpath)
 
 autoload -U compinit
