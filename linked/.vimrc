@@ -432,7 +432,6 @@ endif
 
 " 検索後自動でquickfix windowを開く
 autocmd QuickFixCmdPost *grep* cwindow
-set grepprg=ag
 nnoremap <C-k> :cprevious<CR>
 nnoremap <C-j> :cnext<CR>
 "}}}
@@ -613,7 +612,7 @@ syntax enable
 " マッピング
 """"""""""""""""""""""""""""""""""""""
 "{{{
-nnoremap <S-q> :!
+nnoremap <Space>q :!
 
 inoremap <silent> jk <ESC>
 
@@ -624,12 +623,13 @@ noremap <S-l> $
 inoremap <silent> <C-h> <C-g>u<C-h>
 "カーソル後の文字削除
 inoremap <silent> <C-d> <Del>
-"カーソルから行末まで削除
-inoremap <silent> <C-d>0 <Esc>ly0<Insert>
-"カーソルから行頭までヤンク
-inoremap <silent> <C-y>1 <Esc>ly0<Insert>
-"カーソルから行末までヤンク
-inoremap <silent> <C-y>0 <Esc>ly$<Insert>
+" 縦分割
+map <Space>v :<C-u>vsplit<CR>
+map <Space>w :<C-u>split<CR>
+
+" === vimshell ===
+nnoremap ,vv  :<C-u>VimShellPop<CR>
+
 "}}}
 
 
@@ -647,7 +647,6 @@ set smartcase   " 検索文字列に大文字が含まれている場合は区�
 set wrapscan    " 検索時に最後まで行ったら最初に戻る
 set incsearch   " インクリメンタルサーチを行う
 set hlsearch    " 検索結果をハイライト
-" nnoremap <C-h><C-h> :nohlsearch<CR>
 " 検索結果を中央にくるようにする
 nmap n nzz
 "}}}
