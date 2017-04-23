@@ -11,12 +11,12 @@ ans3="CentOS"
 select ANS in "$ans1" "$ans2" "$ans3"; do
   case "$ANS" in
     "$ans1")
-      brew install tmux zsh
+      brew install tmux zsh clang-format
       break
       ;;
     "$ans2")
       sudo apt-get -y update
-      sudo apt-get -y install build-essential zsh
+      sudo apt-get -y install build-essential zsh clang-format-3.6
       break
       ;;
     "$ans3")
