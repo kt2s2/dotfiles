@@ -32,6 +32,11 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/vimshell.vim'
 
 
+" === Quick run ===
+NeoBundle 'thinca/vim-quickrun'
+NeoBundle 'osyo-manga/shabadou.vim'
+
+
 " === Check syntax ===
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
@@ -70,9 +75,10 @@ NeoBundle 'scrooloose/nerdtree'
 
 
 " === Power up completion ===
-NeoBundle 'marcus/rsense'
-NeoBundle 'Shougo/neocomplete.vim'
+" NeoBundle 'marcus/rsense'
 " NeoBundle 'supermomonga/neocomplete-rsense.vim'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 
@@ -117,6 +123,10 @@ NeoBundle 'TwitVim'
 " Language supports plugins
 " =========================
 
+
+" == Clang supports ==
+NeoBundle 'kana/vim-operator-user'
+NeoBundle 'rhysd/vim-clang-format'
 
 
 " === Golang supports ===
@@ -227,27 +237,56 @@ NeoBundleCheck
 " プラグインごとの設定
 """"""""""""""""""""""""""""""""""""""
 
-" ctrlp.vimの使い方
-" ctrl+p 起動
-" ctrl+t 新しいタブで開く
-" f5 ファイルの再読み込み
-let g:ctrlp_user_command = 'ag %s -l'
+
+" neosnippet
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'"}}}
+
+
+
+" === vim-quickrun ===
+let g:quickrun_config={'*': {'split': ''}}"{{{
+let g:quickrun_config._={
+      \       'runner' : 'vimproc',
+      \       'runner/vimproc/updatetime' : 10,
+      \       'outputter/buffer/close_on_empty' : 1,
+      \       'hook/shabadoubi_touch_henshin/enable' : 1,
+      \       'hook/shabadoubi_touch_henshin/wait' : 20,
+      \ }
+" let g:quickrun_config = {
+"       \   '_': {
+"       \     'hook/shabadoubi_touch_henshin/enable': 1,
+"       \     'hook/shabadoubi_touch_henshin/wait' : 20,
+"       \     'runner': 'vimproc',
+"       \     'runner/vimproc/updatetime': 40,
+"       \     'outputter/buffer/split': '',
+"       \     'outputter/buffer/close_on_empty' : 1,
+"       \   }
+"       \ }
+set splitbelow"}}}
 
 
 " === Unit.vim ===
-" start with insert mode
+" start with insert mode"{{{
 let g:unite_enable_start_insert = 1
 " don't distinguish up case and down case
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 " close this by clicking twice esc key
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>"}}}
 
 
 
 " === syntastic ===
-" ref. https://github.com/scrooloose/syntastic#settings
+" ref. https://github.com/scrooloose/syntastic#settings"{{{
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -259,7 +298,7 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers = ['eslint']
 
-let g:syntastic_html_tidy_exec = 'tidy5'
+let g:syntastic_html_tidy_exec = 'tidy5'"}}}
 
 
 " === emmet ===
@@ -318,6 +357,8 @@ function! g:committia_hooks.edit_open(info)
 
 endfunction
 "}}}
+
+
 
 
 
@@ -388,7 +429,9 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "}}}
 
-
+" === vimshell ===
+let g:vimshell = 'mvim'"{{{
+"}}}
 
 " === neocomplete-rsense ===
 "{{{
@@ -437,12 +480,15 @@ nnoremap <C-j> :cnext<CR>
 "}}}
 
 
+" === C ===
+autocmd FileType c ClangFormatAutoEnable
+
 
 " === html5.vim ===
-let g:html5_event_handler_attributes_complete = 0
+let g:html5_event_handler_attributes_complete = 0"{{{
 let g:html5_rdfa_attributes_complete = 0
 let g:html5_microdata_attributes_complete = 0
-let g:html5_aria_attributes_complete = 0
+let g:html5_aria_attributes_complete = 0"}}}
 
 
 " === lightline ===
@@ -494,7 +540,7 @@ let twitvim_force_ssl = 1
 """"""""""""""""""""""""""""""""""""""
 " Register filetype or syntax
 """"""""""""""""""""""""""""""""""""""
-au BufNewFile,BufRead *.html setf html
+au BufNewFile,BufRead *.html setf html"{{{
 au BufNewFile,BufRead *.ejs setf html
 au BufNewFile,BufRead *.erb setf eruby.html
 au BufNewFile,BufRead *.haml setf haml
@@ -506,7 +552,7 @@ au BufNewFile,BufRead *.json setf json
 au BufNewFile,BufRead *.coffee setf coffee
 au BufNewFile,BufRead *.md setf markdown
 au BufNewFile,BufRead *.yml setf yaml
-au BufNewFile,BufRead *.php setf php
+au BufNewFile,BufRead *.php setf php"}}}
 
 
 
@@ -598,11 +644,11 @@ set background=dark
 syntax enable
 
 " 補完候補の色づけ for vim7
-" hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
-" hi PmenuSel ctermbg=blue ctermfg=black
-" hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
-" hi PmenuSbar ctermbg=0 ctermfg=9
-" hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
+hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
+hi PmenuSel ctermbg=blue ctermfg=black
+hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
+hi PmenuSbar ctermbg=0 ctermfg=9
+hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
 "}}}
 
 
@@ -612,8 +658,6 @@ syntax enable
 " マッピング
 """"""""""""""""""""""""""""""""""""""
 "{{{
-nnoremap <Space>q :!
-
 inoremap <silent> jk <ESC>
 
 noremap <S-h> ^
@@ -650,6 +694,8 @@ set hlsearch    " 検索結果をハイライト
 " 検索結果を中央にくるようにする
 nmap n nzz
 "}}}
+
+
 
 
 
@@ -693,8 +739,6 @@ function! DeleteParenthesesAdjoin()
     endfor
     return output."\b"
 endfunction
-" BackSpaceに割り当て
-" inoremap <silent> <BS> <C-R>=DeleteParenthesesAdjoin()<CR>
 " Ctrl-Hに割り当て
 inoremap <silent> <C-h> <C-R>=DeleteParenthesesAdjoin()<CR>
 "}}}

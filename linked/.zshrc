@@ -136,6 +136,7 @@ setopt APPEND_HISTORY
 alias -g G='| grep'
 alias -g L='| less'
 alias -g X='| xargs'
+alias -g J='| jq .'
 
 alias be='bundle exec'
 alias rake='bundle exec rake'
