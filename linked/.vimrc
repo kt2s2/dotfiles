@@ -485,8 +485,17 @@ nnoremap <C-j> :cnext<CR>
 
 
 " === C ===
+"{{{
 autocmd FileType c ClangFormatAutoEnable
-
+let g:clang_format#style_options = {
+      \ "DerivePointerAlignment": "false",
+      \ "IndentWidth": 2,
+      \ "PointerAlignment": "Right",
+      \ "SpacesBeforeTrailingComments": 1,
+      \ "IndentCaseLabels": "true",
+      \ "KeepEmptyLinesAtTheStartOfBlocks": "true"
+      \ }
+"}}}
 
 
 
