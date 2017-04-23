@@ -92,9 +92,6 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # lsコマンド
 export LSCOLORS=exfxcxdxbxegedabagacad
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-alias ls="ls -GF"
-alias gls="gls --color"
-alias la='ls -la'
 
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
@@ -131,87 +128,7 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_DUPS
 setopt APPEND_HISTORY
 
-####### エイリアス
-
-alias -g G='| grep'
-alias -g L='| less'
-alias -g X='| xargs'
-alias -g J='| jq .'
-
-alias be='bundle exec'
-alias rake='bundle exec rake'
-alias rails='bundle exec rails'
-alias rspec='bundle exec rspec'
-alias cap='bundle exec cap'
-alias be='bundle exec'
-alias bi='bundle install --path vendor/bundle --jobs=4'
-alias rdc='rake db:create'
-alias rdm='rake db:migrate'
-alias rdmt='rake db:migrate RAILS_ENV=test'
-alias rdd='rake db:drop'
-alias rds='rake db:seed'
-alias rdr='rake db:reset'
-alias rdmr='rake db:migrate:reset'
-alias rr='spring rake routes'
-alias rs='rails s'
-alias rs4='rails s -p 4000'
-alias rs5='rails s -p 5000'
-alias rc='rails c'
-
-
-# カレントブランチ名を表示
-function git_current_branch_name()
-{
-  git branch | grep '^\*' | sed 's/^\* *//'
-}
-alias -g B='"$(git_current_branch_name)"'
-
-
-alias gi='git init'
-alias gd='git diff'
-alias gst='git status -b'
-alias gb='git branch'
-alias gbd='git branch -d'
-alias gco='git checkout'
-alias gcob='git checkout -b'
-alias gcm='git checkout master'
-alias glg='git log --pretty=oneline -p --graph --stat'
-alias gsta='git stash'
-alias gstal='git stash list'
-alias rgsta='git stash apply'
-alias gr='git reset HEAD'
-alias grhch='git reset --hard HEAD^'
-alias grhih='git reset --hard HEAD'
-alias grsch='git reset --soft HEAD^'
-alias ga='git add'
-alias gaa='git add .'
-alias gc='git commit'
-alias gcmsg='git commit -m'
-alias gcam='git commit --amend'
-alias gfm='git pull origin B'
-alias gp='git push origin B'
-alias gpom='git push origin master'
-alias gphm='git push heroku master'
-alias glom='git pull origin master'
-alias gf='git fetch'
-fpath=(~/.zsh/completion $fpath)
-
-autoload -U compinit
-compinit -u
-
-alias t='tmux'
-alias tl='tmux ls'
-alias ta='tmux a -t'
-alias tr='tmux rename -t'
-alias tk='tmux kill-session -t'
-
-# alias rm='rmtrash'
-
-alias phis='percol_insert_history'
-
-# System
-# toggle WiFi network on/off
-# to enter network, `SSID PASS` follows
-alias ns="networksetup -setairportpower en0"
-# show your network interface name
-alias shownetname="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport scan"
+# alias
+if [ `-f ~/.aliases` ]; then
+  . ~/.aliases
+fi
