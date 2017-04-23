@@ -1,1 +1,0 @@
-/Users/saino/dotfiles/linked/.vim
