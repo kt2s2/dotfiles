@@ -129,6 +129,6 @@ setopt HIST_IGNORE_DUPS
 setopt APPEND_HISTORY
 
 # alias
-if [ `-f ~/.aliases` ]; then
+if [ -f ~/.aliases ]; then
   . ~/.aliases
 fi
