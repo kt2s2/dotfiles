@@ -239,6 +239,7 @@ NeoBundleCheck
 
 
 " neosnippet
+"{{{
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
@@ -247,12 +248,13 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
-let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/'"}}}
-
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets/'
+"}}}
 
 
 " === vim-quickrun ===
-let g:quickrun_config={'*': {'split': ''}}"{{{
+"{{{
+let g:quickrun_config={'*': {'split': ''}}
 let g:quickrun_config._={
       \       'runner' : 'vimproc',
       \       'runner/vimproc/updatetime' : 10,
@@ -260,33 +262,26 @@ let g:quickrun_config._={
       \       'hook/shabadoubi_touch_henshin/enable' : 1,
       \       'hook/shabadoubi_touch_henshin/wait' : 20,
       \ }
-" let g:quickrun_config = {
-"       \   '_': {
-"       \     'hook/shabadoubi_touch_henshin/enable': 1,
-"       \     'hook/shabadoubi_touch_henshin/wait' : 20,
-"       \     'runner': 'vimproc',
-"       \     'runner/vimproc/updatetime': 40,
-"       \     'outputter/buffer/split': '',
-"       \     'outputter/buffer/close_on_empty' : 1,
-"       \   }
-"       \ }
-set splitbelow"}}}
+set splitbelow
+"}}}
 
 
 " === Unit.vim ===
-" start with insert mode"{{{
+"{{{
+" start with insert mode
 let g:unite_enable_start_insert = 1
 " don't distinguish up case and down case
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 " close this by clicking twice esc key
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>"}}}
-
+au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+"}}}
 
 
 " === syntastic ===
-" ref. https://github.com/scrooloose/syntastic#settings"{{{
+"{{{
+" ref. https://github.com/scrooloose/syntastic#settings
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -298,7 +293,8 @@ let g:syntastic_check_on_wq = 0
 
 let g:syntastic_javascript_checkers = ['eslint']
 
-let g:syntastic_html_tidy_exec = 'tidy5'"}}}
+let g:syntastic_html_tidy_exec = 'tidy5'
+"}}}
 
 
 " === emmet ===
@@ -326,9 +322,9 @@ augroup END
 "}}}
 
 
-
 " === committia ===
-" You can get the information about the windows with first argument as a dictionary."{{{
+"{{{
+" You can get the information about the windows with first argument as a dictionary.
 "
 "   KEY              VALUE                      AVAILABILITY
 "-----------------------------------------------------------------------------------
@@ -357,7 +353,6 @@ function! g:committia_hooks.edit_open(info)
 
 endfunction
 "}}}
-
 
 
 
@@ -429,9 +424,15 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 "}}}
 
+
+
 " === vimshell ===
-let g:vimshell = 'mvim'"{{{
+"{{{
+let g:vimshell = 'mvim'
 "}}}
+
+
+
 
 " === neocomplete-rsense ===
 "{{{
@@ -445,6 +446,7 @@ let g:vimshell = 'mvim'"{{{
 " " 環境変数RSENSE_HOMEに'/usr/local/bin/rsense'を指定しても動く
 " let g:neocomplete#sources#rsense#home_directory = '/usr/local/bin/rsense'
 "}}}
+
 
 
 
@@ -462,9 +464,9 @@ endif
 
 
 
+
 " === grep検索 ===
 "{{{
-
 " @example
 " :vim {pattern} %
 " :vim {pattern} **
@@ -480,21 +482,31 @@ nnoremap <C-j> :cnext<CR>
 "}}}
 
 
+
+
 " === C ===
 autocmd FileType c ClangFormatAutoEnable
 
 
+
+
 " === html5.vim ===
-let g:html5_event_handler_attributes_complete = 0"{{{
+"{{{
+let g:html5_event_handler_attributes_complete = 0
 let g:html5_rdfa_attributes_complete = 0
 let g:html5_microdata_attributes_complete = 0
-let g:html5_aria_attributes_complete = 0"}}}
+let g:html5_aria_attributes_complete = 0
+"}}}
+
+
+
 
 
 " === lightline ===
 "{{{
 set laststatus=2
 "}}}
+
 
 
 " === vim-autoclose ===
@@ -540,7 +552,8 @@ let twitvim_force_ssl = 1
 """"""""""""""""""""""""""""""""""""""
 " Register filetype or syntax
 """"""""""""""""""""""""""""""""""""""
-au BufNewFile,BufRead *.html setf html"{{{
+"{{{
+au BufNewFile,BufRead *.html setf html
 au BufNewFile,BufRead *.ejs setf html
 au BufNewFile,BufRead *.erb setf eruby.html
 au BufNewFile,BufRead *.haml setf haml
@@ -552,7 +565,9 @@ au BufNewFile,BufRead *.json setf json
 au BufNewFile,BufRead *.coffee setf coffee
 au BufNewFile,BufRead *.md setf markdown
 au BufNewFile,BufRead *.yml setf yaml
-au BufNewFile,BufRead *.php setf php"}}}
+au BufNewFile,BufRead *.php setf php
+"}}}
+
 
 
 
