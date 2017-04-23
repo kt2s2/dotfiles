@@ -750,9 +750,9 @@ inoremap <silent> <C-h> <C-R>=DeleteParenthesesAdjoin()<CR>
 " その他
 """"""""""""""""""""""""""""""""""""""
 "{{{
-set backupdir=$HOME/vimbackup     " バックアップファイルのディレクトリを指定する
+set backupdir=$HOME/.vim/backup     " バックアップファイルのディレクトリを指定する
 set nocompatible                  " vi互換をオフする
-set directory=$HOME/vimbackup     " スワップファイル用のディレクトリを指定する
+set directory=$HOME/.vim/backup     " スワップファイル用のディレクトリを指定する
 set mouse=a                       " マウス操作をできるようにする
 set clipboard=unnamed,autoselect  " ヤンクした文字は、システムのクリップボードに入れる
 set visualbell t_vb=              " エラービープ音を鳴らさない
