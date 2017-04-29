@@ -487,14 +487,30 @@ nnoremap <C-j> :cnext<CR>
 " === C ===
 "{{{
 autocmd FileType c ClangFormatAutoEnable
+" ref: http://algo13.net/clang/clang-format-style-oputions.html
+" ref: http://yasuharu519.hatenablog.com/entry/2015/12/13/210825
 let g:clang_format#style_options = {
-      \ "DerivePointerAlignment": "false",
-      \ "IndentWidth": 2,
-      \ "PointerAlignment": "Right",
-      \ "SpacesBeforeTrailingComments": 1,
-      \ "IndentCaseLabels": "true",
-      \ "KeepEmptyLinesAtTheStartOfBlocks": "true"
+      \ "Language": "Cpp",
+      \ "BasedOnStyle": "LLVM",
+      \ "ContinuationIndentWidth": 2,
+      \ "ConstructorInitializerIndentWidth": 2,
       \ }
+       "AlignConsecutiveAssignments": "false",
+       "AlignConsecutiveDeclarations": "false",
+       "AlignTrailingComments": "true",
+       "AllowShortBlocksOnASingleLine": "false",
+       "AllowShortCaseLabelsOnASingleLine": "false",
+       "AllowShortIfStatementsOnASingleLine": "true",
+       "BinPackParameters": "false",
+       "BinPackArguments": "false",
+       "BreakBeforeBinaryOperators": "None",
+       "DerivePointerAlignment": "false",
+       "IndentWidth": 2,
+       "IndentCaseLabels": "true",
+       "KeepEmptyLinesAtTheStartOfBlocks": "true",
+       "PointerAlignment": "Right",
+       "SpacesBeforeTrailingComments": 1,
+
 "}}}
 
 
@@ -575,6 +591,7 @@ au BufNewFile,BufRead *.coffee setf coffee
 au BufNewFile,BufRead *.md setf markdown
 au BufNewFile,BufRead *.yml setf yaml
 au BufNewFile,BufRead *.php setf php
+au BufNewFile,BufRead *.sh setf sh
 "}}}
 
 
