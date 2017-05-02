@@ -11,12 +11,12 @@ ans3="CentOS"
 select ANS in "$ans1" "$ans2" "$ans3"; do
   case "$ANS" in
     "$ans1")
-      brew install tmux zsh clang-format
+      brew install tmux zsh clang-format ctags
       break
       ;;
     "$ans2")
       sudo apt-get -y update
-      sudo apt-get -y install build-essential zsh clang-format-3.6
+      sudo apt-get -y install build-essential zsh clang-format-3.6 exuberant-ctags
       break
       ;;
     "$ans3")
@@ -75,3 +75,6 @@ echo Load shell file
 if [ -e $HOME/.zshrc ]; then
   . $HOME/.zshrc
 fi
+
+
+git config --global init.templatedir '.git_tmp'

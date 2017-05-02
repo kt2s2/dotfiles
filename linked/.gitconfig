@@ -13,3 +13,5 @@
   root = /Users/sainokatsutoshi/src
 [color]
   ui = true
+[init]
+	templatedir = .git_tmp

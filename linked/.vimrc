@@ -237,6 +237,8 @@ NeoBundleCheck
 " プラグインごとの設定
 """"""""""""""""""""""""""""""""""""""
 
+" ctags
+nnoremap <C-]> g<C-]>
 
 " neosnippet
 "{{{
