@@ -680,13 +680,14 @@ endif
 " 色
 """"""""""""""""""""""""""""""""""""""
 "{{{
-colorscheme hybrid
+colorscheme solarized
 set background=dark
 
 "コードの色分け
 syntax enable
 
-" 補完候補の色づけ for vim7
+" 色の変更
+hi Comment ctermfg=0
 hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
 hi PmenuSel ctermbg=blue ctermfg=black
 hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
@@ -838,3 +839,21 @@ if has("autocmd")
 endif
 "}}}
 " vim:set foldmethod=marker:
+
+
+
+function! s:SearchKeywordInStackOverFlow(...)
+  let keyword = a:1
+  let results = 10
+  if a:0 >= 1
+    10new
+    let i = 0
+    while i < results
+      call append(0, "arg: " . keyword)
+      let i += 1
+    endwhile
+  else
+    echo "No keywords."
+  end
+endfunction
+command! -nargs=? SearchInStackOverFlow call s:SearchKeywordInStackOverFlow(<f-args>)
