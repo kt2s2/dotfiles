@@ -1,46 +1,25 @@
 ######## 環境設定
-# PATHの設定
+export LANG=ja_JP.UTF-8
 export PATH=/usr/local/bin:$PATH
 setopt nonomatch
-
-# Nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-# rubyコメンドパス設定
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init - zsh)"
-
-# Elastic Beanstalk
 export PATH=$HOME/Library/Python/2.7/bin:$PATH
-
-# php
 export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
-# export PATH=$HOME/.phpenv/bin:$PATH
-# eval "$(phpenv init - zsh)"
-
-# pythonコマンドパス設定
-export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
+export PATH=$HOME/.pyenv/bin:$PATH
 eval "$(pyenv init - zsh)"
-
-# go
 if [ -x "`which go`" ]; then
   export GOROOT=`go env GOROOT`
   export GOPATH=$HOME/code/go-local
   export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 fi
-
-# docker
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/saino/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
-
+# export DOCKER_HOST=tcp://192.168.59.103:2376
+# export DOCKER_CERT_PATH=/Users/saino/.boot2docker/certs/boot2docker-vm
+# export DOCKER_TLS_VERIFY=1
 
 # Vi ライクな操作を有効にする
 bindkey -v
-
-# 環境変数
-export LANG=ja_JP.UTF-8
 
 # 色を使用出来るようにする
 autoload -Uz colors
