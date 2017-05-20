@@ -70,7 +70,7 @@ compinit -u
 alias t='tmux'
 alias tl='tmux ls'
 alias ta='tmux a -t'
-alias tr='tmux rename -t'
+alias tre='tmux rename -t'
 alias tk='tmux kill-session -t'
 
 # alias rm='rmtrash'
