@@ -43,6 +43,14 @@ NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
 
 
 
+" === Twitter ===
+NeoBundle 'open-browser.vim'
+NeoBundle 'basyura/TweetVim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'basyura/twibill.vim'
+NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'basyura/bitly.vim'
+
 
 " === Easy to mark up ===
 NeoBundle 'mattn/emmet-vim'
@@ -54,9 +62,13 @@ NeoBundle 'Townk/vim-autoclose'
 
 " === Easy to search files from dir or buffer ===
 NeoBundle "ctrlpvim/ctrlp.vim"
-NeoBundle 'Shougo/unite.vim'
 NeoBundle 'rking/ag.vim'
 
+
+" === Unite
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/neoyank.vim'
 
 
 " === Easy to comment out codes ===
@@ -112,11 +124,6 @@ NeoBundle 'itchyny/lightline.vim'
 
 " === auto paste mode in vim ===
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
-
-
-
-" === twitter client ===
-NeoBundle 'TwitVim'
 
 
 " =========================
@@ -209,7 +216,6 @@ NeoBundle 'kchmck/vim-coffee-script', {
 
 " === Markdown supports ===
 NeoBundle 'kannokanno/previm'
-NeoBundle 'tyru/open-browser.vim'
 
 
 
@@ -270,12 +276,18 @@ set splitbelow
 
 " === Unit.vim ===
 "{{{
-" start with insert mode
 let g:unite_enable_start_insert = 1
-" don't distinguish up case and down case
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
-" close this by clicking twice esc key
+let g:unite_source_history_yank_enable = 1
+nmap <Space> [unite]
+nnoremap <silent> [unite]a :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> [unite]t :<C-u>Unite<Space>tab<CR>
+nnoremap <silent> [unite]o :<C-u>Unite<Space>outline<CR>
+nnoremap <silent> [unite]f :<C-u>Unite<Space>buffer file_mru<CR>
+nnoremap <silent> [unite]d :<C-u>Unite<Space>directory_mru<CR>
+nnoremap <silent> [unite]b :<C-u>Unite<Space>buffer<CR>
+nnoremap <silent> [unite]h :<C-u>Unite<Space>history/yank<CR>
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 "}}}
@@ -297,6 +309,28 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_html_tidy_exec = 'tidy5'
 "}}}
+
+
+" === open-browser.vim ===
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
+" === TweetVim ===
+let g:tweetvim_display_icon = 1
+let g:tweetvim_display_source = 1
+let g:tweetvim_include_rts    = 1
+let g:tweetvim_display_time   = 1
+" タイムライン選択用の Unite を起動する
+nnoremap <silent> tvt :Unite tweetvim<CR>
+" 発言用バッファを表示する
+nnoremap <silent> tvs :<C-u>TweetVimSay<CR>
+" スクリーン名のキャッシュを利用して、neocomplcache で補完する
+if !exists('g:neocomplcache_dictionary_filetype_lists')
+  let g:neocomplcache_dictionary_filetype_lists = {}
+endif
+let neco_dic = g:neocomplcache_dictionary_filetype_lists
+let neco_dic.tweetvim_say = $HOME . '/.tweetvim/screen_name'
 
 
 " === emmet ===
@@ -431,6 +465,8 @@ let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " === vimshell ===
 "{{{
 let g:vimshell = 'mvim'
+let g:vimshell_prompt_expr = 'getcwd()." > "'
+let g:vimshell_prompt_pattern = '^\f\+ > '
 "}}}
 
 
@@ -569,12 +605,6 @@ autocmd BufWritePre * :FixWhitespace
 "}}}
 
 
-" === TwitVim ===
-let twitvim_browser_cmd = 'open'
-let twitvim_force_ssl = 1
-" let twitvim_count = 40
-
-
 
 """"""""""""""""""""""""""""""""""""""
 " Register filetype or syntax
@@ -680,8 +710,17 @@ endif
 " 色
 """"""""""""""""""""""""""""""""""""""
 "{{{
-colorscheme solarized
+" Hybrid
+let g:hybrid_use_iTerm_colors = 1
+colorscheme hybrid
+" let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+
+" colorscheme spacegray
+
 set background=dark
+set cursorline
+hi clear CursorLine
 
 "コードの色分け
 syntax enable
