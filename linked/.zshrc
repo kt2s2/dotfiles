@@ -96,6 +96,7 @@ setopt prompt_subst
 setopt print_eight_bit
 setopt pushd_ignore_dups
 setopt share_history
+setopt nonomatch
 
 # history
 HISTFILE=~/.zsh_history
