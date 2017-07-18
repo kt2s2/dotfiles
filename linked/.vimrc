@@ -62,7 +62,6 @@ NeoBundle 'Townk/vim-autoclose'
 
 " === Easy to search files from dir or buffer ===
 NeoBundle "ctrlpvim/ctrlp.vim"
-NeoBundle 'rking/ag.vim'
 
 
 " === Unite
@@ -242,6 +241,9 @@ NeoBundleCheck
 """"""""""""""""""""""""""""""""""""""
 " プラグインごとの設定
 """"""""""""""""""""""""""""""""""""""
+
+" ctrlpvim
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " ctags
 nnoremap <C-]> g<C-]>
@@ -672,7 +674,7 @@ set wildmenu            "コマンドライン補完を拡張モードにする
 " ペーストモードの挿入モードからノーマルモードに戻る時にペーストモードを解除する
 autocmd InsertLeave * set nopaste
 " convert tab to 2 spaces with saving
-autocmd BufWritePre * :%s/\t/  /ge
+" autocmd BufWritePre * :%s/\t/  /ge
 "}}}
 
 
