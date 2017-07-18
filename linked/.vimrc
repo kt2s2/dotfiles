@@ -249,9 +249,6 @@ NeoBundleCheck
 " ctrlpvim
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-" ctags
-nnoremap <C-]> g<C-]>
-
 " neosnippet
 "{{{
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -756,21 +753,29 @@ hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
 " マッピング
 """"""""""""""""""""""""""""""""""""""
 "{{{
-inoremap <silent> jk <ESC>
+let mapleader = "\<Space>"
 
+inoremap <silent> jk <ESC>
+nnoremap <Leader>w :w<CR>
 noremap <S-h> ^
 noremap <S-l> $
-
 "カーソル前の文字削除
 inoremap <silent> <C-h> <C-g>u<C-h>
 "カーソル後の文字削除
 inoremap <silent> <C-d> <Del>
-" 縦分割
-map <Space>v :<C-u>vsplit<CR>
-map <Space>w :<C-u>split<CR>
+map ,v :<C-u>vsplit<CR>
+map ,w :<C-u>split<CR>
 
 " === vimshell ===
 nnoremap ,vv  :<C-u>VimShellPop<CR>
+
+" === ctags ===
+map <Leader>rt :!ctags -R .<CR><CR>
+map tt <C-]>
+map tn <C-w>]
+map tg g<C-]>
+map <C-p> :tprevious<CR>
+map <C-n> :tnext<CR>
 
 "}}}
 
