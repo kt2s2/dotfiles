@@ -199,6 +199,10 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'mxw/vim-jsx'
 
 
+" === typescript / angular2 ===
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'Quramy/tsuquyomi'
+
 
 " === Json supports ===
 NeoBundle 'elzr/vim-json'
@@ -256,7 +260,7 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 if has('conceal')
-  set conceallevel=2 concealcursor=niv
+ set conceallevel=2 concealcursor=niv
 endif
 let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets/'
 "}}}
@@ -630,6 +634,7 @@ au BufNewFile,BufRead *.js setf javascript
 au BufNewFile,BufRead *.jsx setf javascript
 au BufNewFile,BufRead *.json setf json
 au BufNewFile,BufRead *.coffee setf coffee
+au BufNewFile,BufRead *.ts setf typescript
 au BufNewFile,BufRead *.md setf markdown
 au BufNewFile,BufRead *.yml setf yaml
 au BufNewFile,BufRead *.php setf php
