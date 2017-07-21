@@ -48,12 +48,12 @@ NeoBundle 'thinca/vim-ref'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'abra/vim-obsidian'
+NeoBundle 'jacoborus/tender.vim'
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'gorodinskiy/vim-coloresque', {
       \ 'autoload':{
       \   'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus']
       \ }}
-NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'kana/vim-operator-user'
 NeoBundle 'rhysd/vim-clang-format'
@@ -203,6 +203,16 @@ augroup EmmitVim
   autocmd FileType * let g:user_emmet_settings.indentation = '               '[:&tabstop]
 augroup END
 "}}}
+" hybrid "{{{
+let g:hybrid_use_iTerm_colors = 1
+let g:hybrid_reduced_contrast = 1
+"}}}
+" tender.vim"{{{
+if (has("termguicolors"))
+ set termguicolors
+endif
+let macvim_skip_colorscheme=1
+"}}}
 " committia "{{{
 " You can get the information about the windows with first argument as a dictionary.
 "
@@ -287,9 +297,6 @@ let g:html5_event_handler_attributes_complete = 0
 let g:html5_rdfa_attributes_complete = 0
 let g:html5_microdata_attributes_complete = 0
 let g:html5_aria_attributes_complete = 0
-"}}}
-" lightline "{{{
-set laststatus=2
 "}}}
 " vim-autoclose "{{{
 let g:auto_save=1
@@ -383,12 +390,8 @@ au BufNewFile,BufRead *.sh setf sh
 syntax enable
 set background=dark
 set cursorline
-colorscheme hybrid
+colorscheme tender
 hi clear CursorLine
-"}}}
-" Hybrid Settings "{{{
-let g:hybrid_use_iTerm_colors = 1
-let g:hybrid_reduced_contrast = 1
 "}}}
 " 細かい色のカスタマイズ"{{{
 hi Comment ctermfg=0
