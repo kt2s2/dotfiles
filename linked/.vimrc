@@ -108,7 +108,7 @@ NeoBundleCheck
 nnoremap ,vv  :<C-u>VimShellPop<CR>
 "}}}
 " CtrlP "{{{
-let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_user_command=['.git', 'cd %s && git ls-files -co --exclude-standard']
 "}}}
 " NeoSnippet "{{{
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -133,10 +133,10 @@ let g:quickrun_config._={
 set splitbelow
 "}}}
 " Unit.vim "{{{
-let g:unite_enable_start_insert = 1
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
-let g:unite_source_history_yank_enable = 1
+let g:unite_enable_start_insert=1
+let g:unite_enable_ignore_case=1
+let g:unite_enable_smart_case=1
+let g:unite_source_history_yank_enable=1
 nmap <Space> [unite]
 nnoremap <silent> [unite]a :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]t :<C-u>Unite<Space>tab<CR>
@@ -153,39 +153,39 @@ au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_enable_signs = 1 " show sign in the line having errors
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs=1 " show sign in the line having errors
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
 
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers=['eslint']
 
-let g:syntastic_html_tidy_exec = 'tidy5'
+let g:syntastic_html_tidy_exec='tidy5'
 "}}}
 " open-browser.vim"{{{
-let g:netrw_nogx = 1 " disable netrw's gx mapping.
+let g:netrw_nogx=1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 "}}}
 " TweetVim "{{{
-let g:tweetvim_display_icon = 1
-let g:tweetvim_display_source = 1
-let g:tweetvim_include_rts    = 1
-let g:tweetvim_display_time   = 1
+let g:tweetvim_display_icon=1
+let g:tweetvim_display_source=1
+let g:tweetvim_include_rts=1
+let g:tweetvim_display_time=1
 nnoremap <silent> tvt :Unite tweetvim<CR>
 nnoremap <silent> tvs :<C-u>TweetVimSay<CR>
 if !exists('g:neocomplcache_dictionary_filetype_lists')
-  let g:neocomplcache_dictionary_filetype_lists = {}
+  let g:neocomplcache_dictionary_filetype_lists={}
 endif
-let neco_dic = g:neocomplcache_dictionary_filetype_lists
-let neco_dic.tweetvim_say = $HOME . '/.tweetvim/screen_name'
+let neco_dic=g:neocomplcache_dictionary_filetype_lists
+let neco_dic.tweetvim_say=$HOME . '/.tweetvim/screen_name'
 "}}}
 " emmet "{{{
-let g:user_emmet_mode = 'iv'
-let g:user_emmet_leader_key = '<C-Y>'
-let g:use_emmet_complete_tag = 1
-let g:user_emmet_settings = {
+let g:user_emmet_mode='iv'
+let g:user_emmet_leader_key='<C-Y>'
+let g:use_emmet_complete_tag=1
+let g:user_emmet_settings={
       \ 'lang' : 'ja',
       \ 'html' : {
       \   'filters' : 'html',
@@ -200,12 +200,12 @@ let g:user_emmet_settings = {
       \}
 augroup EmmitVim
   autocmd!
-  autocmd FileType * let g:user_emmet_settings.indentation = '               '[:&tabstop]
+  autocmd FileType * let g:user_emmet_settings.indentation='               '[:&tabstop]
 augroup END
 "}}}
 " hybrid "{{{
-let g:hybrid_use_iTerm_colors = 1
-let g:hybrid_reduced_contrast = 1
+let g:hybrid_use_iTerm_colors=1
+let g:hybrid_reduced_contrast=1
 "}}}
 " tender.vim"{{{
 if (has("termguicolors"))
@@ -225,8 +225,8 @@ let macvim_skip_colorscheme=1
 "   diff_bufnr     : bufnr of diff window    -> ditto
 "   status_winnr   : winnr of status window  -> all hooks except for 'diff_open' hook
 "   status_bufnr   : bufnr of status window  -> ditto
-let g:committia_min_window_width = 100  " これ以下の幅では左右分割しない
-let g:committia_hooks = {}
+let g:committia_min_window_width=100  " これ以下の幅では左右分割しない
+let g:committia_hooks={}
 function! g:committia_hooks.edit_open(info)
     " Additional settings
     setlocal spell
@@ -241,20 +241,20 @@ function! g:committia_hooks.edit_open(info)
 endfunction
 "}}}
 " neocomplete "{{{
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplete#sources#dictionary#dictionaries = {
+let g:acp_enableAtStartup=0
+let g:neocomplete#enable_at_startup=1
+let g:neocomplete#enable_smart_case=1
+let g:neocomplete#sources#syntax#min_keyword_length=3
+let g:neocomplete#lock_buffer_name_pattern='\*ku\*'
+let g:neocomplete#sources#dictionary#dictionaries={
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
         \ }
 if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
+    let g:neocomplete#keyword_patterns={}
 endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+let g:neocomplete#keyword_patterns['default']='\h\w*'
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -265,14 +265,14 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
+  let g:neocomplete#sources#omni#input_patterns={}
 endif
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.perl='\h\w*->\h\w*\|\h\w*::'
 "}}}
 " vimshell "{{{
-let g:vimshell = 'mvim'
-let g:vimshell_prompt_expr = 'getcwd()." > "'
-let g:vimshell_prompt_pattern = '^\f\+ > '
+let g:vimshell='mvim'
+let g:vimshell_prompt_expr='getcwd()." > "'
+let g:vimshell_prompt_pattern='^\f\+ > '
 "}}}
 " nerdtree "{{{
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -285,7 +285,7 @@ nnoremap <S-n>h gT
 "}}}
 " Clang "{{{
 autocmd FileType c ClangFormatAutoEnable
-let g:clang_format#style_options = {
+let g:clang_format#style_options={
       \ "Language": "Cpp",
       \ "BasedOnStyle": "LLVM",
       \ "ContinuationIndentWidth": 2,
@@ -293,10 +293,10 @@ let g:clang_format#style_options = {
       \ }
 "}}}
 " html5.vim "{{{
-let g:html5_event_handler_attributes_complete = 0
-let g:html5_rdfa_attributes_complete = 0
-let g:html5_microdata_attributes_complete = 0
-let g:html5_aria_attributes_complete = 0
+let g:html5_event_handler_attributes_complete=0
+let g:html5_rdfa_attributes_complete=0
+let g:html5_microdata_attributes_complete=0
+let g:html5_aria_attributes_complete=0
 "}}}
 " vim-autoclose "{{{
 let g:auto_save=1
@@ -307,10 +307,10 @@ nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 "}}}
 " vim-jsx "{{{
-let g:jsx_ext_required = 0
+let g:jsx_ext_required=0
 "}}}
 " vim-json "{{{
-let g:vim_json_syntax_conceal = 0
+let g:vim_json_syntax_conceal=0
 "}}}
 " vim-trailing-whitespace "{{{
 autocmd BufWritePre * :FixWhitespace
@@ -404,7 +404,7 @@ hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
 "}}}
 " キーマッピング"{{{
 "global"{{{
-let mapleader = "\<Space>"
+let mapleader="\<Space>"
 "}}}
 " map "{{{
 map ,v :<C-u>vsplit<CR>
@@ -448,13 +448,13 @@ vnoremap " "zdi^V"<C-R>z^V"<ESC>
 vnoremap ' "zdi'<C-R>z'<ESC>
 
 function! DeleteParenthesesAdjoin()
-    let pos = col(".") - 1  " カーソルの位置．1からカウント
-    let str = getline(".")  " カーソル行の文字列
-    let parentLList = ["(", "[", "{", "\'", "\""]
-    let parentRList = [")", "]", "}", "\'", "\""]
-    let cnt = 0
+    let pos=col(".") - 1  " カーソルの位置．1からカウント
+    let str=getline(".")  " カーソル行の文字列
+    let parentLList=["(", "[", "{", "\'", "\""]
+    let parentRList=[")", "]", "}", "\'", "\""]
+    let cnt=0
 
-    let output = ""
+    let output=""
 
     " カーソルが行末の場合
     if pos == strlen(str)
@@ -464,7 +464,7 @@ function! DeleteParenthesesAdjoin()
         " カーソルの左右が同種の括弧
         if str[pos-1] == c && str[pos] == parentRList[cnt]
             call cursor(line("."), pos + 2)
-            let output = "\b"
+            let output="\b"
             break
         endif
         let cnt += 1
