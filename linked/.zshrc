@@ -29,7 +29,6 @@ setopt mark_dirs
 setopt no_beep
 setopt no_flow_control
 setopt nonomatch
-setopt prompt_subst
 setopt print_eight_bit
 setopt pushd_ignore_dups
 setopt share_history
@@ -45,6 +44,27 @@ setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_reduce_blanks
 setopt share_history
+# }}}
+# Prompt# {{{
+autoload -Uz colors
+colors
+setopt prompt_subst
+# ForeGround: %{$fg[code]%}
+# BackGround: %{$bg[code]%}
+# Reset: %{$reset_color%}
+# Codes: {
+# 0: black,
+# 1: red,
+# 2: green,
+# 3: yellow,
+# 4: blue,
+# 5: magenta,
+# 6: cyan,
+# 7: white
+# }
+exit_code='%?'
+PROMPT="(%(?!%{$fg[green]%}!%{$fg[red]%})$exit_code%{$reset_color%}) %% "
+RPROMPT="( %{$fg[magenta]%}~%{$reset_color%} )Oo."
 # }}}
 # }}}
 # Load alias# {{{
