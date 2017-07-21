@@ -1,35 +1,49 @@
-######## 環境設定
+# Environmental Variables# {{{
 export LANG=ja_JP.UTF-8
+export EDITOR=/usr/local/bin/vim
 export PATH=/usr/local/bin:$PATH
-setopt nonomatch
+export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init - zsh)"
-export PATH=$HOME/Library/Python/2.7/bin:$PATH
-export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
 export PATH=$HOME/.pyenv/bin:$PATH
-eval "$(pyenv init - zsh)"
+export PATH=$HOME/Library/Python/2.7/bin:$PATH
 if [ -x "`which go`" ]; then
   export GOROOT=`go env GOROOT`
   export GOPATH=$HOME/code/go-local
   export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 fi
-# export DOCKER_HOST=tcp://192.168.59.103:2376
-# export DOCKER_CERT_PATH=/Users/saino/.boot2docker/certs/boot2docker-vm
-# export DOCKER_TLS_VERIFY=1
-
-# Vi ライクな操作を有効にする
-bindkey -v
-
-# 色を使用出来るようにする
-autoload -Uz colors
-colors
-
-# エディタの設定
-export EDITOR=/usr/local/bin/vim
-
-
-####### プロンプト
+eval "$(rbenv init - zsh)"
+eval "$(pyenv init - zsh)"
+# }}}
+# Options#{{{
+setopt auto_cd
+setopt auto_menu
+setopt auto_param_keys
+setopt auto_param_slash
+setopt auto_pushd
+setopt extended_glob
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt ignore_eof
+setopt interactive_comments
+setopt magic_equal_subst
+setopt mark_dirs
+setopt no_beep
+setopt no_flow_control
+setopt nonomatch
+setopt prompt_subst
+setopt print_eight_bit
+setopt pushd_ignore_dups
+setopt share_history
+setopt nonomatch
+# }}}
+# Load alias# {{{
+if [ -f ~/.aliases ]; then
+  . ~/.aliases
+fi
+# }}}
+# Prompt# {{{
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:*' formats '[%F{green}%b%f]'
@@ -63,52 +77,4 @@ function rprompt-git-current-branch {
 }
 PROMPT='%(?.%B%F{green}.%B%F{blue})%(?! ! )%f%b'
 RPROMPT='`rprompt-git-current-branch`%F{cyan}%~$f %F{white}[%*]%f'
-
-
-####### コマンド入力補完
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# lsコマンド
-export LSCOLORS=exfxcxdxbxegedabagacad
-export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-
-zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
-
-
-
-####### オプション
-setopt auto_cd
-setopt auto_menu
-setopt auto_param_keys
-setopt auto_param_slash
-setopt auto_pushd
-setopt extended_glob
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_reduce_blanks
-setopt ignore_eof
-setopt interactive_comments
-setopt magic_equal_subst
-setopt mark_dirs
-setopt no_beep
-setopt no_flow_control
-setopt prompt_subst
-setopt print_eight_bit
-setopt pushd_ignore_dups
-setopt share_history
-setopt nonomatch
-
-# history
-HISTFILE=~/.zsh_history
-HISTSIZE=1000000
-SAVEHIST=1000000
-setopt HIST_IGNORE_SPACE
-setopt EXTENDED_HISTORY
-setopt HIST_FIND_NO_DUPS
-setopt HIST_IGNORE_DUPS
-setopt APPEND_HISTORY
-
-# alias
-if [ -f ~/.aliases ]; then
-  . ~/.aliases
-fi
+# }}}
