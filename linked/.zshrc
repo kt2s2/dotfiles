@@ -61,7 +61,7 @@ function rprompt-git-current-branch {
 
   echo "%{$color%}$name%{$reset_color%} "
 }
-PROMPT='%(?.%B%F{green}.%B%F{blue})%(?!U^ｪ^U ﾜﾝ < !UTｪTU ｸｩﾝ < )%f%b'
+PROMPT='%(?.%B%F{green}.%B%F{blue})%(?! ! )%f%b'
 RPROMPT='`rprompt-git-current-branch`%F{cyan}%~$f %F{white}[%*]%f'
 
 
