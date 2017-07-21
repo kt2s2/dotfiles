@@ -1,4 +1,4 @@
-" プラグイン"{{{
+" プラグイン "{{{
 
 set nocompatible
 if has('vim_starting')
@@ -7,7 +7,7 @@ if has('vim_starting')
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-" Plugin List"{{{
+" Plugin List "{{{
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
@@ -21,8 +21,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'osyo-manga/shabadou.vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'pmsorhaindo/syntastic-local-eslint.vim'
 NeoBundle 'open-browser.vim'
 NeoBundle 'basyura/TweetVim'
 NeoBundle 'mattn/webapi-vim'
@@ -39,7 +37,9 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'ryanoasis/vim-devicons'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
@@ -54,6 +54,8 @@ NeoBundle 'gorodinskiy/vim-coloresque', {
       \ 'autoload':{
       \   'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus']
       \ }}
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'kana/vim-operator-user'
 NeoBundle 'rhysd/vim-clang-format'
@@ -103,8 +105,8 @@ NeoBundle 'gregsexton/gitv.git'
 call neobundle#end()
 "}}}
 NeoBundleCheck
-" プラグイン毎の設定"{{{
-" vimshell "{{{
+" プラグイン毎の設定 "{{{
+" vimshell  "{{{
 nnoremap ,vv  :<C-u>VimShellPop<CR>
 "}}}
 " CtrlP "{{{
@@ -148,22 +150,7 @@ nnoremap <silent> [unite]h :<C-u>Unite<Space>history/yank<CR>
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 "}}}
-" syntastic "{{{
-" ref. https://github.com/scrooloose/syntastic#settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_enable_signs=1 " show sign in the line having errors
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-
-let g:syntastic_javascript_checkers=['eslint']
-
-let g:syntastic_html_tidy_exec='tidy5'
-"}}}
-" open-browser.vim"{{{
+" open-browser.vim "{{{
 let g:netrw_nogx=1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
@@ -207,11 +194,20 @@ augroup END
 let g:hybrid_use_iTerm_colors=1
 let g:hybrid_reduced_contrast=1
 "}}}
-" tender.vim"{{{
+" tender.vim "{{{
+let macvim_skip_colorscheme=1
+set laststatus=2
+set showtabline=2
+set t_Co=256
 if (has("termguicolors"))
  set termguicolors
 endif
-let macvim_skip_colorscheme=1
+"}}}
+" airline "{{{
+let g:airline_theme='tender'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#buffer_idx_mode=1
 "}}}
 " committia "{{{
 " You can get the information about the windows with first argument as a dictionary.
@@ -277,6 +273,23 @@ let g:vimshell_prompt_pattern='^\f\+ > '
 " nerdtree "{{{
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let g:NERDTreeShowBookmarks=1
+let g:NERDTreeDirArrows=1
+" vim-devicons
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+" dir-icons
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
+let g:DevIconsDefaultFolderOpenSymbol = ''
+" file-icons
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sass|scss'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt|lock'] = ''
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg'] = ''
 nnoremap <S-n>l gt
 nnoremap <S-n>h gT
 " if !argc()
@@ -320,16 +333,16 @@ autocmd BufWritePre * :FixWhitespace
 
 filetype plugin indent on
 
-" 基本設定"{{{
+" 基本設定 "{{{
 set nocompatible                  " vi互換をオフする
 set mouse=a                       " マウス操作をできるようにする
 set clipboard=unnamed,autoselect  " ヤンクした文字は、システムのクリップボードに入れる
-set visualbell t_vb=              " エラービープ音を鳴らさない
+set visualbell t_vb=             " エラービープ音を鳴らさない
 set noerrorbells
 set encoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
-" Set commands"{{{
+" Set commands "{{{
 set ambiwidth=double    "文脈によって解釈が異なる全角文字の幅を、２に固定する
 set backspace=indent,eol,start "バックスペースにてインデントを削除可能にする
 set display=lastline    "長い文字列でも@でなくちゃんと表示する
@@ -341,7 +354,7 @@ set lazyredraw          " コマンド実行中は再描画しない
 set list                "空白文字の可視化
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:% "可視化した空白文字の表示形式について
 set matchtime=1         "showmatchによって対象括弧に飛ぶ時間を0.1秒に変更
-set nrformats-=octal    "0で始まる数値を、8進数として扱わないようにする
+set nrformats=octal    "0で始まる数値を、8進数として扱わないようにする
 set number              "行番号を表示する
 set pumheight=10        "補完のポップアップの表示する件数を10
 set scrolloff=5         "カーソルの上または下に表示する最小限の行数
@@ -356,7 +369,7 @@ set whichwrap=b,s,[,],<,>
 set wildmenu            "コマンドライン補完を拡張モードにする
 set wrap                "ウィンドウの幅より長い行は折り返した、次の行に表示する
 "}}}
-" 検索設定"{{{
+" 検索設定 "{{{
 set ignorecase  " 大文字/小文字の区別なく検索する
 set smartcase   " 検索文字列に大文字が含まれている場合は区別して検索する
 set wrapscan    " 検索時に最後まで行ったら最初に戻る
@@ -371,7 +384,7 @@ nmap n nzz
 " Register filetype by file extension "{{{
 au BufNewFile,BufRead *.html setf html
 au BufNewFile,BufRead *.ejs setf html
-au BufNewFile,BufRead *.erb setf eruby.html
+au BufNewFile,BufRead *.erb setf eruby
 au BufNewFile,BufRead *.haml setf haml
 au BufNewFile,BufRead *.slim setf slim
 au BufNewFile,BufRead *.scss setf scss
@@ -385,15 +398,15 @@ au BufNewFile,BufRead *.yml setf yaml
 au BufNewFile,BufRead *.php setf php
 au BufNewFile,BufRead *.sh setf sh
 "}}}
-" Color Scheme"{{{
-" global settings"{{{
+" Color Scheme "{{{
+" global settings "{{{
 syntax enable
 set background=dark
 set cursorline
 colorscheme tender
 hi clear CursorLine
 "}}}
-" 細かい色のカスタマイズ"{{{
+" 細かい色のカスタマイズ "{{{
 hi Comment ctermfg=0
 hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
 hi PmenuSel ctermbg=blue ctermfg=black
@@ -402,25 +415,25 @@ hi PmenuSbar ctermbg=0 ctermfg=9
 hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
 "}}}
 "}}}
-" キーマッピング"{{{
-"global"{{{
+" キーマッピング "{{{
+"global "{{{
 let mapleader="\<Space>"
 "}}}
 " map "{{{
 map ,v :<C-u>vsplit<CR>
 map ,w :<C-u>split<CR>
 "}}}
-"inoremap"{{{
+"inoremap "{{{
 inoremap <silent> jk <ESC>
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <Del>
 "}}}
-"nnoremap"{{{
+"nnoremap "{{{
 nnoremap <Leader>w :w<CR>
 noremap <S-h> ^
 noremap <S-l> $
 "}}}
-" ctags"{{{
+" ctags "{{{
 map <Leader>rt :!ctags -R .<CR><CR>
 map tt <C-]>
 map tn <C-w>]
@@ -431,11 +444,11 @@ map <C-n> :tnext<CR>
 "}}}
 "}}}
 
-"基本カスタマイズ"{{{
-" Autocmd"{{{
+"基本カスタマイズ "{{{
+" Autocmd "{{{
 autocmd InsertLeave * set nopaste
 "}}}
-" かっこ補完"{{{
+" かっこ補完 "{{{
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap [<Enter> []<Left><CR><ESC><S-o>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
@@ -474,7 +487,7 @@ endfunction
 " Ctrl-Hに割り当て
 inoremap <silent> <C-h> <C-R>=DeleteParenthesesAdjoin()<CR>
 "}}}
-" grep "{{{
+" grep  "{{{
 " @example
 " :vim {pattern} %
 " :vim {pattern} **
@@ -486,7 +499,7 @@ autocmd QuickFixCmdPost *grep* cwindow
 nnoremap <C-k> :cprevious<CR>
 nnoremap <C-j> :cnext<CR>
 "}}}
-" 入力補完を自動化"{{{
+" 入力補完を自動化 "{{{
 set completeopt=menuone
 for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
   exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
@@ -506,7 +519,7 @@ if has('syntax')
 endif
 "}}}
 "}}}
-"応用カスタマイズ"{{{
+"応用カスタマイズ "{{{
 " 最後のカーソル位置を復元する "{{{
 if has("autocmd")
     autocmd BufReadPost *
