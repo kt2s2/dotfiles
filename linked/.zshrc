@@ -15,16 +15,13 @@ fi
 eval "$(rbenv init - zsh)"
 eval "$(pyenv init - zsh)"
 # }}}
-# Options#{{{
+# Shell Settings#{{{
 setopt auto_cd
 setopt auto_menu
 setopt auto_param_keys
 setopt auto_param_slash
 setopt auto_pushd
 setopt extended_glob
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_reduce_blanks
 setopt ignore_eof
 setopt interactive_comments
 setopt magic_equal_subst
@@ -37,44 +34,21 @@ setopt print_eight_bit
 setopt pushd_ignore_dups
 setopt share_history
 setopt nonomatch
+# History# {{{
+HISTFILE=${HOME}/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_save_no_dups
+setopt hist_reduce_blanks
+setopt share_history
+# }}}
 # }}}
 # Load alias# {{{
 if [ -f ~/.aliases ]; then
   . ~/.aliases
 fi
-# }}}
-# Prompt# {{{
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:*' formats '[%F{green}%b%f]'
-zstyle ':vcs_info:*' actionformats '[%F{green}%b%f(%F{red}%a%f)]'
-precmd() { vcs_info }
-function rprompt-git-current-branch {
-  local name st color
-
-  if [[ "$PWD" =~ '/\.git(/.*)?$' ]]; then
-      return
-  fi
-  #name=$(basename "`git symbolic-ref HEAD 2> /dev/null`")
-  name=`git symbolic-ref HEAD 2>/dev/null | sed -E 's!refs/heads/!!'`
-
-  if [[ -z $name ]]; then
-      return
-  fi
-
-  st=`git status 2> /dev/null`
-  if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-      color=${fg[green]}
-  elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
-      color=${fg[yellow]}
-  elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
-      color=${fg_bold[red]}
-  else
-      color=${fg[red]}
-  fi
-
-  echo "%{$color%}$name%{$reset_color%} "
-}
-PROMPT='%(?.%B%F{green}.%B%F{blue})%(?! ! )%f%b'
-RPROMPT='`rprompt-git-current-branch`%F{cyan}%~$f %F{white}[%*]%f'
 # }}}
