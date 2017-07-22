@@ -81,6 +81,9 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 zstyle ':completion:*:*files' ignored-patterns '*?.o' '*?~' '*\#'
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
+# zsh-completions
+[ -d $HOME/.zsh/zsh-completions/src ] && fpath=($HOME/.zsh/zsh-completions/src $fpath)
+
 source /usr/local/Cellar/zsh-syntax-highlighting/0.5.0/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 setopt auto_cd
