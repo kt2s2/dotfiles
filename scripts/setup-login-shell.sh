@@ -1,8 +1,8 @@
 #!/bin/sh
 echo ''
 echo Login shell settings...
-if ! echo $SHELL | grep -q zsh; then
-  sudo yum -y install zsh
+if ! type zsh > /dev/null 2>&1; then
+  ./scripts/install-package.sh zsh
 fi
 zsh_path=`which zsh`
 sudo chsh -s $zsh_path

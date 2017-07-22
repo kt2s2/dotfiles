@@ -2,7 +2,6 @@
 echo Start setup
 
 sudo yum -y update
-sudo yum -y install git
 
 ./scripts/symbolic-link.sh
 
