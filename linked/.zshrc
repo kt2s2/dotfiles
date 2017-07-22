@@ -15,38 +15,7 @@ fi
 eval "$(rbenv init - zsh)"
 eval "$(pyenv init - zsh)"
 # }}}
-# Shell Settings#{{{
-setopt auto_cd
-setopt auto_menu
-setopt auto_param_keys
-setopt auto_param_slash
-setopt auto_pushd
-setopt extended_glob
-setopt ignore_eof
-setopt interactive_comments
-setopt magic_equal_subst
-setopt mark_dirs
-setopt no_beep
-setopt no_flow_control
-setopt nonomatch
-setopt print_eight_bit
-setopt pushd_ignore_dups
-setopt share_history
-setopt nonomatch
-# History# {{{
-HISTFILE=${HOME}/.zsh_history
-HISTSIZE=100000
-SAVEHIST=100000
-setopt extended_history
-setopt hist_ignore_all_dups
-setopt hist_ignore_dups
-setopt hist_ignore_space
-setopt hist_save_no_dups
-setopt hist_reduce_blanks
-setopt share_history
-# }}}
-# Prompt# {{{
-# Color{{{
+# Load Color{{{
 autoload -Uz colors
 colors
 setopt prompt_subst
@@ -64,7 +33,63 @@ setopt prompt_subst
 # 7: white
 # }
 # }}}
-# vcs{{{
+# Load alias# {{{
+if [ -f ~/.aliases ]; then
+  . ~/.aliases
+fi
+# }}}
+# Shell Settings{{{
+setopt ignore_eof
+setopt interactive_comments
+setopt no_beep
+setopt no_flow_control
+setopt nonomatch
+setopt pushd_ignore_dups
+setopt nolistbeep
+
+REPORTTIME=3
+
+# Completion{{{
+autoload -U compinit
+compinit
+zstyle ':completion:*:default' menu select=2
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' ignore-parents parent pwd
+zstyle ':completion:*' use-cache true
+setopt always_last_prompt
+setopt auto_pushd
+setopt auto_param_slash
+setopt auto_menu
+setopt auto_param_keys
+setopt brace_ccl
+setopt complete_in_word
+setopt correct
+setopt extended_glob
+setopt globdots
+setopt print_eight_bit
+setopt list_types
+setopt mark_dirs
+setopt magic_equal_subst
+
+setopt auto_cd
+function chpwd() { ls }
+
+autoload predict-on
+predict-on
+# }}}
+# History# {{{
+HISTFILE=${HOME}/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt extended_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_save_no_dups
+setopt hist_reduce_blanks
+setopt share_history
+# }}}
+# Prompt# {{{
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 autoload -Uz is-at-least
@@ -166,10 +191,4 @@ function _render_prompt() {
 }
 precmd() { _render_prompt }
 # }}}
-# }}}
-# }}}
-# Load alias# {{{
-if [ -f ~/.aliases ]; then
-  . ~/.aliases
-fi
 # }}}
