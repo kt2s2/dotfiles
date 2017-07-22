@@ -1,5 +1,18 @@
 #!/bin/sh
 echo ''
+echo 'Uninstall default vim-minimal'
+sudo yum -y remove vim-minimal.x86_64
+./scripts/install-package.sh mercurial ncurses-devel make gcc
+cd /usr/local/src/
+hg clone https://vim.googlecode.com/hg/ vim73
+cd vim73/
+./configure --with-features=huge --enable-multibyte --disable-selinux --enable-rubyinterp
+make
+make install
+cd ~
+ln -s /usr/local/bin/vim /usr/bin/vi
+
+echo ''
 echo Vim settings...
 echo Confirm $HOME/.vim/snippets existance
 if [ -e $HOME/.vim/snippets ]; then
