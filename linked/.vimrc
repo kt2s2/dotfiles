@@ -196,14 +196,14 @@ let g:hybrid_reduced_contrast=1
 "}}}
 " tender.vim "{{{
 let macvim_skip_colorscheme=1
-set laststatus=2
-set showtabline=2
 set t_Co=256
 if (has("termguicolors"))
  set termguicolors
 endif
 "}}}
 " airline "{{{
+set laststatus=2
+set showtabline=2
 let g:airline_theme='tender'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
@@ -404,6 +404,7 @@ syntax enable
 set background=dark
 set cursorline
 colorscheme tender
+set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
 hi clear CursorLine
 "}}}
 " 細かい色のカスタマイズ "{{{
