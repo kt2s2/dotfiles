@@ -4,7 +4,7 @@ ans0="not install"
 ans1="5.6"
 ans2="7.0"
 ans3="7.1"
-select ANS in $ans1 $ans2 $ans3; do
+select ANS in $ans0 $ans1 $ans2 $ans3; do
   case $ANS in
     $ans0)
       echo "SKIP"
