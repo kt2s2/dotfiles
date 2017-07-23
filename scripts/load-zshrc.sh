@@ -1,7 +1,8 @@
 #!/bin/sh
 echo ''
 echo Load zshrc...
-if [ -e $HOME/.zshrc ]; then
-  source $HOME/.zshrc
-fi
+exec $SHELL -l
+# if [ -e $HOME/.zshrc ]; then
+#   source $HOME/.zshrc
+# fi
 zsh
