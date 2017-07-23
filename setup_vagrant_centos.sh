@@ -7,5 +7,3 @@ echo Start setup
 ./scripts/setup-vim.sh
 
 git config --global init.templatedir '.git_tmp'
-
-exec $SHELL -l
