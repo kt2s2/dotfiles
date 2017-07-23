@@ -15,8 +15,8 @@ select ANS in $ans0 $ans1; do
       sudo /etc/rc.d/init.d/mysqld start
       sudo chkconfig mysqld on
 
-      sudo yum -y install python-pip python-devel
-      sudo pip install mycli
+      # sudo yum -y install python-pip python-devel libffi-devel
+      # sudo pip install mycli
       break;;
   esac
 done
