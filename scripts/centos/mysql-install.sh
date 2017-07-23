@@ -14,6 +14,9 @@ select ANS in $ans0 $ans1; do
       sudo yum -y install mysql mysql-devel mysql-server mysql-utilities
       sudo /etc/rc.d/init.d/mysqld start
       sudo chkconfig mysqld on
+
+      sudo yum -y install python-pip python-devel
+      sudo pip install mycli
       break;;
   esac
 done
