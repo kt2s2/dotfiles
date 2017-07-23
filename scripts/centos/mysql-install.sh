@@ -12,6 +12,8 @@ select ANS in $ans0 $ans1; do
       sudo yum-config-manager --disable mysql56-community
       sudo yum-config-manager --enable mysql55-community
       sudo yum -y install mysql mysql-devel mysql-server mysql-utilities
+      sudo /etc/rc.d/init.d/mysqld start
+      sudo chkconfig mysqld on
       break;;
   esac
 done
