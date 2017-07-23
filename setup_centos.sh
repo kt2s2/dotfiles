@@ -1,8 +1,6 @@
 #!/bin/sh
 echo Start setup
 
-sudo yum -y update
-
 ./scripts/setup-webserver.sh
 ./scripts/symbolic-link.sh
 ./scripts/setup-login-shell.sh
