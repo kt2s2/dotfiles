@@ -209,7 +209,7 @@ function _render_prompt() {
   print -P $left${(r:$padwidth:: :)}$right
 }
 precmd() { _render_prompt }
-PROMPT=$'%%'
+PROMPT=$'%% '
 RPROMPT=$'(%(?!%{$fg[green]%}!%{$fg[red]%})$exit_code%{$reset_color%})`_update_vcs_info_msg`'
 # }}}
 # }}}
