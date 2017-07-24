@@ -200,7 +200,7 @@ function _update_vcs_info_msg() {
 }
 function _render_prompt() {
   exit_code='%?'
-  local left='(%(?!%{$fg[green]%}!%{$fg[red]%})$exit_code%{$reset_color%})`_update_vcs_info_msg`'
+  local left='[%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%}]'
   local right='( %{$fg[magenta]%}%~%{$reset_color%} )Oo.'
   local invisible='%([BSUbfksu]|([FK]|){*})'
   local leftwidth=${#${(S%%)left//$~invisible/}}
@@ -209,7 +209,7 @@ function _render_prompt() {
   print -P $left${(r:$padwidth:: :)}$right
 }
 precmd() { _render_prompt }
-PROMPT=$'%% '
-RPROMPT=$'%n@%m'
+PROMPT=$'%%'
+RPROMPT=$'(%(?!%{$fg[green]%}!%{$fg[red]%})$exit_code%{$reset_color%})`_update_vcs_info_msg`'
 # }}}
 # }}}
