@@ -37,9 +37,7 @@ NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'ryanoasis/vim-devicons'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'tiagofumo/vim-nerdtree-syntax-highlight'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
@@ -274,22 +272,6 @@ let g:vimshell_prompt_pattern='^\f\+ > '
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeDirArrows=1
-" vim-devicons
-let g:webdevicons_conceal_nerdtree_brackets = 1
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
-" dir-icons
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = ''
-let g:DevIconsDefaultFolderOpenSymbol = ''
-" file-icons
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {}
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['html'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['css'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sass|scss'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['md'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['txt|lock'] = ''
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['svg'] = ''
 nnoremap <S-n>l gt
 nnoremap <S-n>h gT
 " if !argc()
