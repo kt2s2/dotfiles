@@ -25,13 +25,13 @@ NeoBundle 'open-browser.vim'
 NeoBundle 'basyura/TweetVim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'basyura/twibill.vim'
-NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'basyura/bitly.vim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'Townk/vim-autoclose'
 NeoBundle "ctrlpvim/ctrlp.vim"
+NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neoyank.vim'
@@ -43,11 +43,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'thinca/vim-ref'
-NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'abra/vim-obsidian'
-NeoBundle 'jacoborus/tender.vim'
-NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'gorodinskiy/vim-coloresque', {
       \ 'autoload':{
       \   'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus']
@@ -132,21 +128,22 @@ let g:quickrun_config._={
       \ }
 set splitbelow
 "}}}
-" Unit.vim "{{{
+" unite.vim "{{{
+" The prefix key.
+nnoremap  [unite] <Nop>
+nmap  <S-u>  [unite]
+nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]g :<C-u>Unite grep<CR>
+nnoremap <silent> [unite]f :<C-u>Unite file<CR>
+nnoremap <silent> [unite]m :<C-u>Unite file_mu buffer<CR>
+nnoremap <silent> [unite]p :<C-u>Unite file_rec/async:!<CR>
+if executable('ag')
+  let g:unite_source_grep_command='ag'
+  let g:unite_source_grep_default_opts='--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
 let g:unite_enable_start_insert=1
-let g:unite_enable_ignore_case=1
-let g:unite_enable_smart_case=1
-let g:unite_source_history_yank_enable=1
-nmap <Space> [unite]
-nnoremap <silent> [unite]a :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> [unite]t :<C-u>Unite<Space>tab<CR>
-nnoremap <silent> [unite]o :<C-u>Unite<Space>outline<CR>
-nnoremap <silent> [unite]f :<C-u>Unite<Space>buffer file_mru<CR>
-nnoremap <silent> [unite]d :<C-u>Unite<Space>directory_mru<CR>
-nnoremap <silent> [unite]b :<C-u>Unite<Space>buffer<CR>
-nnoremap <silent> [unite]h :<C-u>Unite<Space>history/yank<CR>
-au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
-au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 "}}}
 " open-browser.vim "{{{
 let g:netrw_nogx=1 " disable netrw's gx mapping.
@@ -202,7 +199,7 @@ endif
 " airline "{{{
 set laststatus=2
 set showtabline=2
-let g:airline_theme='tender'
+let g:airline_theme='hybridline'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#buffer_idx_mode=1
@@ -382,12 +379,10 @@ au BufNewFile,BufRead *.sh setf sh
 "}}}
 " Color Scheme "{{{
 " global settings "{{{
-syntax enable
+syntax on
 set background=dark
-set cursorline
-colorscheme tender
+colorscheme hybrid
 set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
-hi clear CursorLine
 "}}}
 " 細かい色のカスタマイズ "{{{
 hi Comment ctermfg=0
