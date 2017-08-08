@@ -38,6 +38,7 @@ NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'simeji/winresizer'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
@@ -136,7 +137,7 @@ nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
 nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]g :<C-u>Unite grep<CR>
 nnoremap <silent> [unite]f :<C-u>Unite file<CR>
-nnoremap <silent> [unite]m :<C-u>Unite file_mu buffer<CR>
+nnoremap <silent> [unite]m :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> [unite]p :<C-u>Unite file_rec/async:!<CR>
 if executable('ag')
   let g:unite_source_grep_command='ag'
@@ -274,6 +275,9 @@ nnoremap <S-n>h gT
 " if !argc()
 "   autocmd vimenter * NERDTree|normal gg3j
 " endif
+"}}}
+" winresizer{{{
+let g:winresizer_start_key = '<Leader><C-T>'
 "}}}
 " Clang "{{{
 autocmd FileType c ClangFormatAutoEnable
