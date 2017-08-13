@@ -191,13 +191,6 @@ augroup END
 let g:hybrid_use_iTerm_colors=1
 let g:hybrid_reduced_contrast=1
 "}}}
-" tender.vim "{{{
-let macvim_skip_colorscheme=1
-set t_Co=256
-if (has("termguicolors"))
- set termguicolors
-endif
-"}}}
 " airline "{{{
 set laststatus=2
 set showtabline=2
