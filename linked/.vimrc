@@ -22,10 +22,10 @@ NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'osyo-manga/shabadou.vim'
 NeoBundle 'open-browser.vim'
-NeoBundle 'basyura/TweetVim'
-NeoBundle 'mattn/webapi-vim'
-NeoBundle 'basyura/twibill.vim'
-NeoBundle 'basyura/bitly.vim'
+" NeoBundle 'basyura/TweetVim'
+" NeoBundle 'mattn/webapi-vim'
+" NeoBundle 'basyura/twibill.vim'
+" NeoBundle 'basyura/bitly.vim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-endwise'
@@ -46,7 +46,7 @@ NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'gorodinskiy/vim-coloresque', {
+NeoBundleLazy 'gorodinskiy/vim-coloresque', {
       \ 'autoload':{
       \   'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus']
       \ }}
@@ -54,7 +54,12 @@ NeoBundle 'vim-airline/vim-airline'
 NeoBundle 'vim-airline/vim-airline-themes'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'kana/vim-operator-user'
-NeoBundle 'rhysd/vim-clang-format'
+" NeoBundle 'Shougo/context_filetype.vim'
+" NeoBundle 'osyo-manga/vim-precious'
+NeoBundleLazy 'rhysd/vim-clang-format', {
+      \ 'autoload':{
+      \   'filetypes':['c']
+      \ }}
 NeoBundle 'fatih/vim-go'
 NeoBundleLazy 'vim-ruby/vim-ruby', {
       \ 'autoload':{
@@ -62,32 +67,44 @@ NeoBundleLazy 'vim-ruby/vim-ruby', {
       \ }}
 NeoBundle 'taichouchou2/vim-rails'
 NeoBundle 'romanvbabenko/rails.vim'
-NeoBundle 'othree/html5.vim', {
+NeoBundleLazy 'othree/html5.vim', {
       \ 'autoloat':{
       \   'filetypes':['html']
       \ }}
-NeoBundle 'slim-template/vim-slim', {
+NeoBundleLazy 'slim-template/vim-slim', {
       \ 'autoload':{
       \   'filetypes':['slim']
       \ }}
-NeoBundle 'tpope/vim-haml', {
+NeoBundleLazy 'tpope/vim-haml', {
       \ 'autoload':{
       \   'filetypes':['haml']
       \ }}
-NeoBundle 'cakebaker/scss-syntax.vim', {
+NeoBundleLazy 'cakebaker/scss-syntax.vim', {
       \ 'autoload':{
       \   'filetypes':['scss']
       \ }}
-NeoBundle 'yaml.vim', {
+NeoBundleLazy 'yaml.vim', {
       \ 'autoload':{
-      \   'filetypes':['yml']
+      \   'filetypes':['yaml']
       \ }}
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'mxw/vim-jsx'
-NeoBundle 'leafgarland/typescript-vim'
+NeoBundleLazy 'pangloss/vim-javascript', {
+      \ 'autoload':{
+      \   'filetypes':['javascript']
+      \ }}
+NeoBundleLazy 'mxw/vim-jsx', {
+      \ 'autoload':{
+      \   'filetypes':['javascript']
+      \ }}
+NeoBundleLazy 'leafgarland/typescript-vim', {
+      \ 'autoload':{
+      \   'filetypes':['typescript']
+      \ }}
 NeoBundle 'Quramy/tsuquyomi'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'kchmck/vim-coffee-script', {
+NeoBundleLazy 'elzr/vim-json', {
+      \ 'autoload':{
+      \   'filetypes':['json']
+      \ }}
+NeoBundleLazy 'kchmck/vim-coffee-script', {
       \ 'autoload':{
       \   'filetypes':['coffee']
       \ }}
@@ -133,13 +150,28 @@ set splitbelow
 " unite.vim "{{{
 " The prefix key.
 nnoremap  [unite] <Nop>
-nmap  <S-u>  [unite]
+nmap ,u [unite]
+nmap ,ur [unite-rails]
 nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
 nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]g :<C-u>Unite grep<CR>
 nnoremap <silent> [unite]f :<C-u>Unite file<CR>
 nnoremap <silent> [unite]m :<C-u>Unite file_mru buffer<CR>
 nnoremap <silent> [unite]p :<C-u>Unite file_rec/async:!<CR>
+nnoremap <silent> [unite-rails]m :<C-u>Unite rails/model<CR>
+nnoremap <silent> [unite-rails]c :<C-u>Unite rails/controller<CR>
+nnoremap <silent> [unite-rails]v :<C-u>Unite rails/view<CR>
+nnoremap <silent> [unite-rails]h :<C-u>Unite rails/helper<CR>
+nnoremap <silent> [unite-rails]j :<C-u>Unite rails/job<CR>
+nnoremap <silent> [unite-rails]l :<C-u>Unite rails/lib<CR>
+nnoremap <silent> [unite-rails]con :<C-u>Unite rails/config<CR>
+nnoremap <silent> [unite-rails]d :<C-u>Unite rails/db<CR>
+nnoremap <silent> [unite-rails]ini :<C-u>Unite rails/initializer<CR>
+nnoremap <silent> [unite-rails]mai :<C-u>Unite rails/mailer<CR>
+nnoremap <silent> [unite-rails]rak :<C-u>Unite rails/rake<CR>
+nnoremap <silent> [unite-rails]spe :<C-u>Unite rails/spec<CR>
+nnoremap <silent> [unite-rails]sty :<C-u>Unite rails/stylesheet<CR>
+nnoremap <silent> [unite-rails]ja :<C-u>Unite rails/javascript<CR>
 if executable('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts='--nogroup --nocolor --column'
@@ -153,17 +185,17 @@ nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 "}}}
 " TweetVim "{{{
-let g:tweetvim_display_icon=1
-let g:tweetvim_display_source=1
-let g:tweetvim_include_rts=1
-let g:tweetvim_display_time=1
-nnoremap <silent> tvt :Unite tweetvim<CR>
-nnoremap <silent> tvs :<C-u>TweetVimSay<CR>
-if !exists('g:neocomplcache_dictionary_filetype_lists')
-  let g:neocomplcache_dictionary_filetype_lists={}
-endif
-let neco_dic=g:neocomplcache_dictionary_filetype_lists
-let neco_dic.tweetvim_say=$HOME . '/.tweetvim/screen_name'
+" let g:tweetvim_display_icon=1
+" let g:tweetvim_display_source=1
+" let g:tweetvim_include_rts=1
+" let g:tweetvim_display_time=1
+" nnoremap <silent> tvt :Unite tweetvim<CR>
+" nnoremap <silent> tvs :<C-u>TweetVimSay<CR>
+" if !exists('g:neocomplcache_dictionary_filetype_lists')
+"   let g:neocomplcache_dictionary_filetype_lists={}
+" endif
+" let neco_dic=g:neocomplcache_dictionary_filetype_lists
+" let neco_dic.tweetvim_say=$HOME . '/.tweetvim/screen_name'
 "}}}
 " emmet "{{{
 let g:user_emmet_mode='iv'
@@ -367,12 +399,14 @@ au BufNewFile,BufRead *.slim setf slim
 au BufNewFile,BufRead *.scss setf scss
 au BufNewFile,BufRead *.js setf javascript
 au BufNewFile,BufRead *.jsx setf javascript
+au BufNewFile,BufRead *.vue setlocal filetype=vue.html.javascript.scss
 au BufNewFile,BufRead *.json setf json
 au BufNewFile,BufRead *.coffee setf coffee
 au BufNewFile,BufRead *.ts setf typescript
 au BufNewFile,BufRead *.md setf markdown
-au BufNewFile,BufRead *.yml setf yaml
+au BufNewFile,BufRead *.yml setf yml.yaml
 au BufNewFile,BufRead *.php setf php
+au BufNewFile,BufRead *.c setf c
 au BufNewFile,BufRead *.sh setf sh
 "}}}
 " Color Scheme "{{{

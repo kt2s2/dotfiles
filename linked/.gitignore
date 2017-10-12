@@ -115,7 +115,7 @@ jspm_packages
 ##################
 *.rbc
 capybara-*.html
-.rspec
+# .rspec
 /log
 /tmp
 /db/*.sqlite3
@@ -133,7 +133,7 @@ config/initializers/secret_token.rb
 
 # dotenv
 # TODO Comment out this rule if environment variables can be committed
-.env
+# .env
 
 ## Environment normalization:
 /.bundle

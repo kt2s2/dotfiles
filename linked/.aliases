@@ -3,19 +3,19 @@
 alias ls="ls -GF"
 alias gls="gls --color"
 alias la='ls -la'
+alias grep='grep --color'
 
 alias -g G='| grep'
 alias -g L='| less'
 alias -g X='| xargs'
 alias -g J='| jq .'
 
-alias be='bundle exec'
-alias rake='bundle exec rake'
-alias rails='bundle exec rails'
-alias rspec='bundle exec rspec'
-alias cap='bundle exec cap'
+alias sp='spring'
+alias bsp='bin/spring'
 alias be='bundle exec'
 alias bi='bundle install --path vendor/bundle --jobs=4'
+alias rake='rake'
+alias rr='rake routes'
 alias rdc='rake db:create'
 alias rdm='rake db:migrate'
 alias rdmt='rake db:migrate RAILS_ENV=test'
@@ -23,11 +23,12 @@ alias rdd='rake db:drop'
 alias rds='rake db:seed'
 alias rdr='rake db:reset'
 alias rdmr='rake db:migrate:reset'
-alias rr='spring rake routes'
+alias rails='rails'
 alias rs='rails s'
 alias rs4='rails s -p 4000'
 alias rs5='rails s -p 5000'
 alias rc='rails c'
+alias rspec='rspec'
 
 # カレントブランチ名を表示
 function git_current_branch_name()
@@ -36,6 +37,7 @@ function git_current_branch_name()
 }
 alias -g B='"$(git_current_branch_name)"'
 
+alias g='git'
 alias gi='git init'
 alias gd='git diff'
 alias gst='git status -b'
