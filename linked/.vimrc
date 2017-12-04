@@ -342,7 +342,7 @@ autocmd BufWritePre * :FixWhitespace
 
 filetype plugin indent on
 
-" 基本設定 "{{{
+" 基本設定
 set nocompatible                  " vi互換をオフする
 set mouse=a                       " マウス操作をできるようにする
 set clipboard=unnamed,autoselect  " ヤンクした文字は、システムのクリップボードに入れる
@@ -351,7 +351,7 @@ set noerrorbells
 set encoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
-" Set commands "{{{
+
 set ambiwidth=double    "文脈によって解釈が異なる全角文字の幅を、２に固定する
 set backspace=indent,eol,start "バックスペースにてインデントを削除可能にする
 set display=lastline    "長い文字列でも@でなくちゃんと表示する
@@ -377,8 +377,8 @@ set virtualedit=block   "文字のないところにカーソル移動できる�
 set whichwrap=b,s,[,],<,>
 set wildmenu            "コマンドライン補完を拡張モードにする
 set wrap                "ウィンドウの幅より長い行は折り返した、次の行に表示する
-"}}}
-" 検索設定 "{{{
+
+" 検索設定
 set ignorecase  " 大文字/小文字の区別なく検索する
 set smartcase   " 検索文字列に大文字が含まれている場合は区別して検索する
 set wrapscan    " 検索時に最後まで行ったら最初に戻る
@@ -389,8 +389,8 @@ set incsearch   " インクリメンタルサーチを行う
 set hlsearch    " 検索結果をハイライト
 " 検索結果を中央にくるようにする
 nmap n nzz
-"}}}
-" Register filetype by file extension "{{{
+
+" Register filetype by file extension
 au BufNewFile,BufRead *.html setf html
 au BufNewFile,BufRead *.ejs setf html
 au BufNewFile,BufRead *.erb setf eruby
@@ -408,57 +408,39 @@ au BufNewFile,BufRead *.yml setf yml.yaml
 au BufNewFile,BufRead *.php setf php
 au BufNewFile,BufRead *.c setf c
 au BufNewFile,BufRead *.sh setf sh
-"}}}
-" Color Scheme "{{{
-" global settings "{{{
+
+" Color Scheme
 syntax on
 set background=dark
 colorscheme hybrid
 set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
-"}}}
-" 細かい色のカスタマイズ "{{{
 hi Comment ctermfg=0
 hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
 hi PmenuSel ctermbg=blue ctermfg=black
 hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
 hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
 hi Search guibg=DarkYellow guifg=Black
-"}}}
-"}}}
-" キーマッピング "{{{
-"global "{{{
+
+" キーマッピング
 let mapleader="\<Space>"
-"}}}
-" map "{{{
 map ,v :<C-u>vsplit<CR>
 map ,w :<C-u>split<CR>
-"}}}
-"inoremap "{{{
 inoremap <silent> jk <ESC>
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <Del>
-"}}}
-"nnoremap "{{{
 nnoremap <Leader>w :w<CR>
 noremap <S-h> ^
 noremap <S-l> $
-"}}}
-" ctags "{{{
 map <Leader>rt :!ctags -R .<CR><CR>
 map tt <C-]>
 map tn <C-w>]
 map tg g<C-]>
 map <C-p> :tprevious<CR>
 map <C-n> :tnext<CR>
-"}}}
-"}}}
-"}}}
 
-"基本カスタマイズ "{{{
-" Autocmd "{{{
 autocmd InsertLeave * set nopaste
-"}}}
-" かっこ補完 "{{{
+
+" かっこ補完
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap [<Enter> []<Left><CR><ESC><S-o>
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
@@ -494,10 +476,11 @@ function! DeleteParenthesesAdjoin()
     endfor
     return output."\b"
 endfunction
+
 " Ctrl-Hに割り当て
 inoremap <silent> <C-h> <C-R>=DeleteParenthesesAdjoin()<CR>
-"}}}
-" grep  "{{{
+
+" grep
 " @example
 " :vim {pattern} %
 " :vim {pattern} **
@@ -508,14 +491,14 @@ inoremap <silent> <C-h> <C-R>=DeleteParenthesesAdjoin()<CR>
 autocmd QuickFixCmdPost *grep* cwindow
 nnoremap <C-k> :cprevious<CR>
 nnoremap <C-j> :cnext<CR>
-"}}}
-" 入力補完を自動化 "{{{
+
+" 入力補完を自動化
 set completeopt=menuone
 for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
   exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
 endfor
-"}}}
-" 全角スペースの表示 "{{{
+
+" 全角スペースの表示
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 endfunction
@@ -527,15 +510,12 @@ if has('syntax')
     augroup END
     call ZenkakuSpace()
 endif
-"}}}
-"}}}
-"応用カスタマイズ "{{{
-" 最後のカーソル位置を復元する "{{{
+
+"応用カスタマイズ
+" 最後のカーソル位置を復元する
 if has("autocmd")
     autocmd BufReadPost *
     \ if line("'\"") > 0 && line ("'\"") <= line("$") |
     \   exe "normal! g'\"" |
     \ endif
 endif
-"}}}
-"}}}
