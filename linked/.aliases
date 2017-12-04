@@ -3,7 +3,7 @@
 alias ls="ls -GF"
 alias gls="gls --color"
 alias la='ls -la'
-alias grep='grep --color'
+alias grep='grep --color --exclude-dir={node_modules,vendor,.git} -in'
 
 alias -g G='| grep'
 alias -g L='| less'
@@ -33,7 +33,7 @@ alias rspec='rspec'
 # カレントブランチ名を表示
 function git_current_branch_name()
 {
-  git branch | grep '^\*' | sed 's/^\* *//'
+  git rev-parse --abbrev-ref HEAD
 }
 alias -g B='"$(git_current_branch_name)"'
 
@@ -46,7 +46,7 @@ alias gbd='git branch -d'
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcm='git checkout master'
-alias glg='git log --pretty=oneline -p --graph --stat'
+alias glg='git log --pretty=format:"%C(yellow)%H%Creset %C(green reverse) %an %Creset %C(blue)%ar%Creset %s %C(red)%d%Creset" --graph'
 alias gsta='git stash'
 alias gstal='git stash list'
 alias rgsta='git stash apply'
@@ -81,3 +81,4 @@ alias tk='tmux kill-session -t'
 
 alias phis='percol_insert_history'
 
+alias deleteallswaps='find . -name ".*.sw*"|xargs rm'

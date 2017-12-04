@@ -1,7 +1,5 @@
-# Environmental Variables# {{{
 export LANG=ja_JP.UTF-8
-export EDITOR=/usr/local/bin/vim
-export PATH=/usr/local/bin:$PATH
+export EDITOR=/usr/local/bin/vim export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
 export PATH=$HOME/.nodebrew/current/bin:$PATH
@@ -15,7 +13,7 @@ if [ -x "`which go`" ]; then
 fi
 eval "$(rbenv init - zsh)"
 eval "$(pyenv init - zsh)"
-# }}}
+
 # Load Color{{{
 autoload -Uz colors
 colors
@@ -34,12 +32,11 @@ setopt prompt_subst
 # 7: white
 # }
 # }}}
-# Load alias# {{{
+
 if [ -f ~/.aliases ]; then
   . ~/.aliases
 fi
-# }}}
-# Shell Settings{{{
+
 setopt ignore_eof
 setopt interactive_comments
 setopt no_beep
@@ -50,7 +47,6 @@ setopt nolistbeep
 
 REPORTTIME=3
 
-# Completion{{{
 autoload -U compinit && compinit
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 setopt auto_param_slash
@@ -92,8 +88,7 @@ function chpwd() { ls }
 
 # autoload predict-on
 # predict-on
-# }}}
-# History# {{{
+
 HISTFILE=${HOME}/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -104,13 +99,41 @@ setopt hist_ignore_space
 setopt hist_save_no_dups
 setopt hist_reduce_blanks
 setopt share_history
-# }}}
-# Prompt# {{{
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+
+# プロンプト設定
+# メモ
+function memo(){
+  if [ $# -eq 0 ]; then
+    unset memotxt
+  else
+    if [ ${#memotxt} -eq 0 ]; then
+      memotxt=' '
+    fi
+    for str in $@; do
+      memotxt="${memotxt}${str} "
+    done
+  fi
+}
+# colorsを宣言
 autoload -Uz colors
-source $HOME/src/github.com/olivierverdier/zsh-git-prompt/zshrc.sh
+# vcs_infoを宣言
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ":vcs_info:*" enable git
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:git:*' formats "(%F{magenta}%b%f%F{green}%c%u%f)"
+zstyle ':vcs_info:git:*' actionformats "[%b|%a]"
+precmd(){ vcs_info }
+
 exit_code='%?'
-PROMPT=$'.oO( %{$fg[magenta]%}%~%{$reset_color%} ) $(git_super_status)
-(%(?!%{$fg[green]%}!%{$fg[red]%})$exit_code%{$reset_color%}) %% '
-RPROMPT='[%{$fg[yellow]%}%n%{$reset_color%}@%{$fg[yellow]%}%m%{$reset_color%}]'
-# }}}
-# }}}
+PROMPT='(%(?!%{$fg[green]%}!%{$fg[red]%})${exit_code}%{$reset_color%}) %% '
+RPROMPT='%K${memotxt}%k ${vcs_info_msg_0_} ( %{$fg[magenta]%}%~%{$reset_color%} )Oo.'
