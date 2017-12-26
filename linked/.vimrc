@@ -1,13 +1,9 @@
-" プラグイン "{{{
-
 set nocompatible
 if has('vim_starting')
-  "初回起動時飲みruntimepathにneobundleのパスを指定する
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
 call neobundle#begin(expand('~/.vim/bundle/'))
-" Plugin List "{{{
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
@@ -18,44 +14,35 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
-NeoBundle 'Shougo/vimshell.vim'
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'osyo-manga/shabadou.vim'
-NeoBundle 'open-browser.vim'
-" NeoBundle 'basyura/TweetVim'
-" NeoBundle 'mattn/webapi-vim'
-" NeoBundle 'basyura/twibill.vim'
-" NeoBundle 'basyura/bitly.vim'
-NeoBundle 'mattn/emmet-vim'
+NeoBundle 'mattn/emmet-vim' " HTMLのショートカット
+NeoBundle 'tomtom/tcomment_vim'
+
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
+
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'Townk/vim-autoclose'
-NeoBundle "ctrlpvim/ctrlp.vim"
+NeoBundle 'bronson/vim-trailing-whitespace'
+
+NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'basyura/unite-rails'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neoyank.vim'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'simeji/winresizer'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
-NeoBundle 'thinca/vim-ref'
+
+NeoBundle 'simeji/winresizer' " ペインサイズ変更
+
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundleLazy 'gorodinskiy/vim-coloresque', {
       \ 'autoload':{
       \   'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus']
       \ }}
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
-NeoBundle 'ConradIrwin/vim-bracketed-paste'
-NeoBundle 'kana/vim-operator-user'
-" NeoBundle 'Shougo/context_filetype.vim'
-" NeoBundle 'osyo-manga/vim-precious'
+NeoBundle 'ConradIrwin/vim-bracketed-paste' " ペースト時にpaste modeにする
 NeoBundleLazy 'rhysd/vim-clang-format', {
       \ 'autoload':{
       \   'filetypes':['c']
@@ -108,20 +95,14 @@ NeoBundleLazy 'kchmck/vim-coffee-script', {
       \ 'autoload':{
       \   'filetypes':['coffee']
       \ }}
-NeoBundle 'kannokanno/previm'
+
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'cohama/agit.vim'
 NeoBundle 'rhysd/committia.vim'
-NeoBundle 'tpope/vim-fugitive.git'
-NeoBundle 'gregsexton/gitv.git'
 call neobundle#end()
-"}}}
 NeoBundleCheck
 " プラグイン毎の設定 "{{{
-" vimshell  "{{{
-nnoremap ,vv  :<C-u>VimShellPop<CR>
-"}}}
 " CtrlP "{{{
 let g:ctrlp_user_command=['.git', 'cd %s && git ls-files -co --exclude-standard']
 "}}}
@@ -135,17 +116,6 @@ if has('conceal')
  set conceallevel=2 concealcursor=niv
 endif
 let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets/'
-"}}}
-" vim-quickrun "{{{
-let g:quickrun_config={'*': {'split': ''}}
-let g:quickrun_config._={
-      \       'runner' : 'vimproc',
-      \       'runner/vimproc/updatetime' : 10,
-      \       'outputter/buffer/close_on_empty' : 1,
-      \       'hook/shabadoubi_touch_henshin/enable' : 1,
-      \       'hook/shabadoubi_touch_henshin/wait' : 20,
-      \ }
-set splitbelow
 "}}}
 " unite.vim "{{{
 " The prefix key.
@@ -179,24 +149,6 @@ if executable('ag')
 endif
 let g:unite_enable_start_insert=1
 "}}}
-" open-browser.vim "{{{
-let g:netrw_nogx=1 " disable netrw's gx mapping.
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
-"}}}
-" TweetVim "{{{
-" let g:tweetvim_display_icon=1
-" let g:tweetvim_display_source=1
-" let g:tweetvim_include_rts=1
-" let g:tweetvim_display_time=1
-" nnoremap <silent> tvt :Unite tweetvim<CR>
-" nnoremap <silent> tvs :<C-u>TweetVimSay<CR>
-" if !exists('g:neocomplcache_dictionary_filetype_lists')
-"   let g:neocomplcache_dictionary_filetype_lists={}
-" endif
-" let neco_dic=g:neocomplcache_dictionary_filetype_lists
-" let neco_dic.tweetvim_say=$HOME . '/.tweetvim/screen_name'
-"}}}
 " emmet "{{{
 let g:user_emmet_mode='iv'
 let g:user_emmet_leader_key='<C-Y>'
@@ -222,14 +174,6 @@ augroup END
 " hybrid "{{{
 let g:hybrid_use_iTerm_colors=1
 let g:hybrid_reduced_contrast=1
-"}}}
-" airline "{{{
-set laststatus=2
-set showtabline=2
-let g:airline_theme='hybridline'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#buffer_idx_mode=1
 "}}}
 " committia "{{{
 " You can get the information about the windows with first argument as a dictionary.
@@ -287,11 +231,6 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 let g:neocomplete#sources#omni#input_patterns.perl='\h\w*->\h\w*\|\h\w*::'
 "}}}
-" vimshell "{{{
-let g:vimshell='mvim'
-let g:vimshell_prompt_expr='getcwd()." > "'
-let g:vimshell_prompt_pattern='^\f\+ > '
-"}}}
 " nerdtree "{{{
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let g:NERDTreeShowBookmarks=1
@@ -336,7 +275,6 @@ let g:vim_json_syntax_conceal=0
 "}}}
 " vim-trailing-whitespace "{{{
 autocmd BufWritePre * :FixWhitespace
-"}}}
 "}}}
 "}}}
 
@@ -425,78 +363,11 @@ hi Search guibg=DarkYellow guifg=Black
 let mapleader="\<Space>"
 map ,v :<C-u>vsplit<CR>
 map ,w :<C-u>split<CR>
-inoremap <silent> jk <ESC>
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <Del>
 nnoremap <Leader>w :w<CR>
-noremap <S-h> ^
-noremap <S-l> $
-map <Leader>rt :!ctags -R .<CR><CR>
-map tt <C-]>
-map tn <C-w>]
-map tg g<C-]>
-map <C-p> :tprevious<CR>
-map <C-n> :tnext<CR>
-
-autocmd InsertLeave * set nopaste
-
-" かっこ補完
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap [<Enter> []<Left><CR><ESC><S-o>
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-vnoremap { "zdi^V{<C-R>z}<ESC>
-vnoremap [ "zdi^V[<C-R>z]<ESC>
-vnoremap ( "zdi^V(<C-R>z)<ESC>
-vnoremap " "zdi^V"<C-R>z^V"<ESC>
-vnoremap ' "zdi'<C-R>z'<ESC>
-
-function! DeleteParenthesesAdjoin()
-    let pos=col(".") - 1  " カーソルの位置．1からカウント
-    let str=getline(".")  " カーソル行の文字列
-    let parentLList=["(", "[", "{", "\'", "\""]
-    let parentRList=[")", "]", "}", "\'", "\""]
-    let cnt=0
-
-    let output=""
-
-    " カーソルが行末の場合
-    if pos == strlen(str)
-        return "\b"
-    endif
-    for c in parentLList
-        " カーソルの左右が同種の括弧
-        if str[pos-1] == c && str[pos] == parentRList[cnt]
-            call cursor(line("."), pos + 2)
-            let output="\b"
-            break
-        endif
-        let cnt += 1
-    endfor
-    return output."\b"
-endfunction
-
-" Ctrl-Hに割り当て
-inoremap <silent> <C-h> <C-R>=DeleteParenthesesAdjoin()<CR>
-
-" grep
-" @example
-" :vim {pattern} %
-" :vim {pattern} **
-" :vim {pattern} app/views/**
-" :vim {pattern} app/views/users/*
-" :vim {pattern} app/views/**/*.erb
-" :vim {pattern} app/views/**/_*.erb
-autocmd QuickFixCmdPost *grep* cwindow
-nnoremap <C-k> :cprevious<CR>
-nnoremap <C-j> :cnext<CR>
-
-" 入力補完を自動化
-set completeopt=menuone
-for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-  exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
-endfor
+noremap <C-h> ^
+noremap <C-l> $
 
 " 全角スペースの表示
 function! ZenkakuSpace()
