@@ -18,14 +18,9 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
-NeoBundle 'Shougo/vimshell.vim'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'osyo-manga/shabadou.vim'
 NeoBundle 'open-browser.vim'
-" NeoBundle 'basyura/TweetVim'
-" NeoBundle 'mattn/webapi-vim'
-" NeoBundle 'basyura/twibill.vim'
-" NeoBundle 'basyura/bitly.vim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-endwise'
@@ -33,7 +28,6 @@ NeoBundle 'Townk/vim-autoclose'
 NeoBundle "ctrlpvim/ctrlp.vim"
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
-NeoBundle 'basyura/unite-rails'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'tomtom/tcomment_vim'
@@ -119,9 +113,6 @@ call neobundle#end()
 "}}}
 NeoBundleCheck
 " プラグイン毎の設定 "{{{
-" vimshell  "{{{
-nnoremap ,vv  :<C-u>VimShellPop<CR>
-"}}}
 " CtrlP "{{{
 let g:ctrlp_user_command=['.git', 'cd %s && git ls-files -co --exclude-standard']
 "}}}
@@ -148,30 +139,39 @@ let g:quickrun_config._={
 set splitbelow
 "}}}
 " unite.vim "{{{
+call unite#custom_source('file_rec', 'ignore_pattern', 'vendor/\|tmp/\|log/\|node_modules/')
+call unite#custom_source('file_rec/async', 'ignore_pattern', 'vendor/\|tmp/\|log/\|node_modules/')
 " The prefix key.
 nnoremap  [unite] <Nop>
+nnoremap  [unite-rails] <Nop>
 nmap ,u [unite]
 nmap ,ur [unite-rails]
-nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
-nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
-nnoremap <silent> [unite]g :<C-u>Unite grep<CR>
-nnoremap <silent> [unite]f :<C-u>Unite file<CR>
-nnoremap <silent> [unite]m :<C-u>Unite file_mru buffer<CR>
-nnoremap <silent> [unite]p :<C-u>Unite file_rec/async:!<CR>
-nnoremap <silent> [unite-rails]m :<C-u>Unite rails/model<CR>
-nnoremap <silent> [unite-rails]c :<C-u>Unite rails/controller<CR>
-nnoremap <silent> [unite-rails]v :<C-u>Unite rails/view<CR>
-nnoremap <silent> [unite-rails]h :<C-u>Unite rails/helper<CR>
-nnoremap <silent> [unite-rails]j :<C-u>Unite rails/job<CR>
-nnoremap <silent> [unite-rails]l :<C-u>Unite rails/lib<CR>
-nnoremap <silent> [unite-rails]con :<C-u>Unite rails/config<CR>
-nnoremap <silent> [unite-rails]d :<C-u>Unite rails/db<CR>
-nnoremap <silent> [unite-rails]ini :<C-u>Unite rails/initializer<CR>
-nnoremap <silent> [unite-rails]mai :<C-u>Unite rails/mailer<CR>
-nnoremap <silent> [unite-rails]rak :<C-u>Unite rails/rake<CR>
-nnoremap <silent> [unite-rails]spe :<C-u>Unite rails/spec<CR>
-nnoremap <silent> [unite-rails]sty :<C-u>Unite rails/stylesheet<CR>
-nnoremap <silent> [unite-rails]ja :<C-u>Unite rails/javascript<CR>
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file file/new<CR>
+nnoremap <silent> [unite]j :<C-u>UniteWithBufferDir autojump<CR>
+nnoremap <silent> [unite]t :<C-u>Unite -buffer-name=files buffer file_mru file_rec/async file/new  <CR>
+nnoremap <silent> [unite]m :<C-u>Unite file_mru <CR>
+nnoremap <silent> [unite]g :<C-u>Unite grep:%:-iHRn<CR>
+nnoremap <silent> [unite-rails]a :<C-u>Unite file_rec/async:app/<CR>
+nnoremap <silent> [unite-rails]fa :<C-u>Unite file file/new -input=app/ <CR>
+nnoremap <silent> [unite-rails]c :<C-u>Unite file_rec/async:app/controllers/<CR>
+nnoremap <silent> [unite-rails]fc :<C-u>Unite file file/new -input=app/controllers/ <CR>
+nnoremap <silent> [unite-rails]m :<C-u>Unite file_rec/async:app/models/ <CR>
+nnoremap <silent> [unite-rails]fm :<C-u>Unite file file/new -input=app/models/ <CR>
+nnoremap <silent> [unite-rails]v :<C-u>Unite file_rec/async:app/views/ <CR>
+nnoremap <silent> [unite-rails]fv :<C-u>Unite file file/new -input=app/views/ <CR>
+nnoremap <silent> [unite-rails]s :<C-u>Unite file_rec/async:app/assets/stylesheets/ <CR>
+nnoremap <silent> [unite-rails]fs :<C-u>Unite file file/new -input=app/assets/stylesheets/ <CR>
+nnoremap <silent> [unite-rails]j :<C-u>Unite file_rec/async:app/assets/javascripts/ <CR>
+nnoremap <silent> [unite-rails]fj :<C-u>Unite file file/new -input=app/assets/javascripts/ <CR>
+nnoremap <silent> [unite-rails]o :<C-u>Unite file_rec/async:config/ <CR>
+nnoremap <silent> [unite-rails]fo :<C-u>Unite file file/new -input=config/ <CR>
+nnoremap <silent> [unite-rails]p :<C-u>Unite file_rec/async:app/javascript/packs/ <CR>
+nnoremap <silent> [unite-rails]fp :<C-u>Unite file file/new -input=app/javascript/packs/ <CR>
+nnoremap <silent> [unite-rails]l :<C-u>Unite file_rec/async:lib/ <CR>
+nnoremap <silent> [unite-rails]fl :<C-u>Unite file file/new -input=lib/ <CR>
+nnoremap <silent> [unite-rails]r :<C-u>Unite file_rec/async:spec/ <CR>
+nnoremap <silent> [unite-rails]fr :<C-u>Unite file file/new -input=spec/ <CR>
+let g:unite_source_file_mru_limit = 100
 if executable('ag')
   let g:unite_source_grep_command='ag'
   let g:unite_source_grep_default_opts='--nogroup --nocolor --column'
@@ -266,7 +266,6 @@ let g:neocomplete#sources#syntax#min_keyword_length=3
 let g:neocomplete#lock_buffer_name_pattern='\*ku\*'
 let g:neocomplete#sources#dictionary#dictionaries={
     \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
         \ }
 if !exists('g:neocomplete#keyword_patterns')
@@ -286,11 +285,6 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
   let g:neocomplete#sources#omni#input_patterns={}
 endif
 let g:neocomplete#sources#omni#input_patterns.perl='\h\w*->\h\w*\|\h\w*::'
-"}}}
-" vimshell "{{{
-let g:vimshell='mvim'
-let g:vimshell_prompt_expr='getcwd()." > "'
-let g:vimshell_prompt_pattern='^\f\+ > '
 "}}}
 " nerdtree "{{{
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
@@ -414,7 +408,7 @@ syntax on
 set background=dark
 colorscheme hybrid
 set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
-hi Comment ctermfg=0
+hi Comment ctermfg=15
 hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
 hi PmenuSel ctermbg=blue ctermfg=black
 hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
@@ -425,78 +419,11 @@ hi Search guibg=DarkYellow guifg=Black
 let mapleader="\<Space>"
 map ,v :<C-u>vsplit<CR>
 map ,w :<C-u>split<CR>
-inoremap <silent> jk <ESC>
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <Del>
 nnoremap <Leader>w :w<CR>
 noremap <S-h> ^
 noremap <S-l> $
-map <Leader>rt :!ctags -R .<CR><CR>
-map tt <C-]>
-map tn <C-w>]
-map tg g<C-]>
-map <C-p> :tprevious<CR>
-map <C-n> :tnext<CR>
-
-autocmd InsertLeave * set nopaste
-
-" かっこ補完
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap [<Enter> []<Left><CR><ESC><S-o>
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-vnoremap { "zdi^V{<C-R>z}<ESC>
-vnoremap [ "zdi^V[<C-R>z]<ESC>
-vnoremap ( "zdi^V(<C-R>z)<ESC>
-vnoremap " "zdi^V"<C-R>z^V"<ESC>
-vnoremap ' "zdi'<C-R>z'<ESC>
-
-function! DeleteParenthesesAdjoin()
-    let pos=col(".") - 1  " カーソルの位置．1からカウント
-    let str=getline(".")  " カーソル行の文字列
-    let parentLList=["(", "[", "{", "\'", "\""]
-    let parentRList=[")", "]", "}", "\'", "\""]
-    let cnt=0
-
-    let output=""
-
-    " カーソルが行末の場合
-    if pos == strlen(str)
-        return "\b"
-    endif
-    for c in parentLList
-        " カーソルの左右が同種の括弧
-        if str[pos-1] == c && str[pos] == parentRList[cnt]
-            call cursor(line("."), pos + 2)
-            let output="\b"
-            break
-        endif
-        let cnt += 1
-    endfor
-    return output."\b"
-endfunction
-
-" Ctrl-Hに割り当て
-inoremap <silent> <C-h> <C-R>=DeleteParenthesesAdjoin()<CR>
-
-" grep
-" @example
-" :vim {pattern} %
-" :vim {pattern} **
-" :vim {pattern} app/views/**
-" :vim {pattern} app/views/users/*
-" :vim {pattern} app/views/**/*.erb
-" :vim {pattern} app/views/**/_*.erb
-autocmd QuickFixCmdPost *grep* cwindow
-nnoremap <C-k> :cprevious<CR>
-nnoremap <C-j> :cnext<CR>
-
-" 入力補完を自動化
-set completeopt=menuone
-for k in split("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_",'\zs')
-  exec "imap <expr> " . k . " pumvisible() ? '" . k . "' : '" . k . "\<C-X>\<C-P>\<C-N>'"
-endfor
 
 " 全角スペースの表示
 function! ZenkakuSpace()
