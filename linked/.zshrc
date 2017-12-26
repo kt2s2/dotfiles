@@ -137,3 +137,7 @@ precmd(){ vcs_info }
 exit_code='%?'
 PROMPT='(%(?!%{$fg[green]%}!%{$fg[red]%})${exit_code}%{$reset_color%}) %% '
 RPROMPT='%K${memotxt}%k ${vcs_info_msg_0_} ( %{$fg[magenta]%}%~%{$reset_color%} )Oo.'
+
+
+# autojump
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
