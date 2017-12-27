@@ -44,8 +44,7 @@ NeoBundleLazy 'gorodinskiy/vim-coloresque', {
       \ 'autoload':{
       \   'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus']
       \ }}
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
+NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'ConradIrwin/vim-bracketed-paste'
 NeoBundle 'kana/vim-operator-user'
 " NeoBundle 'Shougo/context_filetype.vim'
@@ -112,6 +111,7 @@ NeoBundle 'gregsexton/gitv.git'
 call neobundle#end()
 "}}}
 NeoBundleCheck
+
 " プラグイン毎の設定 "{{{
 " CtrlP "{{{
 let g:ctrlp_user_command=['.git', 'cd %s && git ls-files -co --exclude-standard']
@@ -219,14 +219,6 @@ augroup EmmitVim
   autocmd FileType * let g:user_emmet_settings.indentation='               '[:&tabstop]
 augroup END
 "}}}
-" airline "{{{
-set laststatus=2
-set showtabline=2
-let g:airline_theme='solarized'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
-let g:airline#extensions#tabline#buffer_idx_mode=1
-"}}}
 " committia "{{{
 " You can get the information about the windows with first argument as a dictionary.
 "
@@ -327,7 +319,69 @@ let g:vim_json_syntax_conceal=0
 " vim-trailing-whitespace "{{{
 autocmd BufWritePre * :FixWhitespace
 "}}}
+" itchyny/lightline.vim "{{{
+set laststatus=2
+let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'LightlineModified',
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \   'filename': 'LightlineFilename',
+        \   'fileformat': 'LightlineFileformat',
+        \   'filetype': 'LightlineFiletype',
+        \   'fileencoding': 'LightlineFileencoding',
+        \   'mode': 'LightlineMode'
+        \ }
+        \ }
+
+function! LightlineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+    return fugitive#head()
+  else
+    return ''
+  endif
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction"}}}
+
 "}}}
+
 "}}}
 
 filetype plugin indent on
@@ -404,11 +458,6 @@ syntax on
 set background=dark
 colorscheme solarized
 set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
-hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
-hi PmenuSel ctermbg=blue ctermfg=black
-hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
-hi PmenuSbar ctermbg=255 ctermfg=0 guifg=#000000 guibg=#FFFFFF
-hi Search guibg=DarkYellow guifg=Black
 
 " キーマッピング
 let mapleader="\<Space>"
