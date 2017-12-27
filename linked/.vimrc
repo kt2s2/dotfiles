@@ -39,7 +39,7 @@ NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'thinca/vim-ref'
-NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'altercation/vim-colors-solarized'
 NeoBundleLazy 'gorodinskiy/vim-coloresque', {
       \ 'autoload':{
       \   'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus']
@@ -150,7 +150,7 @@ nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file file
 nnoremap <silent> [unite]j :<C-u>UniteWithBufferDir autojump<CR>
 nnoremap <silent> [unite]t :<C-u>Unite -buffer-name=files buffer file_mru file_rec/async file/new  <CR>
 nnoremap <silent> [unite]m :<C-u>Unite file_mru <CR>
-nnoremap <silent> [unite]g :<C-u>Unite grep:%:-iHRn<CR>
+nnoremap <silent> [unite]g :<C-u>Unite grep<CR>
 nnoremap <silent> [unite-rails]a :<C-u>Unite file_rec/async:app/<CR>
 nnoremap <silent> [unite-rails]fa :<C-u>Unite file file/new -input=app/ <CR>
 nnoremap <silent> [unite-rails]c :<C-u>Unite file_rec/async:app/controllers/<CR>
@@ -219,14 +219,10 @@ augroup EmmitVim
   autocmd FileType * let g:user_emmet_settings.indentation='               '[:&tabstop]
 augroup END
 "}}}
-" hybrid "{{{
-let g:hybrid_use_iTerm_colors=1
-let g:hybrid_reduced_contrast=1
-"}}}
 " airline "{{{
 set laststatus=2
 set showtabline=2
-let g:airline_theme='hybridline'
+let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#buffer_idx_mode=1
@@ -406,9 +402,8 @@ au BufNewFile,BufRead *.sh setf sh
 " Color Scheme
 syntax on
 set background=dark
-colorscheme hybrid
+colorscheme solarized
 set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
-hi Comment ctermfg=15
 hi Pmenu ctermbg=255 ctermfg=0 guifg=#000000 guibg=#999999
 hi PmenuSel ctermbg=blue ctermfg=black
 hi PmenuSel cterm=reverse ctermfg=33 ctermbg=222 gui=reverse guifg=#3399ff guibg=#f0e68c
