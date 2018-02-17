@@ -18,89 +18,69 @@ NeoBundle 'Shougo/vimproc.vim', {
 \     'unix' : 'gmake',
 \    },
 \ }
-NeoBundle 'thinca/vim-quickrun'
-NeoBundle 'osyo-manga/shabadou.vim'
-NeoBundle 'open-browser.vim'
-NeoBundle 'mattn/emmet-vim'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/neoinclude.vim'
+
+" NeoBundle 'thinca/vim-quickrun'
+" NeoBundle 'osyo-manga/shabadou.vim'
+
+" NeoBundle 'open-browser.vim'
+
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-endwise'
-NeoBundle 'Townk/vim-autoclose'
+NeoBundle 'ConradIrwin/vim-bracketed-paste'
+NeoBundle 'tomtom/tcomment_vim'
+NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'simeji/winresizer'
+
 NeoBundle "ctrlpvim/ctrlp.vim"
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'Shougo/neomru.vim'
-NeoBundle 'Shougo/neoyank.vim'
-NeoBundle 'tomtom/tcomment_vim'
-NeoBundle 'bronson/vim-trailing-whitespace'
+" NeoBundle 'Shougo/neoyank.vim'
 NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'simeji/winresizer'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
+
 NeoBundle 'thinca/vim-ref'
+
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundleLazy 'gorodinskiy/vim-coloresque', {
-      \ 'autoload':{
-      \   'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus']
-      \ }}
 NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'ConradIrwin/vim-bracketed-paste'
+
+NeoBundleLazy 'gorodinskiy/vim-coloresque', { 'autoload':{
+      \'filetypes':['css', 'html', 'less', 'sass', 'scss', 'stylus'] }}
 NeoBundle 'kana/vim-operator-user'
 " NeoBundle 'Shougo/context_filetype.vim'
 " NeoBundle 'osyo-manga/vim-precious'
-NeoBundleLazy 'rhysd/vim-clang-format', {
-      \ 'autoload':{
-      \   'filetypes':['c']
-      \ }}
-NeoBundle 'fatih/vim-go'
-NeoBundleLazy 'vim-ruby/vim-ruby', {
-      \ 'autoload':{
-      \   'filetypes':['ruby']
-      \ }}
+
+NeoBundleLazy 'rhysd/vim-clang-format', { 'autoload':{ 'filetypes':['c'] }}
+NeoBundleLazy 'justmao945/vim-clang', { 'autoload':{ 'filetypes':['c'] }}
+
+NeoBundleLazy 'fatih/vim-go', { 'autoload':{ 'filetypes':['go'] }}
+
+NeoBundleLazy 'NigoroJr/rsense', { 'autoload':{ 'filetype':['ruby'] }}
+NeoBundleLazy 'neocomplcache-rsense.vim', { 'autoload':{ 'insert':1, 'filetype':'ruby' }}
+NeoBundleLazy 'vim-ruby/vim-ruby', { 'autoload':{ 'filetypes':['ruby'] }}
 NeoBundle 'taichouchou2/vim-rails'
 NeoBundle 'romanvbabenko/rails.vim'
-NeoBundleLazy 'othree/html5.vim', {
-      \ 'autoloat':{
-      \   'filetypes':['html']
-      \ }}
-NeoBundleLazy 'slim-template/vim-slim', {
-      \ 'autoload':{
-      \   'filetypes':['slim']
-      \ }}
-NeoBundleLazy 'tpope/vim-haml', {
-      \ 'autoload':{
-      \   'filetypes':['haml']
-      \ }}
-NeoBundleLazy 'cakebaker/scss-syntax.vim', {
-      \ 'autoload':{
-      \   'filetypes':['scss']
-      \ }}
-NeoBundleLazy 'yaml.vim', {
-      \ 'autoload':{
-      \   'filetypes':['yaml']
-      \ }}
-NeoBundleLazy 'pangloss/vim-javascript', {
-      \ 'autoload':{
-      \   'filetypes':['javascript']
-      \ }}
-NeoBundleLazy 'mxw/vim-jsx', {
-      \ 'autoload':{
-      \   'filetypes':['javascript']
-      \ }}
-NeoBundleLazy 'leafgarland/typescript-vim', {
-      \ 'autoload':{
-      \   'filetypes':['typescript']
-      \ }}
+
+NeoBundle 'mattn/emmet-vim'
+NeoBundleLazy 'othree/html5.vim', { 'autoloat':{ 'filetypes':['html'] }}
+NeoBundleLazy 'slim-template/vim-slim', { 'autoload':{ 'filetypes':['slim'] }}
+" NeoBundleLazy 'tpope/vim-haml', { 'autoload':{ 'filetypes':['haml'] }}
+
+NeoBundleLazy 'cakebaker/scss-syntax.vim', { 'autoload':{ 'filetypes':['scss'] }}
+
+NeoBundleLazy 'yaml.vim', { 'autoload':{ 'filetypes':['yaml'] }}
+
+NeoBundleLazy 'othree/yajs.vim', {'autoload':{'filetypes':['javascript']}}
+NeoBundleLazy 'mxw/vim-jsx', { 'autoload':{ 'filetypes':['javascript'] }}
+NeoBundleLazy 'leafgarland/typescript-vim', { 'autoload':{ 'filetypes':['typescript'] }}
+NeoBundleLazy 'kchmck/vim-coffee-script', { 'autoload':{ 'filetypes':['coffee'] }}
+NeoBundleLazy 'posva/vim-vue', { 'autoload':{ 'filetypes':['vue'] }}
+
+NeoBundleLazy 'elzr/vim-json', { 'autoload':{ 'filetypes':['json'] }}
+
 NeoBundle 'Quramy/tsuquyomi'
-NeoBundleLazy 'elzr/vim-json', {
-      \ 'autoload':{
-      \   'filetypes':['json']
-      \ }}
-NeoBundleLazy 'kchmck/vim-coffee-script', {
-      \ 'autoload':{
-      \   'filetypes':['coffee']
-      \ }}
+
 NeoBundle 'kannokanno/previm'
 NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'tpope/vim-fugitive'
@@ -108,24 +88,66 @@ NeoBundle 'cohama/agit.vim'
 NeoBundle 'rhysd/committia.vim'
 NeoBundle 'tpope/vim-fugitive.git'
 NeoBundle 'gregsexton/gitv.git'
+
 call neobundle#end()
 "}}}
 NeoBundleCheck
 
 " プラグイン毎の設定 "{{{
+"Shougo/neocomplete.vim {{{
+let g:neocomplete#enable_at_startup=1
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_overwrite_completefunc=1
+" 言語ごとの設定
+let g:neocomplete#force_omni_input_patterns.c=
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.cpp=
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+
+"}}}
+" rsense{{{
+let g:rsenseUseOmniFunc = 1
+"}}}
+"justmao945/vim-clang{{{
+let g:clang_auto = 0
+let g:clang_c_completeopt   = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+function! s:get_latest_clang(search_path)
+    let l:filelist = split(globpath(a:search_path, 'clang-*'), '\n')
+    let l:clang_exec_list = []
+    for l:file in l:filelist
+        if l:file =~ '^.*clang-\d\.\d$'
+            call add(l:clang_exec_list, l:file)
+        endif
+    endfor
+    if len(l:clang_exec_list)
+        return reverse(l:clang_exec_list)[0]
+    else
+        return 'clang'
+    endif
+endfunction
+function! s:get_latest_clang_format(search_path)
+    let l:filelist = split(globpath(a:search_path, 'clang-format-*'), '\n')
+    let l:clang_exec_list = []
+    for l:file in l:filelist
+        if l:file =~ '^.*clang-format-\d\.\d$'
+            call add(l:clang_exec_list, l:file)
+        endif
+    endfor
+    if len(l:clang_exec_list)
+        return reverse(l:clang_exec_list)[0]
+    else
+        return 'clang-format'
+    endif
+endfunction
+let g:clang_exec = s:get_latest_clang('/usr/bin')
+let g:clang_format_exec = s:get_latest_clang_format('/usr/bin')
+"}}}
 " CtrlP "{{{
 let g:ctrlp_user_command=['.git', 'cd %s && git ls-files -co --exclude-standard']
-"}}}
-" NeoSnippet "{{{
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-if has('conceal')
- set conceallevel=2 concealcursor=niv
-endif
-let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snippets/,~/.vim/snippets/'
 "}}}
 " vim-quickrun "{{{
 let g:quickrun_config={'*': {'split': ''}}
@@ -148,6 +170,7 @@ nmap ,u [unite]
 nmap ,ur [unite-rails]
 nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file file/new<CR>
 nnoremap <silent> [unite]j :<C-u>UniteWithBufferDir autojump<CR>
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]t :<C-u>Unite -buffer-name=files buffer file_mru file_rec/async file/new  <CR>
 nnoremap <silent> [unite]m :<C-u>Unite file_mru <CR>
 nnoremap <silent> [unite]g :<C-u>Unite grep<CR>
@@ -171,6 +194,10 @@ nnoremap <silent> [unite-rails]l :<C-u>Unite file_rec/async:lib/ <CR>
 nnoremap <silent> [unite-rails]fl :<C-u>Unite file file/new -input=lib/ <CR>
 nnoremap <silent> [unite-rails]r :<C-u>Unite file_rec/async:spec/ <CR>
 nnoremap <silent> [unite-rails]fr :<C-u>Unite file file/new -input=spec/ <CR>
+nnoremap <silent> [unite-rails]d :<C-u>Unite file_rec/async:db/ <CR>
+nnoremap <silent> [unite-rails]fd :<C-u>Unite file file/new -input=db/ <CR>
+nnoremap <silent> [unite-rails]u :<C-u>Unite file_rec/async:app/utils/ <CR>
+nnoremap <silent> [unite-rails]fu :<C-u>Unite file file/new -input=app/utils/ <CR>
 let g:unite_source_file_mru_limit = 100
 if executable('ag')
   let g:unite_source_grep_command='ag'
@@ -183,19 +210,6 @@ let g:unite_enable_start_insert=1
 let g:netrw_nogx=1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
-"}}}
-" TweetVim "{{{
-" let g:tweetvim_display_icon=1
-" let g:tweetvim_display_source=1
-" let g:tweetvim_include_rts=1
-" let g:tweetvim_display_time=1
-" nnoremap <silent> tvt :Unite tweetvim<CR>
-" nnoremap <silent> tvs :<C-u>TweetVimSay<CR>
-" if !exists('g:neocomplcache_dictionary_filetype_lists')
-"   let g:neocomplcache_dictionary_filetype_lists={}
-" endif
-" let neco_dic=g:neocomplcache_dictionary_filetype_lists
-" let neco_dic.tweetvim_say=$HOME . '/.tweetvim/screen_name'
 "}}}
 " emmet "{{{
 let g:user_emmet_mode='iv'
@@ -246,34 +260,6 @@ function! g:committia_hooks.edit_open(info)
     imap <buffer><C-k> <Plug>(committia-scroll-diff-up-half)
 endfunction
 "}}}
-" neocomplete "{{{
-let g:acp_enableAtStartup=0
-let g:neocomplete#enable_at_startup=1
-let g:neocomplete#enable_smart_case=1
-let g:neocomplete#sources#syntax#min_keyword_length=3
-let g:neocomplete#lock_buffer_name_pattern='\*ku\*'
-let g:neocomplete#sources#dictionary#dictionaries={
-    \ 'default' : '',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns={}
-endif
-let g:neocomplete#keyword_patterns['default']='\h\w*'
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-endfunction
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns={}
-endif
-let g:neocomplete#sources#omni#input_patterns.perl='\h\w*->\h\w*\|\h\w*::'
-"}}}
 " nerdtree "{{{
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 let g:NERDTreeShowBookmarks=1
@@ -290,11 +276,11 @@ let g:winresizer_start_key = '<Leader><C-T>'
 " Clang "{{{
 autocmd FileType c ClangFormatAutoEnable
 let g:clang_format#style_options={
-      \ "Language": "Cpp",
-      \ "BasedOnStyle": "LLVM",
-      \ "ContinuationIndentWidth": 2,
-      \ "ConstructorInitializerIndentWidth": 2,
-      \ }
+			\ "Language": "Cpp",
+			\ "BasedOnStyle": "LLVM",
+			\ "ContinuationIndentWidth": 2,
+			\ "ConstructorInitializerIndentWidth": 2,
+			\ }
 "}}}
 " html5.vim "{{{
 let g:html5_event_handler_attributes_complete=0
@@ -378,7 +364,8 @@ endfunction
 
 function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
-endfunction"}}}
+endfunction
+"}}}
 
 "}}}
 
@@ -389,12 +376,13 @@ filetype plugin indent on
 " 基本設定
 set nocompatible                  " vi互換をオフする
 set mouse=a                       " マウス操作をできるようにする
-set clipboard=unnamed,autoselect  " ヤンクした文字は、システムのクリップボードに入れる
+set clipboard=unnamed             " ヤンクした文字は、システムのクリップボードに入れる
 set visualbell t_vb=             " エラービープ音を鳴らさない
 set noerrorbells
 set encoding=utf-8
 set fileencodings=utf-8
 set fileformats=unix,dos,mac
+set formatoptions-=ro   "改行時にコメントアウトを自動で引き継がないようにする
 
 set ambiwidth=double    "文脈によって解釈が異なる全角文字の幅を、２に固定する
 set backspace=indent,eol,start "バックスペースにてインデントを削除可能にする
@@ -414,6 +402,7 @@ set scrolloff=5         "カーソルの上または下に表示する最小限�
 set shiftwidth=2        "vimが自動で生成する（読み込み時など）tab幅をスペース2つ分にする
 set showmatch           "括弧入力時の対応する括弧を表示
 set smartindent         "オートインデント
+set autoindent          "改行時に前の行のインデントを継続する
 set tabstop=2           "インデントをスペース2つ分に設定
 set title               "編集中のファイル名を表示
 set ttyfast             " 高速ターミナル接続を行う
@@ -435,23 +424,25 @@ set hlsearch    " 検索結果をハイライト
 nmap n nzz
 
 " Register filetype by file extension
-au BufNewFile,BufRead *.html setf html
-au BufNewFile,BufRead *.ejs setf html
-au BufNewFile,BufRead *.erb setf eruby
-au BufNewFile,BufRead *.haml setf haml
-au BufNewFile,BufRead *.slim setf slim
-au BufNewFile,BufRead *.scss setf scss
-au BufNewFile,BufRead *.js setf javascript
-au BufNewFile,BufRead *.jsx setf javascript
-au BufNewFile,BufRead *.vue setlocal filetype=vue.html.javascript.scss
-au BufNewFile,BufRead *.json setf json
-au BufNewFile,BufRead *.coffee setf coffee
-au BufNewFile,BufRead *.ts setf typescript
-au BufNewFile,BufRead *.md setf markdown
-au BufNewFile,BufRead *.yml setf yml.yaml
-au BufNewFile,BufRead *.php setf php
-au BufNewFile,BufRead *.c setf c
-au BufNewFile,BufRead *.sh setf sh
+autocmd BufNewFile,BufRead *.html   setfiletype html
+autocmd BufNewFile,BufRead *.ejs    setfiletype html
+autocmd BufNewFile,BufRead *.erb    setfiletype eruby
+autocmd BufNewFile,BufRead *.haml   setfiletype haml
+autocmd BufNewFile,BufRead *.slim   setfiletype slim
+autocmd BufNewFile,BufRead *.scss   setfiletype scss
+autocmd BufNewFile,BufRead *.js     setfiletype javascript
+autocmd BufNewFile,BufRead *.jsx    setfiletype javascript
+autocmd BufNewFile,BufRead *.es6    setfiletype javascript
+autocmd FileType vue syntax sync fromstart
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+autocmd BufNewFile,BufRead *.json   setfiletype json
+autocmd BufNewFile,BufRead *.coffee setfiletype coffee
+autocmd BufNewFile,BufRead *.ts     setfiletype typescript
+autocmd BufNewFile,BufRead *.md     setfiletype markdown
+autocmd BufNewFile,BufRead *.yml    setfiletype yml.yaml
+autocmd BufNewFile,BufRead *.php    setfiletype php
+autocmd BufNewFile,BufRead *.c      setfiletype c
+autocmd BufNewFile,BufRead *.sh     setfiletype sh
 
 " Color Scheme
 syntax on
@@ -461,8 +452,9 @@ set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
 
 " キーマッピング
 let mapleader="\<Space>"
-map ,v :<C-u>vsplit<CR>
-map ,w :<C-u>split<CR>
+noremap ,v :<C-u>vsplit<CR>
+noremap ,w :<C-u>split<CR>
+noremap ,t :<C-u>terminal ++close<CR>
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <Del>
 nnoremap <Leader>w :w<CR>
@@ -482,7 +474,6 @@ if has('syntax')
     call ZenkakuSpace()
 endif
 
-"応用カスタマイズ
 " 最後のカーソル位置を復元する
 if has("autocmd")
     autocmd BufReadPost *
