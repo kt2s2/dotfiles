@@ -1,0 +1,255 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+hook_add = '''
+let g:neocomplete#enable_at_startup=1
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif
+let g:neocomplete#force_overwrite_completefunc=1
+" 言語ごとの設定
+let g:neocomplete#force_omni_input_patterns.c=
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+let g:neocomplete#force_omni_input_patterns.cpp=
+      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
+'''
+
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+hook_add = '''
+let g:netrw_nogx=1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+'''
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+hook_add = '''
+let g:ctrlp_user_command=['.git', 'cd %s && git ls-files -co --exclude-standard']
+'''
+
+[[plugins]]
+repo = 'Shougo/unite.vim'
+hook_add = '''
+call unite#custom_source('file_rec', 'ignore_pattern', 'vendor/\|tmp/\|log/\|node_modules/')
+call unite#custom_source('file_rec/async', 'ignore_pattern', 'vendor/\|tmp/\|log/\|node_modules/')
+" The prefix key.
+nnoremap  [unite] <Nop>
+nnoremap  [unite-rails] <Nop>
+nmap ,u [unite]
+nmap ,ur [unite-rails]
+nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file file/new<CR>
+nnoremap <silent> [unite]j :<C-u>UniteWithBufferDir autojump<CR>
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]t :<C-u>Unite -buffer-name=files buffer file_mru file_rec/async file/new  <CR>
+nnoremap <silent> [unite]m :<C-u>Unite file_mru <CR>
+nnoremap <silent> [unite]g :<C-u>Unite grep<CR>
+nnoremap <silent> [unite-rails]a :<C-u>Unite file_rec/async:app/<CR>
+nnoremap <silent> [unite-rails]fa :<C-u>Unite file file/new -input=app/ <CR>
+nnoremap <silent> [unite-rails]c :<C-u>Unite file_rec/async:app/controllers/<CR>
+nnoremap <silent> [unite-rails]fc :<C-u>Unite file file/new -input=app/controllers/ <CR>
+nnoremap <silent> [unite-rails]m :<C-u>Unite file_rec/async:app/models/ <CR>
+nnoremap <silent> [unite-rails]fm :<C-u>Unite file file/new -input=app/models/ <CR>
+nnoremap <silent> [unite-rails]v :<C-u>Unite file_rec/async:app/views/ <CR>
+nnoremap <silent> [unite-rails]fv :<C-u>Unite file file/new -input=app/views/ <CR>
+nnoremap <silent> [unite-rails]s :<C-u>Unite file_rec/async:app/assets/stylesheets/ <CR>
+nnoremap <silent> [unite-rails]fs :<C-u>Unite file file/new -input=app/assets/stylesheets/ <CR>
+nnoremap <silent> [unite-rails]j :<C-u>Unite file_rec/async:app/assets/javascripts/ <CR>
+nnoremap <silent> [unite-rails]fj :<C-u>Unite file file/new -input=app/assets/javascripts/ <CR>
+nnoremap <silent> [unite-rails]o :<C-u>Unite file_rec/async:config/ <CR>
+nnoremap <silent> [unite-rails]fo :<C-u>Unite file file/new -input=config/ <CR>
+nnoremap <silent> [unite-rails]p :<C-u>Unite file_rec/async:app/javascript/packs/ <CR>
+nnoremap <silent> [unite-rails]fp :<C-u>Unite file file/new -input=app/javascript/packs/ <CR>
+nnoremap <silent> [unite-rails]l :<C-u>Unite file_rec/async:lib/ <CR>
+nnoremap <silent> [unite-rails]fl :<C-u>Unite file file/new -input=lib/ <CR>
+nnoremap <silent> [unite-rails]r :<C-u>Unite file_rec/async:spec/ <CR>
+nnoremap <silent> [unite-rails]fr :<C-u>Unite file file/new -input=spec/ <CR>
+nnoremap <silent> [unite-rails]d :<C-u>Unite file_rec/async:db/ <CR>
+nnoremap <silent> [unite-rails]fd :<C-u>Unite file file/new -input=db/ <CR>
+nnoremap <silent> [unite-rails]u :<C-u>Unite file_rec/async:app/utils/ <CR>
+nnoremap <silent> [unite-rails]fu :<C-u>Unite file file/new -input=app/utils/ <CR>
+let g:unite_source_file_mru_limit = 100
+if executable('ag')
+  let g:unite_source_grep_command='ag'
+  let g:unite_source_grep_default_opts='--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+let g:unite_enable_start_insert=1
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+[[plugins]]
+repo = 'ConradIrwin/vim-bracketed-paste'
+
+[[plugins]]
+repo = 'tomtom/tcomment_vim'
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+hook_add = '''
+  autocmd BufWritePre * :FixWhitespace
+'''
+
+[[plugins]]
+repo = 'simeji/winresizer'
+hook_add = '''
+  let g:winresizer_start_key = '<Leader><C-T>'
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+  nnoremap <silent><C-e> :NERDTreeToggle<CR>
+  let g:NERDTreeShowBookmarks=1
+  let g:NERDTreeDirArrows=1
+  nnoremap <S-n>l gt
+  nnoremap <S-n>h gT
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+set laststatus=2
+let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'LightlineModified',
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \   'filename': 'LightlineFilename',
+        \   'fileformat': 'LightlineFileformat',
+        \   'filetype': 'LightlineFiletype',
+        \   'fileencoding': 'LightlineFileencoding',
+        \   'mode': 'LightlineMode'
+        \ }
+        \ }
+
+function! LightlineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
+
+function! LightlineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
+
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+    return fugitive#head()
+  else
+    return ''
+  endif
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+'''
+
+[[plugins]]
+repo = 'gorodinskiy/vim-coloresque'
+on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus']
+
+[[plugins]]
+repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+hook_source = '''
+let g:user_emmet_mode='iv'
+let g:user_emmet_leader_key='<C-Y>'
+let g:use_emmet_complete_tag=1
+let g:user_emmet_settings={
+      \ 'lang' : 'ja',
+      \ 'html' : {
+      \   'filters' : 'html',
+      \ },
+      \ 'css' : {
+      \   'filters' : 'fc',
+      \ },
+      \ 'php' : {
+      \   'extends' : 'html',
+      \   'filters' : 'html',
+      \ },
+      \}
+augroup EmmitVim
+  autocmd!
+  autocmd FileType * let g:user_emmet_settings.indentation='               '[:&tabstop]
+augroup END
+'''
+
+[[plugins]]
+repo = 'Quramy/tsuquyomi'
+
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+  nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'cohama/agit.vim'
+
+[[plugins]]
+repo = 'rhysd/committia.vim'
+hook_source = '''
+let g:committia_min_window_width=100  " これ以下の幅では左右分割しない
+let g:committia_hooks={}
+function! g:committia_hooks.edit_open(info)
+    " Additional settings
+    setlocal spell
+    " If no commit message, start with insert mode
+    if a:info.vcs ==# 'git' && getline(1) ==# ''
+        startinsert
+    end
+    " Scroll the diff window from insert mode
+    " Map <C-n> and <C-p>
+    imap <buffer><C-j> <Plug>(committia-scroll-diff-down-half)
+    imap <buffer><C-k> <Plug>(committia-scroll-diff-up-half)
+endfunction
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive.git'
+
+[[plugins]]
+repo = 'gregsexton/gitv.git'

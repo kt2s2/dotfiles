@@ -17,6 +17,17 @@ resources:
     source: /Users/<%= ENV["USER"] %>/<%= path %>
   <%- end -%>
 
+  # ----------- vimの設定 -----------
+  - type: symlink
+    destination: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/vim/rc/vimrc
+    source: /Users/<%= ENV["USER"] %>/.vimrc
+  - type: command
+    script: mkdir -p /Users/<%= ENV["USER"] %>/.vim
+  - type: command
+    script: ln -s /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/vim/rc /Users/<%= ENV["USER"] %>/.vim
+  - type: command
+    script: ln -s /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/vim/signs /Users/<%= ENV["USER"] %>/.vim
+
   - type: command
     script: echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
   - type: command

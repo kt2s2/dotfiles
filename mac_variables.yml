@@ -8,7 +8,6 @@ dotfiles:
   - gvimrc
   - pryrc
   - tmux.conf
-  - vimrc
   - zshrc
 symlinked_files:
   - get_volume_tmux.sh
