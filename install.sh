@@ -22,14 +22,11 @@ if [[ ! -d /usr/include ]]; then
 fi
 
 # Install homebrew
-which brew > /dev/null
-if [ "$?" -ne 0 ]; then
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
+which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Install serverkit and its dependencies
 which bundle > /dev/null || gem install bundler
-bundle install > /dev/null
+bundle install --path vendor/bundle > /dev/null
 
 # Run installer
 bundle exec serverkit apply recipe.yml.erb --variables=variables.yml

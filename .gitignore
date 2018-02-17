@@ -1,2 +1,4 @@
-/vendor/bundle
+vendor/bundle
 .bundle
+.git
+.DS_Store

@@ -1,31 +1,26 @@
 dotfiles_repository: sa-inu/dotfiles
 dotfiles:
-  - .bash_profile
-  - .bashrc
-  - .gitconfig
-  - .gitignore
-  - .gvimrc
-  - .vimrc
-  - .zshrc
+  - aliases
+  - bash_profile
+  - bashrc
+  - gitconfig
+  - gitignore
+  - gvimrc
+  - pryrc
+  - tmux.conf
+  - vimrc
+  - zshrc
 homebrew_cask_package_names:
   - 1password
   - alfred
-  - atom
+  - cmd-eikana
   - docker
   - dropbox
-  - evernote
-  - firefox
-  - github-desktop
   - google-chrome
   - google-japanese-ime
   - gyazo
   - hyperswitch
   - iterm2
-  - karabiner
-  - mysqlworkbench
-  - pophub
-  - postman
-  - rubymine
   - sequel-pro
   - skitch
   - skype
@@ -34,53 +29,44 @@ homebrew_cask_package_names:
   - sublime-text
   - vagrant
   - virtualbox
-  - webstorm
-  - zeplin
 homebrew_package_names:
   - caskroom/cask/brew-cask
   - cmake
   - ctags
   - gnu-sed
-  - hub
   - icu4c
   - imagemagick
   - jq
   - motemen/ghq/ghq
+  - zsh
+  - tmux
+  - lua
+  - vim
+  - reattach-to-user-namespace
+  - git
+  - hub
+  - tig
   - mysql
+  - redis
+  - postgresql
+  - mongodb
   - node
   - openssl
   - peco
-  - rbenv
   - rbenv-default-gems
-  - pyenv
   - readline
-  - reattach-to-user-namespace
-  - redis
-  - ruby-build
-  - tig
-  - tmux
   - tree
-  - lua
-  - vim
-  - fish
-  - zsh
-  - postgresql
   - coreutils
   - elixir
+  - go
   - cmigemo
   - macvim
-  - go
   - heroku-toolbelt
-  - git
-  - hugo
-  - mongodb
-  - git-flow-avh
+  - git-flow
   - rmtrash
   - doxygen
 login_item_names:
   - 'Alfred 3'
   - Dropbox
   - HyperSwitch
-  - Karabiner
-  - PopHub
   - Spectacle

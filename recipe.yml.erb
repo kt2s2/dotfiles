@@ -1,22 +1,51 @@
 resources:
+  # ----------- dotfilesをダウンロード -----------
+  - type: git
+    repository: git@github.com:<%= dotfiles_repository %>.git
+    path: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>
+
+  # ----------- 設定ファイルのシンボリックリンクを貼る -----------
+  <%- dotfiles.each do |path| -%>
+  - type: symlink
+    destination: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/linked/<%= path %>
+    source: /Users/<%= ENV["USER"] %>/.<%= path %>
+  <%- end -%>
+
   - type: command
+    script: echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
+  - type: command
+    check_script: "finger -l | grep -E 'Shell: /usr/local/bin/zsh$'"
+    script: sudo chsh -s /usr/local/bin/zsh <%= ENV["USER"] %>
+
+  - type: command
+    check_script: brew doctor | grep Your Homebrew is outdated > /dev/null
     script: brew update
+
+  # ----------- homebrewのパッケージをインスコ -----------
   <%- homebrew_package_names.each do |homebrew_package_name| -%>
   - type: package
     name: <%= homebrew_package_name %>
   <%- end -%>
+
+  # ----------- Mac Appをcask経由でインスコ -----------
   <%- homebrew_cask_package_names.each do |homebrew_cask_package_name| -%>
   - type: homebrew_cask_package
     name: <%= homebrew_cask_package_name %>
   <%- end -%>
+
+  # ----------- rubyをインスコ -----------
   - type: rbenv_ruby
-    version: 2.3.1
+    # rbenvやruby-buildがないときに同時にインスコするかどうか
+    dependencies: true
     global: true
+    version: 2.5.0
+
   <%- login_item_names.each do |login_item_name| -%>
   - type: login_items
     path: /Users/<%= ENV["USER"] %>/Applications/<%= login_item_name %>.app
     hidden: true
   <%- end -%>
+
   - type: defaults
     domain: com.apple.dock
     key: autohide
@@ -49,19 +78,7 @@ resources:
   - type: defaults
     key: applekeyboarduimode
     value: 3 # allow full keyboard access
-  - type: git
-    repository: git@github.com:<%= dotfiles_repository %>.git
-    path: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>
-  <%- dotfiles.each do |path| -%>
-  - type: symlink
-    destination: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/linked/<%= path %>
-    source: /Users/<%= ENV["USER"] %>/<%= path %>
-  <%- end -%>
-  - type: command
-    script: echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
-  - type: command
-    check_script: "finger -l | grep -E 'Shell: /usr/local/bin/zsh$'"
-    script: sudo chsh -s /usr/local/bin/zsh <%= ENV["USER"] %>
+
 handlers:
   - id: restart_dock
     type: command
