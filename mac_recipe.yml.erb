@@ -11,6 +11,12 @@ resources:
     source: /Users/<%= ENV["USER"] %>/.<%= path %>
   <%- end -%>
 
+  <%- symlinked_files.each do |path| -%>
+  - type: symlink
+    destination: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/linked/<%= path %>
+    source: /Users/<%= ENV["USER"] %>/<%= path %>
+  <%- end -%>
+
   - type: command
     script: echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
   - type: command
@@ -18,7 +24,6 @@ resources:
     script: sudo chsh -s /usr/local/bin/zsh <%= ENV["USER"] %>
 
   - type: command
-    check_script: brew doctor | grep Your Homebrew is outdated > /dev/null
     script: brew update
 
   # ----------- homebrewのパッケージをインスコ -----------

@@ -29,7 +29,7 @@ which bundle > /dev/null || gem install bundler
 bundle install --path vendor/bundle > /dev/null
 
 # Run installer
-bundle exec serverkit apply recipe.yml.erb --variables=variables.yml
+bundle exec serverkit apply mac_recipe.yml.erb --variables=mac_variables.yml
 
 # Move to original path
 popd > /dev/null

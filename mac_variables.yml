@@ -10,6 +10,9 @@ dotfiles:
   - tmux.conf
   - vimrc
   - zshrc
+symlinked_files:
+  - get_volume_tmux.sh
+  - getwifi.sh
 homebrew_cask_package_names:
   - 1password
   - alfred
@@ -37,7 +40,6 @@ homebrew_package_names:
   - icu4c
   - imagemagick
   - jq
-  - motemen/ghq/ghq
   - zsh
   - tmux
   - lua
@@ -50,18 +52,14 @@ homebrew_package_names:
   - redis
   - postgresql
   - mongodb
-  - node
   - openssl
   - peco
   - rbenv-default-gems
   - readline
   - tree
   - coreutils
-  - elixir
-  - go
   - cmigemo
   - macvim
-  - heroku-toolbelt
   - git-flow
   - rmtrash
   - doxygen
