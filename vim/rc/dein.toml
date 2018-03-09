@@ -13,6 +13,19 @@ repo = 'roxma/vim-hug-neovim-rpc'
 if = ''' !has('nvim') '''
 
 [[plugins]]
+repo = 'carlitux/deoplete-ternjs'
+build = 'npm install -g tern'
+hook_add = '''
+let g:deoplete#sources#ternjs#filetypes = [
+                \ 'jsx',
+                \ 'javascript.jsx',
+                \ 'vue',
+                \ 'es6',
+                \ 'coffee',
+                \ ]
+'''
+
+[[plugins]]
 repo = 'altercation/vim-colors-solarized'
 
 [[plugins]]
