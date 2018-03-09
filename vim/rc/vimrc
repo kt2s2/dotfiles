@@ -8,13 +8,8 @@ if &compatible
   set nocompatible
 endif
 
-if has('nvim')
-  let g:vim_home = expand('~/.nvim')
-  let g:rc_dir = expand('~/.nvim/rc')
-else
-  let g:vim_home = expand('~/.vim')
-  let g:rc_dir = expand('~/.vim/rc')
-endif
+let g:vim_home = expand('~/.vim')
+let g:rc_dir = expand('~/.vim/rc')
 
 function! s:source_rc(rc_file_name)
   let rc_file = expand(g:rc_dir . '/' . a:rc_file_name)
@@ -35,12 +30,45 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
-if has('vim_starting')
-  call s:source_rc('init.rc.vim')
+
+
+"---------------------------------------------------------------------------
+" Dein:
+"
+
+let s:dein_dir = '~/.cache/dein'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:rc_dir = '~/.vim/rc'
+
+let &runtimepath = s:dein_repo_dir .",". &runtimepath
+
+if dein#load_state(s:dein_dir)
+  call dein#begin(s:dein_dir)
+
+  call dein#load_toml(g:rc_dir . '/dein.toml', {'lazy': 0})
+  call dein#load_toml(g:rc_dir . '/deinlazy.toml', {'lazy' : 1})
+  call dein#add('Shougo/deoplete.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+  let g:deoplete#enable_at_startup = 1
+
+  call dein#end()
+  call dein#save_state()
 endif
 
-call s:source_rc('dein.rc.vim')
+filetype plugin indent on
+syntax enable
 
+if dein#check_install()
+  call dein#install()
+endif
+"---------------------------------------------------------------------------
+
+
+
+colorscheme solarized
 if has('vim_starting') && !empty(argv())
   call s:on_filetype()
 endif
@@ -52,14 +80,58 @@ endif
 
 
 "---------------------------------------------------------------------------
+" Encoding:
+"
 
-call s:source_rc('encoding.rc.vim')
+set fileformat=unix
+set fileformats=unix,dos,mac
+
+set encoding=utf-8
+set fileencodings=utf-8
+
+
+
+"---------------------------------------------------------------------------
+" Text:
+"
+
+" syntax on
+set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
+
+autocmd BufNewFile,BufRead *.html   setfiletype html
+autocmd BufNewFile,BufRead *.ejs    setfiletype html
+autocmd BufNewFile,BufRead *.erb    setfiletype eruby
+autocmd BufNewFile,BufRead *.haml   setfiletype haml
+autocmd BufNewFile,BufRead *.slim   setfiletype slim
+autocmd BufNewFile,BufRead *.scss   setfiletype scss
+autocmd BufNewFile,BufRead *.js     setfiletype javascript
+autocmd BufNewFile,BufRead *.jsx    setfiletype javascript
+autocmd BufNewFile,BufRead *.es6    setfiletype javascript
+autocmd BufNewFile,BufRead *.vue    setlocal filetype=vue.html.javascript.css
+autocmd BufNewFile,BufRead *.json   setfiletype json
+autocmd BufNewFile,BufRead *.coffee setfiletype coffee
+autocmd BufNewFile,BufRead *.ts     setfiletype typescript
+autocmd BufNewFile,BufRead *.md     setfiletype markdown
+autocmd BufNewFile,BufRead *.yml    setfiletype yml.yaml
+autocmd BufNewFile,BufRead *.php    setfiletype php
+autocmd BufNewFile,BufRead *.c      setfiletype c
+autocmd BufNewFile,BufRead *.sh     setfiletype sh
+
 
 call s:source_rc('options.rc.vim')
 
 call s:source_rc('mappings.rc.vim')
 
-call s:source_rc('unix.rc.vim')
+
+
+"---------------------------------------------------------------------------
+" For UNIX:
+"
+
+" Use sh.  It is faster
+set shell=sh
+
+
 
 
 "---------------------------------------------------------------------------

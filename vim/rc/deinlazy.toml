@@ -1,7 +1,4 @@
 [[plugins]]
-repo = 'Shougo/neomru.vim'
-
-[[plugins]]
 repo = 'Shougo/vimproc.vim'
 build = 'make'
 on_source = ['unite.vim']
@@ -56,10 +53,6 @@ on_ft = ['slim']
 [[plugins]]
 repo = 'cakebaker/scss-syntax.vim'
 on_ft = ['scss']
-
-[[plugins]]
-repo = 'Shougo/neocomplcache-rsense.vim'
-on_ft = ['ruby']
 
 [[plugins]]
 repo = 'stephpy/vim-yaml'

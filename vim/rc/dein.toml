@@ -2,22 +2,6 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Shougo/neocomplete.vim'
-hook_add = '''
-let g:neocomplete#enable_at_startup=1
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_overwrite_completefunc=1
-" 言語ごとの設定
-let g:neocomplete#force_omni_input_patterns.c=
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-let g:neocomplete#force_omni_input_patterns.cpp=
-      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
-'''
-
-[[plugins]]
 repo = 'altercation/vim-colors-solarized'
 
 [[plugins]]
@@ -106,6 +90,12 @@ repo = 'simeji/winresizer'
 hook_add = '''
   let g:winresizer_start_key = '<Leader><C-T>'
 '''
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
@@ -223,11 +213,11 @@ hook_add = '''
   nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 '''
 
-[[plugins]]
-repo = 'tpope/vim-fugitive'
+# [[plugins]]
+# repo = 'tpope/vim-fugitive'
 
-[[plugins]]
-repo = 'cohama/agit.vim'
+# [[plugins]]
+# repo = 'cohama/agit.vim'
 
 [[plugins]]
 repo = 'rhysd/committia.vim'
@@ -248,8 +238,5 @@ function! g:committia_hooks.edit_open(info)
 endfunction
 '''
 
-[[plugins]]
-repo = 'tpope/vim-fugitive.git'
-
-[[plugins]]
-repo = 'gregsexton/gitv.git'
+# [[plugins]]
+# repo = 'gregsexton/gitv.git'

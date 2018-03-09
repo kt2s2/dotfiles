@@ -34,8 +34,8 @@ noremap <S-h> ^
 noremap <S-l> $
 
 " Split window
-noremap ,v :<C-u>vsplit<CR>
-noremap ,w :<C-u>split<CR>
+noremap ,v :<C-u>vsplit<CR><C-w>l
+noremap ,w :<C-u>split<CR><C-w>j
 
 " Emulate terminal
 noremap ,t :<C-u>terminal ++close<CR>
