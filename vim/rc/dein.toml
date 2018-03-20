@@ -116,10 +116,10 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/context_filetype.vim'
+repo = 'osyo-manga/vim-precious'
 
 [[plugins]]
-repo = 'osyo-manga/vim-precious'
+repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
@@ -237,8 +237,8 @@ hook_add = '''
   nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 '''
 
-# [[plugins]]
-# repo = 'tpope/vim-fugitive'
+[[plugins]]
+repo = 'tpope/vim-fugitive'
 
 # [[plugins]]
 # repo = 'cohama/agit.vim'

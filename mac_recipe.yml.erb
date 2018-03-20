@@ -22,11 +22,9 @@ resources:
     destination: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/vim/rc/vimrc
     source: /Users/<%= ENV["USER"] %>/.vimrc
   - type: command
-    script: mkdir -p /Users/<%= ENV["USER"] %>/.vim
+    script: ln -s /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/vim /Users/<%= ENV["USER"] %>
   - type: command
-    script: ln -s /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/vim/rc /Users/<%= ENV["USER"] %>/.vim
-  - type: command
-    script: ln -s /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/vim/signs /Users/<%= ENV["USER"] %>/.vim
+    script: mv /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/vim /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/.vim
 
   - type: command
     script: echo "/usr/local/bin/zsh" | sudo tee -a /etc/shells
