@@ -16,6 +16,8 @@
 
 
 let mapleader="\<Space>"
+" ,のデフォルトの機能は\に割当
+noremap \ ,
 
 
 " Visual mode keymappings:
@@ -30,8 +32,8 @@ xnoremap < <gv
 nnoremap <Leader>w :w<CR>
 
 " Moving
-noremap <S-h> ^
-noremap <S-l> $
+" noremap <S-h> ^
+" noremap <S-l> $
 
 " Split window
 noremap ,v :<C-u>vsplit<CR><C-w>l
@@ -46,6 +48,9 @@ noremap ,t :<C-u>terminal ++close<CR>
 " Delete
 inoremap <silent> <C-h> <C-g>u<C-h>
 inoremap <silent> <C-d> <Del>
+
+" Show file path
+" nnoremap <C-g> 1<C-g>
 
 
 " Command-line mode keymappings:

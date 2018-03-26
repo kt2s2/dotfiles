@@ -13,83 +13,56 @@ repo = 'roxma/vim-hug-neovim-rpc'
 if = ''' !has('nvim') '''
 
 [[plugins]]
-repo = 'carlitux/deoplete-ternjs'
-build = 'npm install -g tern'
+repo = 'Shougo/denite.nvim'
 hook_add = '''
-let g:deoplete#sources#ternjs#filetypes = [
-                \ 'jsx',
-                \ 'javascript.jsx',
-                \ 'vue',
-                \ 'es6',
-                \ 'coffee',
-                \ ]
+nnoremap [denite] <Nop>
+nmap ,u [denite]
+nnoremap <silent> [denite]g :<C-u>Denite -no-empty grep<CR>
+nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+nnoremap <silent> [denite]m :<C-u>Denite file_mru<CR>
+nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
+" nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-resize line<CR>
+nmap [denite]r [denite-rails]
+nnoremap <silent> [denite-rails]m :<C-u>Denite file_rec:app/models/<CR>
+nnoremap <silent> [denite-rails]c :<C-u>Denite file_rec:app/controllers/<CR>
+nnoremap <silent> [denite-rails]h :<C-u>Denite file_rec:app/helpers/<CR>
+nnoremap <silent> [denite-rails]v :<C-u>Denite file_rec:app/views/<CR>
+nnoremap <silent> [denite-rails]j :<C-u>Denite file_rec:app/jobs/<CR>
+nnoremap <silent> [denite-rails]ja :<C-u>Denite file_rec:app/javascript/<CR>
+nnoremap <silent> [denite-rails]aj :<C-u>Denite file_rec:app/assets/javascripts/<CR>
+nnoremap <silent> [denite-rails]as :<C-u>Denite file_rec:app/assets/stylesheets/<CR>
+nnoremap <silent> [denite-rails]o :<C-u>Denite file_rec:config/<CR>
+nnoremap <silent> [denite-rails]d :<C-u>Denite file_rec:db/<CR>
+nnoremap <silent> [denite-rails]l :<C-u>Denite file_rec:lib/<CR>
+'''
+hook_post_source = '''
+call denite#custom#option('default', 'prompt', '>')
+call denite#custom#var('file_rec', 'command',
+      \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>')
+call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>')
+"
+call denite#custom#var('file_rec', 'command',
+      \ ['rg', '--files', '--glob', '!.git'])
+call denite#custom#source('file_rec', 'matchers', ['matcher_fuzzy','matcher_ignore_globs'])
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+      \ [
+      \ '.git/', 'build/', '__pycache__/',
+      \ 'images/', '*.o', '*.make',
+      \ '*.min.*',
+      \ 'img/', 'fonts/'])
+
+call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'default_opts',
+      \ ['--vimgrep', '--no-heading'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
 '''
 
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
-
-[[plugins]]
-repo = 'tyru/open-browser.vim'
-hook_add = '''
-let g:netrw_nogx=1 " disable netrw's gx mapping.
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
-'''
-
-[[plugins]]
-repo = 'ctrlpvim/ctrlp.vim'
-hook_add = '''
-let g:ctrlp_user_command=['.git', 'cd %s && git ls-files -co --exclude-standard']
-'''
-
-[[plugins]]
-repo = 'Shougo/unite.vim'
-hook_add = '''
-call unite#custom_source('file_rec', 'ignore_pattern', 'vendor/\|tmp/\|log/\|node_modules/')
-call unite#custom_source('file_rec/async', 'ignore_pattern', 'vendor/\|tmp/\|log/\|node_modules/')
-" The prefix key.
-nnoremap  [unite] <Nop>
-nnoremap  [unite-rails] <Nop>
-nmap ,u [unite]
-nmap ,ur [unite-rails]
-nnoremap <silent> [unite]f :<C-u>UniteWithBufferDir -buffer-name=files file file/new<CR>
-nnoremap <silent> [unite]j :<C-u>UniteWithBufferDir autojump<CR>
-nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
-nnoremap <silent> [unite]t :<C-u>Unite -buffer-name=files buffer file_mru file_rec/async file/new  <CR>
-nnoremap <silent> [unite]m :<C-u>Unite file_mru <CR>
-nnoremap <silent> [unite]g :<C-u>Unite grep<CR>
-nnoremap <silent> [unite-rails]a :<C-u>Unite file_rec/async:app/<CR>
-nnoremap <silent> [unite-rails]fa :<C-u>Unite file file/new -input=app/ <CR>
-nnoremap <silent> [unite-rails]c :<C-u>Unite file_rec/async:app/controllers/<CR>
-nnoremap <silent> [unite-rails]fc :<C-u>Unite file file/new -input=app/controllers/ <CR>
-nnoremap <silent> [unite-rails]m :<C-u>Unite file_rec/async:app/models/ <CR>
-nnoremap <silent> [unite-rails]fm :<C-u>Unite file file/new -input=app/models/ <CR>
-nnoremap <silent> [unite-rails]v :<C-u>Unite file_rec/async:app/views/ <CR>
-nnoremap <silent> [unite-rails]fv :<C-u>Unite file file/new -input=app/views/ <CR>
-nnoremap <silent> [unite-rails]s :<C-u>Unite file_rec/async:app/assets/stylesheets/ <CR>
-nnoremap <silent> [unite-rails]fs :<C-u>Unite file file/new -input=app/assets/stylesheets/ <CR>
-nnoremap <silent> [unite-rails]j :<C-u>Unite file_rec/async:app/assets/javascripts/ <CR>
-nnoremap <silent> [unite-rails]fj :<C-u>Unite file file/new -input=app/assets/javascripts/ <CR>
-nnoremap <silent> [unite-rails]o :<C-u>Unite file_rec/async:config/ <CR>
-nnoremap <silent> [unite-rails]fo :<C-u>Unite file file/new -input=config/ <CR>
-nnoremap <silent> [unite-rails]p :<C-u>Unite file_rec/async:app/javascript/packs/ <CR>
-nnoremap <silent> [unite-rails]fp :<C-u>Unite file file/new -input=app/javascript/packs/ <CR>
-nnoremap <silent> [unite-rails]l :<C-u>Unite file_rec/async:lib/ <CR>
-nnoremap <silent> [unite-rails]fl :<C-u>Unite file file/new -input=lib/ <CR>
-nnoremap <silent> [unite-rails]r :<C-u>Unite file_rec/async:spec/ <CR>
-nnoremap <silent> [unite-rails]fr :<C-u>Unite file file/new -input=spec/ <CR>
-nnoremap <silent> [unite-rails]d :<C-u>Unite file_rec/async:db/ <CR>
-nnoremap <silent> [unite-rails]fd :<C-u>Unite file file/new -input=db/ <CR>
-nnoremap <silent> [unite-rails]u :<C-u>Unite file_rec/async:app/utils/ <CR>
-nnoremap <silent> [unite-rails]fu :<C-u>Unite file file/new -input=app/utils/ <CR>
-let g:unite_source_file_mru_limit = 100
-if executable('ag')
-  let g:unite_source_grep_command='ag'
-  let g:unite_source_grep_default_opts='--nogroup --nocolor --column'
-  let g:unite_source_grep_recursive_opt = ''
-endif
-let g:unite_enable_start_insert=1
-'''
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -194,10 +167,6 @@ function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 '''
-
-[[plugins]]
-repo = 'gorodinskiy/vim-coloresque'
-on_ft = ['css', 'html', 'less', 'sass', 'scss', 'stylus']
 
 [[plugins]]
 repo = 'kana/vim-operator-user'

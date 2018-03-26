@@ -45,8 +45,8 @@ let &runtimepath = s:dein_repo_dir .",". &runtimepath
 if dein#load_state(s:dein_dir)
   call dein#begin(s:dein_dir)
 
-  call dein#load_toml(g:rc_dir . '/dein.toml', {'lazy': 0})
-  call dein#load_toml(g:rc_dir . '/deinlazy.toml', {'lazy' : 1})
+  call dein#load_toml(g:rc_dir . '/dein.toml', { 'lazy': 0 })
+  call dein#load_toml(g:rc_dir . '/deinlazy.toml', { 'lazy' : 1 })
 
   call dein#end()
   call dein#save_state()
@@ -63,6 +63,7 @@ endif
 
 
 colorscheme solarized
+set background=dark
 if has('vim_starting') && !empty(argv())
   call s:on_filetype()
 endif
@@ -89,8 +90,8 @@ set fileencodings=utf-8
 " Text:
 "
 
-" syntax on
-set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
+syntax on
+" set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
 
 autocmd BufNewFile,BufRead *.jsx    setfiletype javascript
 autocmd BufNewFile,BufRead *.es6    setfiletype javascript

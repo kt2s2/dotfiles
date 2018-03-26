@@ -131,11 +131,18 @@ set nrformats=octal
 "編集中のファイル名を表示
 set title
 
+" カラムラインを引く
+set colorcolumn=80
+
 "行番号を表示する
 set number
 
 " カーソル位置表示
 set ruler
+
+" カーソル行をハイライト
+" set cursorline
+" hi CursorLineNr term=bold cterm=NONE ctermfg=228 ctermbg=NONE
 
 "ウィンドウの幅より長い行は折り返した、次の行に表示する
 set wrap
@@ -193,5 +200,3 @@ set nowritebackup
 set nobackup
 set noswapfile
 set backupdir-=.
-
-set background=dark
