@@ -1,17 +1,4 @@
 dotfiles_repository: sa-inu/dotfiles
-dotfiles:
-  - aliases
-  - bash_profile
-  - bashrc
-  - gitconfig
-  - gitignore
-  - gvimrc
-  - pryrc
-  - tmux.conf
-  - zshrc
-symlinked_files:
-  - get_volume_tmux.sh
-  - getwifi.sh
 homebrew_cask_package_names:
   - 1password
   - alfred

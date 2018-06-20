@@ -37,7 +37,7 @@ augroup END
 "
 
 let s:dein_dir = '~/.cache/dein'
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:dein_repo_dir = s:dein_dir . '/Shougo/dein.vim'
 let s:rc_dir = '~/.vim/rc'
 
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
@@ -52,9 +52,6 @@ if dein#load_state(s:dein_dir)
   call dein#save_state()
 endif
 
-filetype plugin indent on
-syntax enable
-
 if dein#check_install()
   call dein#install()
 endif
@@ -68,10 +65,8 @@ if has('vim_starting') && !empty(argv())
   call s:on_filetype()
 endif
 
-if !has('vim_starting')
-  syntax enable
-  filetype plugin indent on
-endif
+syntax enable
+filetype plugin indent on
 
 
 "---------------------------------------------------------------------------
@@ -90,7 +85,7 @@ set fileencodings=utf-8
 " Text:
 "
 
-syntax on
+" syntax on
 " set guifont=RictyNerdFontAOPL-RegularForPowerline:h14
 
 autocmd BufNewFile,BufRead *.jsx    setfiletype javascript

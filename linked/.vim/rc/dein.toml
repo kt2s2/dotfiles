@@ -15,43 +15,26 @@ if = ''' !has('nvim') '''
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 hook_add = '''
-nnoremap [denite] <Nop>
-nmap ,u [denite]
-nnoremap <silent> [denite]g :<C-u>Denite -no-empty grep<CR>
-nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
-nnoremap <silent> [denite]m :<C-u>Denite file_mru<CR>
-nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
-" nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-resize line<CR>
-nmap [denite]r [denite-rails]
-nnoremap <silent> [denite-rails]m :<C-u>Denite file_rec:app/models/<CR>
-nnoremap <silent> [denite-rails]c :<C-u>Denite file_rec:app/controllers/<CR>
-nnoremap <silent> [denite-rails]h :<C-u>Denite file_rec:app/helpers/<CR>
-nnoremap <silent> [denite-rails]v :<C-u>Denite file_rec:app/views/<CR>
-nnoremap <silent> [denite-rails]j :<C-u>Denite file_rec:app/jobs/<CR>
-nnoremap <silent> [denite-rails]ja :<C-u>Denite file_rec:app/javascript/<CR>
-nnoremap <silent> [denite-rails]aj :<C-u>Denite file_rec:app/assets/javascripts/<CR>
-nnoremap <silent> [denite-rails]as :<C-u>Denite file_rec:app/assets/stylesheets/<CR>
-nnoremap <silent> [denite-rails]o :<C-u>Denite file_rec:config/<CR>
-nnoremap <silent> [denite-rails]d :<C-u>Denite file_rec:db/<CR>
-nnoremap <silent> [denite-rails]l :<C-u>Denite file_rec:lib/<CR>
-'''
-hook_post_source = '''
 call denite#custom#option('default', 'prompt', '>')
 call denite#custom#var('file_rec', 'command',
-      \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
-call denite#custom#map('insert', '<C-n>', '<denite:move_to_next_line>')
-call denite#custom#map('insert', '<C-p>', '<denite:move_to_previous_line>')
-"
-call denite#custom#var('file_rec', 'command',
-      \ ['rg', '--files', '--glob', '!.git'])
-call denite#custom#source('file_rec', 'matchers', ['matcher_fuzzy','matcher_ignore_globs'])
-call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-      \ [
-      \ '.git/', 'build/', '__pycache__/',
-      \ 'images/', '*.o', '*.make',
-      \ '*.min.*',
-      \ 'img/', 'fonts/'])
-
+      \ ['rg', '--files', '--glob', '!.git', '-g', '!node_modules',
+      \  '-g', '!vendor/bundle', '-g', '!tmp', '-g', '!log' ])
+call denite#custom#source(
+      \ 'file_rec', 'sorters', ['sorter_sublime'])
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-j>',
+      \ '<denite:move_to_next_line>',
+      \ 'noremap'
+      \)
+call denite#custom#map(
+      \ 'insert',
+      \ '<C-k>',
+      \ '<denite:move_to_previous_line>',
+      \ 'noremap'
+      \)
+call denite#custom#source(
+      \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_cpsm'])
 call denite#custom#var('grep', 'command', ['rg'])
 call denite#custom#var('grep', 'default_opts',
       \ ['--vimgrep', '--no-heading'])
@@ -59,10 +42,44 @@ call denite#custom#var('grep', 'recursive_opts', [])
 call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
 call denite#custom#var('grep', 'separator', ['--'])
 call denite#custom#var('grep', 'final_opts', [])
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+      \ ['.git/', '.ropeproject/', '__pycache__/',
+      \  'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
+      \  'bundle/', 'node_modules/'])
+
+nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
+
+nnoremap [denite] <Nop>
+
+nmap ,u [denite]
+nnoremap <silent> [denite]g :<C-u>Denite grep<CR>
+nnoremap <silent> [denite]b :<C-u>Denite buffer<CR>
+nnoremap <silent> [denite]m :<C-u>Denite file_mru<CR>
+" nnoremap <silent> / :<C-u>Denite -buffer-name=search -auto-resize line<CR>
+
+nmap [denite]w [denite-curwor]
+nnoremap <silent> [denite-curwor]g :<C-u>DeniteCursorWord grep<CR>
+
+nmap [denite]r [denite-rails]
+nnoremap <silent> [denite-rails]a :<C-u>Denite file_rec:app/<CR>
+nnoremap <silent> [denite-rails]m :<C-u>Denite file_rec:app/models/<CR>
+nnoremap <silent> [denite-rails]c :<C-u>Denite file_rec:app/controllers/<CR>
+nnoremap <silent> [denite-rails]h :<C-u>Denite file_rec:app/helpers/<CR>
+nnoremap <silent> [denite-rails]v :<C-u>Denite file_rec:app/views/<CR>
+nnoremap <silent> [denite-rails]jo :<C-u>Denite file_rec:app/jobs/<CR>
+nnoremap <silent> [denite-rails]ja :<C-u>Denite file_rec:app/javascript/<CR>
+nnoremap <silent> [denite-rails]aj :<C-u>Denite file_rec:app/assets/javascripts/<CR>
+nnoremap <silent> [denite-rails]as :<C-u>Denite file_rec:app/assets/stylesheets/<CR>
+nnoremap <silent> [denite-rails]o :<C-u>Denite file_rec:config/<CR>
+nnoremap <silent> [denite-rails]d :<C-u>Denite file_rec:db/<CR>
+nnoremap <silent> [denite-rails]l :<C-u>Denite file_rec:lib/<CR>
 '''
 
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
+
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
 
 [[plugins]]
 repo = 'tpope/vim-surround'
@@ -197,9 +214,6 @@ augroup END
 '''
 
 [[plugins]]
-repo = 'Quramy/tsuquyomi'
-
-[[plugins]]
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
   nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
@@ -233,3 +247,6 @@ endfunction
 
 # [[plugins]]
 # repo = 'gregsexton/gitv.git'
+
+[[plugins]]
+repo = 'othree/yajs.vim'

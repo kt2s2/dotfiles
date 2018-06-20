@@ -9,6 +9,12 @@ alias -g G='| grep'
 alias -g L='| less'
 alias -g X='| xargs'
 alias -g J='| jq .'
+alias -g P='| peco'
+
+function find_cd() {
+  cd "$(find . -type d P)"
+}
+alias fc='find_cd'
 
 alias sp='spring'
 alias bsp='bin/spring'
@@ -60,11 +66,12 @@ alias gc='git commit'
 alias gcmsg='git commit -m'
 alias gcam='git commit --amend'
 alias gfm='git pull origin B'
+alias gfmr='git pull --rebase origin B'
 alias gp='git push origin B'
 alias gpom='git push origin master'
 alias gphm='git push heroku master'
 alias glom='git pull origin master'
-alias gf='git fetch'
+alias gf='git fetch --prune'
 
 fpath=(~/.zsh/completion $fpath)
 
@@ -76,6 +83,9 @@ alias tl='tmux ls'
 alias ta='tmux a -t'
 alias tre='tmux rename -t'
 alias tk='tmux kill-session -t'
+
+alias dk='docker'
+alias dkc='docker-compose'
 
 # alias rm='rmtrash'
 

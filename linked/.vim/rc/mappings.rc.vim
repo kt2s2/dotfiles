@@ -31,10 +31,6 @@ xnoremap < <gv
 " Save file
 nnoremap <Leader>w :w<CR>
 
-" Moving
-" noremap <S-h> ^
-" noremap <S-l> $
-
 " Split window
 noremap ,v :<C-u>vsplit<CR><C-w>l
 noremap ,w :<C-u>split<CR><C-w>j

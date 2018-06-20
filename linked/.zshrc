@@ -141,3 +141,4 @@ RPROMPT='%K${memotxt}%k ${vcs_info_msg_0_} ( %{$fg[magenta]%}%~%{$reset_color%} 
 
 # autojump
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+eval "$(direnv hook zsh)"

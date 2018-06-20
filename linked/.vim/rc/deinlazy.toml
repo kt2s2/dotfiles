@@ -81,12 +81,8 @@ repo = 'stephpy/vim-yaml'
 on_ft = ['yaml']
 
 [[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = ['javascript']
-
-[[plugins]]
 repo = 'leafgarland/typescript-vim'
-on_ft = ['javascript']
+on_ft = ['typescript']
 
 [[plugins]]
 repo = 'elzr/vim-json'
