@@ -59,7 +59,7 @@ endif
 
 
 
-colorscheme solarized
+colorscheme iceberg
 set background=dark
 if has('vim_starting') && !empty(argv())
   call s:on_filetype()
