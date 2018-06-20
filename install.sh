@@ -24,6 +24,11 @@ fi
 # Install homebrew
 which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+brew install git
+
+mkdir -p ~/src/github.com/sa-inu/dotfiles
+git clone git@github.com:sa-inu/dotfiles.git ~/src/github.com/sa-inu/dotfiles
+
 # Install serverkit and its dependencies
 sudo gem install bundler
 sudo bundle install
