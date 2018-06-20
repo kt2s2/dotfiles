@@ -75,11 +75,11 @@ nnoremap <silent> [denite-rails]d :<C-u>Denite file_rec:db/<CR>
 nnoremap <silent> [denite-rails]l :<C-u>Denite file_rec:lib/<CR>
 '''
 
-# [[plugins]]
-# repo = 'altercation/vim-colors-solarized'
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
 
 [[plugins]]
-repo = 'cocopon/iceberg.vim'
+repo = 'kaicataldo/material.vim'
 
 [[plugins]]
 repo = 'w0ng/vim-hybrid'

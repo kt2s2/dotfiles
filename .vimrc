@@ -58,8 +58,8 @@ endif
 
 
 
-colorscheme iceberg
 set background=dark
+colorscheme hybrid
 if has('vim_starting') && !empty(argv())
   call s:on_filetype()
 endif
