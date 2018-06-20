@@ -4,13 +4,13 @@ echo ''
 echo Symbolic link settings...
 files=`find linked -maxdepth 1 -type f | sed "s!^.*/!!" | grep -vE ".DS_Store"`
 for file in ${files[@]}; do
-  ln -s `pwd`/linked/$file $HOME/$file
+  ln -s `pwd`/$file $HOME/$file
 done
 
 
 echo ''
 echo Vim settings...
-ln -s `pwd`/linked/.vim/ $HOME/.vim
+ln -s `pwd`/.vim/ $HOME/.vim
 
 
 echo ''
