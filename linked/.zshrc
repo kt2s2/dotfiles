@@ -1,41 +1,19 @@
 export LANG=ja_JP.UTF-8
-export EDITOR=/usr/local/bin/vim export PATH=/usr/local/bin:$PATH
+export HOMEBREW_CASK_OPTS='--appdir=/Applications'
+export EDITOR=/usr/local/bin/vim
+
+
+
+export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
-export PATH="$(brew --prefix homebrew/php/php70)/bin:$PATH"
+export PATH=/usr/local/opt/openssl/bin:$PATH
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH
-export PATH=$HOME/.pyenv/bin:$PATH
-export PATH=$HOME/Library/Python/2.7/bin:$PATH
-if [ -x "`which go`" ]; then
-  export GOROOT=`go env GOROOT`
-  export GOPATH=$HOME/code/go-local
-  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-fi
 eval "$(rbenv init - zsh)"
+export PATH=$HOME/.pyenv/bin:$PATH
 eval "$(pyenv init - zsh)"
 
-# Load Color{{{
-autoload -Uz colors
-colors
-setopt prompt_subst
-# ForeGround: %{$fg[code]%}
-# BackGround: %{$bg[code]%}
-# Reset: %{$reset_color%}
-# Codes: {
-# 0: black,
-# 1: red,
-# 2: green,
-# 3: yellow,
-# 4: blue,
-# 5: magenta,
-# 6: cyan,
-# 7: white
-# }
-# }}}
 
-if [ -f ~/.aliases ]; then
-  . ~/.aliases
-fi
 
 setopt ignore_eof
 setopt interactive_comments
@@ -81,7 +59,6 @@ zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 # zsh-completions
 [ -d $HOME/.zsh/zsh-completions/src ] && fpath=($HOME/.zsh/zsh-completions/src $fpath)
 
-source /usr/local/Cellar/zsh-syntax-highlighting/0.5.0/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 setopt auto_cd
 function chpwd() { ls }
@@ -89,6 +66,9 @@ function chpwd() { ls }
 # autoload predict-on
 # predict-on
 
+##################
+# ^Rをpecoでhistory検索
+##################
 HISTFILE=${HOME}/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
@@ -107,23 +87,10 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
-# プロンプト設定
-# メモ
-function memo(){
-  if [ $# -eq 0 ]; then
-    unset memotxt
-  else
-    if [ ${#memotxt} -eq 0 ]; then
-      memotxt=' '
-    fi
-    for str in $@; do
-      memotxt="${memotxt}${str} "
-    done
-  fi
-}
-# colorsを宣言
+##################
+# プロンプト
+##################
 autoload -Uz colors
-# vcs_infoを宣言
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ":vcs_info:*" enable git
@@ -133,12 +100,12 @@ zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:git:*' formats "(%F{magenta}%b%f%F{green}%c%u%f)"
 zstyle ':vcs_info:git:*' actionformats "[%b|%a]"
 precmd(){ vcs_info }
-
 exit_code='%?'
 PROMPT='(%(?!%{$fg[green]%}!%{$fg[red]%})${exit_code}%{$reset_color%}) %% '
 RPROMPT='%K${memotxt}%k ${vcs_info_msg_0_} ( %{$fg[magenta]%}%~%{$reset_color%} )Oo.'
 
-
+##################
 # autojump
+##################
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 eval "$(direnv hook zsh)"
