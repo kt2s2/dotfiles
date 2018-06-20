@@ -4,6 +4,7 @@ dotfiles:
   - .tmux.conf
   - .ctags
   - .pryrc
+  - .vimrc
   - .gvimrc
   - get_volume_tmux.sh
   - getwifi.sh
