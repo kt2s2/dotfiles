@@ -1,17 +1,29 @@
 export LANG=ja_JP.UTF-8
-export HOMEBREW_CASK_OPTS='--appdir=/Applications'
+
+case $OSTYPE in
+  darwin*)
+    export HOMEBREW_CASK_OPTS='--appdir=/Applications'
+    ;;
+  linux*)
+esac
+
 export EDITOR=/usr/local/bin/vim
-
-
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/opt/openssl/bin:$PATH
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init - zsh)"
-export PATH=$HOME/.pyenv/bin:$PATH
-eval "$(pyenv init - zsh)"
+
+if which nodebrew &> /dev/null; then
+  export PATH=$HOME/.nodebrew/current/bin:$PATH
+fi
+if which rbenv &> /dev/null; then
+  export PATH=$HOME/.rbenv/bin:$PATH
+  eval "$(rbenv init - zsh)"
+fi
+if which pyenv &> /dev/null; then
+  export PATH=$HOME/.pyenv/bin:$PATH
+  eval "$(pyenv init - zsh)"
+fi
 
 
 
@@ -200,4 +212,10 @@ RPROMPT='%K${memotxt}%k ${vcs_info_msg_0_} ( %{$fg[magenta]%}%~%{$reset_color%} 
 # autojump
 ##################
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-eval "$(direnv hook zsh)"
+
+#################
+# direnv
+#################
+if which direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
