@@ -15,9 +15,6 @@ resources:
   - type: command
     script: ln -s /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/.vim /Users/<%= ENV["USER"] %>
 
-  - type: command
-    script: brew update
-
   # ----------- homebrewのパッケージをインスコ -----------
   <%- homebrew_package_names.each do |homebrew_package_name| -%>
   - type: package
