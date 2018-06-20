@@ -25,7 +25,7 @@ fi
 which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Install serverkit and its dependencies
-which bundle > /dev/null || gem install bundler
+which bundle > /dev/null || sudo gem install bundler
 bundle install > /dev/null
 
 # Run installer
