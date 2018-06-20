@@ -15,6 +15,12 @@ resources:
   - type: command
     script: ln -s /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/.vim /Users/<%= ENV["USER"] %>
 
+  # ----------- brew tap ------------
+  - type: homebrew_tap
+    name: caskroom/cask
+  - type: homebrew_tap
+    name: caskroom/fonts
+
   # ----------- homebrewのパッケージをインスコ -----------
   <%- homebrew_package_names.each do |homebrew_package_name| -%>
   - type: package
