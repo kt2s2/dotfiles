@@ -5,9 +5,11 @@ resources:
     path: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>
 
   # ----------- 設定ファイルのシンボリックリンクを貼る -----------
+  <% dotfiles.each do |file| %>
   - type: symlink
-    destination: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/linked
-    source: /Users/<%= ENV["USER"] %>/
+    destination: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/linked/<%= file %>
+    source: /Users/<%= ENV["USER"] %>/<%= file %>
+  <% end %>
 
   # ----------- vimの設定 -----------
   - type: command
