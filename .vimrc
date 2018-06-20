@@ -8,7 +8,6 @@ if &compatible
   set nocompatible
 endif
 
-let g:vim_home = expand('~/.vim')
 let g:rc_dir = expand('~/.vim/rc')
 
 function! s:source_rc(rc_file_name)
@@ -37,7 +36,7 @@ augroup END
 "
 
 let s:dein_dir = '~/.cache/dein'
-let s:dein_repo_dir = s:dein_dir . '/Shougo/dein.vim'
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 let s:rc_dir = '~/.vim/rc'
 
 let &runtimepath = s:dein_repo_dir .",". &runtimepath
