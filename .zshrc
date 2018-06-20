@@ -14,17 +14,18 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/opt/openssl/bin:$PATH
 
 if which nodebrew &> /dev/null; then
+  if [ ! -e $HOME/.nodebrew ]; then
+    nodebrew setup
+  fi
   export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
 if which rbenv &> /dev/null; then
-  export PATH=$HOME/.rbenv/bin:$PATH
   eval "$(rbenv init - zsh)"
 fi
-if which pyenv &> /dev/null; then
+if [ -e $HOME/.pyenv ]; then
   export PATH=$HOME/.pyenv/bin:$PATH
   eval "$(pyenv init - zsh)"
 fi
-
 
 
 ########################

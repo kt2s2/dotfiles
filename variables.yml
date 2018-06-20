@@ -52,3 +52,5 @@ homebrew_package_names:
   - tree
   - macvim
   - rmtrash
+  - rbenv
+  - nodebrew
