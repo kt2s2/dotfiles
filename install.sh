@@ -26,10 +26,10 @@ which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.co
 
 # Install serverkit and its dependencies
 which bundle > /dev/null || sudo gem install bundler
-bundle install --path vendor/bundle > /dev/null
+bundle install > /dev/null
 
 # Run installer
-bundle exec serverkit apply recipe.yml.erb --variables=variables.yml
+serverkit apply recipe.yml.erb --variables=variables.yml
 
 # Move to original path
 popd > /dev/null
