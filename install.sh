@@ -26,7 +26,7 @@ which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.co
 
 # Install serverkit and its dependencies
 sudo gem install bundler
-bundle install
+sudo bundle install
 
 # Run installer
 serverkit apply recipe.yml.erb --variables=variables.yml
