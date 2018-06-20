@@ -35,6 +35,7 @@ homebrew_package_names:
   - font-myricam
   - cmake
   - ctags
+  - ghq
   - imagemagick
   - jq
   - zsh
