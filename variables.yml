@@ -1,4 +1,14 @@
 dotfiles_repository: sa-inu/dotfiles
+dotfiles:
+  - .zshrc
+  - .tmux.conf
+  - .ctags
+  - .pryrc
+  - .gvimrc
+  - get_volume_tmux.sh
+  - getwifi.sh
+  - .gitignore
+  - .gitconfig
 homebrew_cask_package_names:
   - 1password
   - alfred
@@ -22,8 +32,6 @@ homebrew_package_names:
   - caskroom/cask/brew-cask
   - cmake
   - ctags
-  - gnu-sed
-  - icu4c
   - imagemagick
   - jq
   - zsh
@@ -32,25 +40,11 @@ homebrew_package_names:
   - vim
   - reattach-to-user-namespace
   - git
+  - git-flow
   - hub
   - tig
-  - mysql
-  - redis
-  - postgresql
-  - mongodb
   - openssl
   - peco
-  - rbenv-default-gems
-  - readline
   - tree
-  - coreutils
-  - cmigemo
   - macvim
-  - git-flow
   - rmtrash
-  - doxygen
-login_item_names:
-  - 'Alfred 3'
-  - Dropbox
-  - HyperSwitch
-  - Spectacle
