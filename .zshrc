@@ -146,7 +146,18 @@ bindkey '^R' peco-history-selection
 ##################
 # autojump
 ##################
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+AUTO_JUMP_SRC_PATH=$HOME/src/github.com/wting/autojump
+if [ ! -e $AUTO_JUMP_SRC_PATH ]; then
+  mkdir -p ~/src/github.com/wting
+  git clone https://github.com/wting/autojump.git $AUTO_JUMP_SRC_PATH
+fi
+if [ ! -e $HOME/.autojump ]; then
+  pushd $AUTO_JUMP_SRC_PATH
+  ./install.py
+  popd
+fi
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
 
 #################
 # direnv
