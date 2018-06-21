@@ -48,6 +48,7 @@ homebrew_package_names:
   - hub
   - tig
   - openssl
+  - wget
   - peco
   - tree
   - macvim
