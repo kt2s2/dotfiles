@@ -22,9 +22,11 @@ fi
 if which rbenv &> /dev/null; then
   eval "$(rbenv init - zsh)"
 fi
-if [ -e $HOME/.pyenv ]; then
+if which pyenv &> /dev/null; then
+  if [ ! -e $HOME/.pyenv ]; then
+    eval "$(pyenv init - zsh)"
+  fi
   export PATH=$HOME/.pyenv/bin:$PATH
-  eval "$(pyenv init - zsh)"
 fi
 
 
