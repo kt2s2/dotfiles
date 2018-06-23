@@ -42,6 +42,7 @@ homebrew_package_names:
   - tmux
   - lua
   - vim
+  - rg # deniteで利用
   - reattach-to-user-namespace
   - git
   - git-flow
