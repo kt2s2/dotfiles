@@ -61,19 +61,40 @@ nmap [denite]w [denite-curwor]
 nnoremap <silent> [denite-curwor]g :<C-u>DeniteCursorWord grep<CR>
 
 nmap [denite]r [denite-rails]
-nnoremap <silent> [denite-rails]a :<C-u>Denite file_rec:app/<CR>
-nnoremap <silent> [denite-rails]m :<C-u>Denite file_rec:app/models/<CR>
-nnoremap <silent> [denite-rails]c :<C-u>Denite file_rec:app/controllers/<CR>
-nnoremap <silent> [denite-rails]h :<C-u>Denite file_rec:app/helpers/<CR>
-nnoremap <silent> [denite-rails]v :<C-u>Denite file_rec:app/views/<CR>
-nnoremap <silent> [denite-rails]jo :<C-u>Denite file_rec:app/jobs/<CR>
-nnoremap <silent> [denite-rails]ja :<C-u>Denite file_rec:app/javascript/<CR>
 nnoremap <silent> [denite-rails]aj :<C-u>Denite file_rec:app/assets/javascripts/<CR>
+nnoremap <silent> [denite-rails]ap :<C-u>Denite file_rec:app/<CR>
 nnoremap <silent> [denite-rails]as :<C-u>Denite file_rec:app/assets/stylesheets/<CR>
-nnoremap <silent> [denite-rails]o :<C-u>Denite file_rec:config/<CR>
-nnoremap <silent> [denite-rails]d :<C-u>Denite file_rec:db/<CR>
-nnoremap <silent> [denite-rails]l :<C-u>Denite file_rec:lib/<CR>
+nnoremap <silent> [denite-rails]md :<C-u>Denite file_rec:app/models/<CR>
+nnoremap <silent> [denite-rails]cl :<C-u>Denite file_rec:app/controllers/<CR>
+nnoremap <silent> [denite-rails]co :<C-u>Denite file_rec:config/<CR>
+nnoremap <silent> [denite-rails]db :<C-u>Denite file_rec:db/<CR>
+nnoremap <silent> [denite-rails]he :<C-u>Denite file_rec:app/helpers/<CR>
+nnoremap <silent> [denite-rails]ja :<C-u>Denite file_rec:app/javascript/<CR>
+nnoremap <silent> [denite-rails]jo :<C-u>Denite file_rec:app/jobs/<CR>
+nnoremap <silent> [denite-rails]li :<C-u>Denite file_rec:lib/<CR>
+nnoremap <silent> [denite-rails]sr :<C-u>Denite file_rec:app/serializers/<CR>
+nnoremap <silent> [denite-rails]vw :<C-u>Denite file_rec:app/views/<CR>
+nnoremap <silent> [denite-rails]vo :<C-u>Denite file_rec:app/view_objects/<CR>
+nnoremap <silent> [denite-rails]wo :<C-u>Denite file_rec:app/serializers/<CR>
 '''
+
+# neovimではないのでdeopleteのために必要
+# [[plugins]]
+# repo = 'roxma/nvim-yarp'
+
+# neovimではないのでdeopleteのために必要
+# [[plugins]]
+# repo = 'roxma/vim-hug-neovim-rpc'
+
+# なんか入力が遅かったので一旦コメントアウト
+# [[plugins]]
+# repo = 'Shougo/deoplete.nvim'
+# hook_add = '''
+# let g:deoplete#enable_at_startup = 1
+# inoremap <expr><tab> pumvisible() ? "\<C-n>" :
+#       \ neosnippet#expandable_or_jumpable() ?
+#       \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
+# '''
 
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'

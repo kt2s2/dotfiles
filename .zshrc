@@ -12,6 +12,7 @@ export EDITOR=/usr/local/bin/vim
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/opt/openssl/bin:$PATH
+export XDG_CONFIG_HOME=$HOME/.config
 
 if which nodebrew &> /dev/null; then
   if [ ! -e $HOME/.nodebrew ]; then
@@ -85,7 +86,7 @@ alias gi='git init'
 alias gd='git diff'
 alias gst='git status -b'
 alias gb='git branch'
-alias gbd='git branch -d'
+alias gbd='git branch -D'
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcm='git checkout master'

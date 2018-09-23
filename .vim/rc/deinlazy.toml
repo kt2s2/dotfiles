@@ -1,28 +1,47 @@
 [[plugins]]
+repo = 'uplus/deoplete-solargraph'
+on_ft = ['ruby']
+
+# [[plugins]]
+# repo = 'autozimu/LanguageClient-neovim'
+# rev = 'next'
+# build = 'sh install.sh'
+# hook_source = '''
+# " Required for operations modifying multiple buffers like rename.
+# set hidden
+#
+# let g:LanguageClient_serverCommands = {
+#       \ 'vue': ['vls'],
+#       \ 'html': [],
+#       \ 'css': [],
+#       \ 'javascript': ['javascript-typescript-stdio'],
+#       \ 'typescript': ['javascript-typescript-stdio'],
+#       \ 'ruby': ['language_server-ruby'],
+#       \ }
+#
+# nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+# nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+# nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+# " not stop completion $ & /
+# setlocal iskeyword+=$
+# setlocal iskeyword+=-
+# '''
+
+[[plugins]]
 # neosnippet
 repo = 'Shougo/neosnippet.vim'
 hook_source = '''
-  "Ctrl+Kにターゲットジャンプ割当
-  imap <C-k> <Plug>(neosnippet_expand_or_jump)
-  smap <C-k> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-k> <Plug>(neosnippet_expand_target)
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
+"Ctrl+Kにターゲットジャンプ割当
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 '''
 on_i  = 1
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_source = '''
-let g:deoplete#enable_at_startup = 1
-inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-      \ neosnippet#expandable_or_jumpable() ?
-      \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-'''
-on_i = 1
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
