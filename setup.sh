@@ -1,32 +1,11 @@
 #!/bin/sh
 
-echo ''
+echo Create directories
+mkdir -p ~/.vim/snippets
+mkdir -p ~/.vim/rc
+
 echo Symbolic link settings...
-files=`find linked -maxdepth 1 -type f | sed "s!^.*/!!" | grep -vE ".DS_Store"`
+files=`find home -type f | sed -e 's/home\///g'`
 for file in ${files[@]}; do
-  ln -s `pwd`/$file $HOME/$file
+  ln -s `pwd`/home/$file $HOME/$file
 done
-
-
-echo ''
-echo Vim settings...
-ln -s `pwd`/.vim/ $HOME/.vim
-
-
-echo ''
-echo Login shell settings...
-if ! echo $SHELL | grep -q zsh; then
-  zsh_path=`which zsh`
-  chsh -s $zsh_path
-  if [ $? -gt 1 ]; then
-    echo Successful change of login shell!
-  fi
-  exec $SHELL -l
-fi
-
-echo ''
-echo Load zshrc...
-if [ -e $HOME/.zshrc ]; then
-  source $HOME/.zshrc
-fi
-

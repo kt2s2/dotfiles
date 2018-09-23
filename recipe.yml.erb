@@ -5,15 +5,8 @@ resources:
     path: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>
 
   # ----------- 設定ファイルのシンボリックリンクを貼る -----------
-  <% dotfiles.each do |file| %>
-  - type: symlink
-    destination: /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/<%= file %>
-    source: /Users/<%= ENV["USER"] %>/<%= file %>
-  <% end %>
-
-  # ----------- vimの設定 -----------
   - type: command
-    script: ln -s /Users/<%= ENV["USER"] %>/src/github.com/<%= dotfiles_repository %>/.vim /Users/<%= ENV["USER"] %>
+    script: ./setup.sh
 
   # ----------- brew tap ------------
   - type: homebrew_tap
