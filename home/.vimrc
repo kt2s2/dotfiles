@@ -35,17 +35,14 @@ augroup END
 " Dein:
 "
 
-let s:dein_dir = '~/.cache/dein'
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-let s:rc_dir = '~/.vim/rc'
+set runtimepath+=/Users/sainu/.cache/dein/repos/github.com/Shougo/dein.vim
 
-let &runtimepath = s:dein_repo_dir .",". &runtimepath
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
 
-if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-
-  call dein#load_toml(g:rc_dir . '/dein.toml', { 'lazy': 0 })
-  call dein#load_toml(g:rc_dir . '/deinlazy.toml', { 'lazy' : 1 })
+  call dein#add('~/.cache/dein')
+  call dein#load_toml('~/.vim/rc/dein.toml',      { 'lazy' : 0 })
+  call dein#load_toml('~/.vim/rc/deinlazy.toml',  { 'lazy' : 1 })
 
   call dein#end()
   call dein#save_state()

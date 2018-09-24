@@ -12,9 +12,16 @@ if = ''' !has('nvim') '''
 repo = 'roxma/vim-hug-neovim-rpc'
 if = ''' !has('nvim') '''
 
+# なんか入力が遅かったので一旦コメントアウト
+# [[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
 [[plugins]]
 repo = 'Shougo/denite.nvim'
-hook_add = '''
+hook_source = '''
 call denite#custom#option('default', 'prompt', '>')
 call denite#custom#var('file_rec', 'command',
       \ ['rg', '--files', '--glob', '!.git', '-g', '!node_modules',
@@ -46,7 +53,8 @@ call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
       \ ['.git/', '.ropeproject/', '__pycache__/',
       \  'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
       \  'bundle/', 'node_modules/'])
-
+'''
+hook_add = '''
 nnoremap <silent> <C-p> :<C-u>Denite file_rec<CR>
 
 nnoremap [denite] <Nop>
@@ -77,24 +85,6 @@ nnoremap <silent> [denite-rails]vw :<C-u>Denite file_rec:app/views/<CR>
 nnoremap <silent> [denite-rails]vo :<C-u>Denite file_rec:app/view_objects/<CR>
 nnoremap <silent> [denite-rails]wo :<C-u>Denite file_rec:app/serializers/<CR>
 '''
-
-# neovimではないのでdeopleteのために必要
-# [[plugins]]
-# repo = 'roxma/nvim-yarp'
-
-# neovimではないのでdeopleteのために必要
-# [[plugins]]
-# repo = 'roxma/vim-hug-neovim-rpc'
-
-# なんか入力が遅かったので一旦コメントアウト
-# [[plugins]]
-# repo = 'Shougo/deoplete.nvim'
-# hook_add = '''
-# let g:deoplete#enable_at_startup = 1
-# inoremap <expr><tab> pumvisible() ? "\<C-n>" :
-#       \ neosnippet#expandable_or_jumpable() ?
-#       \    "\<Plug>(neosnippet_expand_or_jump)" : "\<tab>"
-# '''
 
 [[plugins]]
 repo = 'altercation/vim-colors-solarized'
