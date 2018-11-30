@@ -24,7 +24,7 @@ repo = 'Shougo/denite.nvim'
 hook_source = '''
 call denite#custom#option('default', 'prompt', '>')
 call denite#custom#var('file_rec', 'command',
-      \ ['rg', '--files', '--glob', '!.git', '-g', '!node_modules',
+      \ ['ag', '--files', '--glob', '!.git', '-g', '!node_modules',
       \  '-g', '!vendor/bundle', '-g', '!tmp', '-g', '!log' ])
 call denite#custom#source(
       \ 'file_rec', 'sorters', ['sorter_sublime'])
@@ -42,7 +42,7 @@ call denite#custom#map(
       \)
 call denite#custom#source(
       \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_cpsm'])
-call denite#custom#var('grep', 'command', ['rg'])
+call denite#custom#var('grep', 'command', ['ag'])
 call denite#custom#var('grep', 'default_opts',
       \ ['--vimgrep', '--no-heading'])
 call denite#custom#var('grep', 'recursive_opts', [])

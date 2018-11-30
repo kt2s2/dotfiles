@@ -2,7 +2,7 @@
   name = sainu
   email = uovo.aureo.000@gmail.com
 [core]
-  excludesfile = /Users/sainokatsutoshi/.gitignore
+  excludesfile = ~/.gitignore
 [filter "lfs"]
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f

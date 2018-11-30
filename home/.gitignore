@@ -234,7 +234,7 @@ Session.vim
 .netrwhist
 *~
 # auto-generated tag files
-tags
 .git_tmp
+.vimrc.local
 
 .tern-port

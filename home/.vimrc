@@ -192,7 +192,7 @@ set display=lastline
 set foldmethod=marker
 
 " 行末・行頭から次の行へ移動可能に
-set whichwrap+=h,l,<,>,[,],b,s
+" set whichwrap+=h,l,<,>,[,],b,s
 
 "文字のないところにカーソル移動できるようにする
 set virtualedit=block
