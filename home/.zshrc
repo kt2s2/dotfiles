@@ -12,6 +12,9 @@ export EDITOR=/usr/local/bin/vim
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/opt/openssl/bin:$PATH
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
 export XDG_CONFIG_HOME=$HOME/.config
 
 if which nodebrew &> /dev/null; then
@@ -29,6 +32,10 @@ if which pyenv &> /dev/null; then
   fi
   export PATH=$HOME/.pyenv/bin:$PATH
 fi
+
+
+# Ctrl Aとかが効かなくなっていた問題の解決
+bindkey -e
 
 
 ########################

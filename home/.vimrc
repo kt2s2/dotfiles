@@ -2,65 +2,75 @@
 " Sainu's .vimrc
 "---------------------------------------------------------------------------
 
-"---------------------------------------------------------------------------
-
-if &compatible
-  set nocompatible
-endif
-
-let g:rc_dir = expand('~/.vim/rc')
-
-function! s:source_rc(rc_file_name)
-  let rc_file = expand(g:rc_dir . '/' . a:rc_file_name)
-  if filereadable(rc_file)
-    execute 'source' rc_file
-  endif
-endfunction
-
-function! s:on_filetype() abort
-  if execute('filetype') =~# 'OFF'
-    silent! filetype plugin indent on
-    syntax enable
-    filetype detect
-  endif
-endfunction
-
-augroup MyAutoCmd
-  autocmd!
-augroup END
-
-
 
 "---------------------------------------------------------------------------
-" Dein:
+" Plugin:
 "
 
-set runtimepath+=/Users/sainu/.cache/dein/repos/github.com/Shougo/dein.vim
+call plug#begin('~/.vim/plugged')
 
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
+" ファイル検索
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/neomru.vim'
+" ディレクトツリー
+Plug 'scrooloose/nerdtree'
+" Railsファイル検索
+Plug 'tpope/vim-rails'
+" rubyのend自動補完
+Plug 'tpope/vim-endwise'
+" コメントアウトをctrl -でトグルできる
+Plug 'tomtom/tcomment_vim'
+" 2対で囲んでいる文字を変換する command: cs'"
+Plug 'tpope/vim-surround'
+" ANSIカラー情報が埋め込まれたファイルの文字を色付けする command: :AnsiEsc
+Plug 'vim-scripts/AnsiEsc.vim'
+" 行末の半角スペースを可視化
+Plug 'bronson/vim-trailing-whitespace'
 
-  call dein#add('~/.cache/dein')
-  call dein#load_toml('~/.vim/rc/dein.toml',      { 'lazy' : 0 })
-  call dein#load_toml('~/.vim/rc/deinlazy.toml',  { 'lazy' : 1 })
 
-  call dein#end()
-  call dein#save_state()
-endif
 
-if dein#check_install()
-  call dein#install()
-endif
+"-------------
+" Unite.vim
+"-------------
+" 入力モードで開始
+let g:unite_enable_start_insert = 1
+" バッファ一覧
+noremap <C-B> :Unite buffer<CR>
+" ファイル一覧
+noremap <C-N> :Unite -buffer-name=file file<CR>
+" 最近開いたファイルの一覧
+noremap <C-M> :Unite file_mru<CR>
+" ウィンドウを分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-S> unite#do_action('split')
+au FileType unite inoremap <silent> <buffer> <expr> <C-S> unite#do_action('split')
+" ウィンドウを縦に分割して開く
+au FileType unite nnoremap <silent> <buffer> <expr> <C-V> unite#do_action('vsplit')
+au FileType unite inoremap <silent> <buffer> <expr> <C-V> unite#do_action('vsplit')
+" <Ctrl-[>キーを2回押すと終了する
+au FileType unite nnoremap <silent> <buffer> <C-[><C-[> :q<CR>
+au FileType unite inoremap <silent> <buffer> <C-[><C-[> <ESC>:q<CR>
+
+
+
+"-------------
+" NERDTree
+"-------------
+map <C-E> :NERDTreeToggle<CR>
+
+
+
+
+call plug#end()
+
+
+
+
 "---------------------------------------------------------------------------
-
-
+" Color:
+"
 
 set background=dark
-colorscheme hybrid
-if has('vim_starting') && !empty(argv())
-  call s:on_filetype()
-endif
-
+colorscheme default
 syntax enable
 filetype plugin indent on
 
@@ -78,7 +88,7 @@ set fileencodings=utf-8
 
 
 "---------------------------------------------------------------------------
-" Text:
+" Syntax:
 "
 
 " syntax on
@@ -116,13 +126,15 @@ set wrapscan
 " 検索結果を中央にくるようにする
 nmap n nzz
 
+" vim grep後にquickfix-windowを表示する
+autocmd QuickFixCmdPost *grep* cwindow
 
 
 
 
 
 "---------------------------------------------------------------------------
-" Edit:
+" Editing:
 "
 
 
@@ -276,6 +288,7 @@ set ttyfast
 
 "文脈によって解釈が異なる全角文字の幅を、２に固定する
 set ambiwidth=double
+
 " 全角スペースの表示
 function! ZenkakuSpace()
     highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
@@ -343,14 +356,14 @@ xnoremap > >gv
 xnoremap < <gv
 
 " Save file
-nnoremap <Leader>w :w<CR>
+nnoremap ,w :w<CR>
 
 " Split window
 noremap ,v :<C-u>vsplit<CR><C-w>l
-noremap ,w :<C-u>split<CR><C-w>j
+noremap ,s :<C-u>split<CR><C-w>j
 
 " Emulate terminal
-noremap ,t :<C-u>terminal ++close<CR>
+" noremap ,t :<C-u>terminal ++close<CR>
 
 
 " Insert mode keymappings:

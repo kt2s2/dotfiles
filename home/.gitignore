@@ -113,22 +113,22 @@ jspm_packages
 ##################
 # Rails
 ##################
-*.rbc
-capybara-*.html
-# .rspec
-/log
-/tmp
-/db/*.sqlite3
-/db/*.sqlite3-journal
-/public/system
-/coverage/
-/spec/tmp
-/public/uploads
-rerun.txt
-pickle-email-*.html
+#*.rbc
+#capybara-*.html
+## .rspec
+#/log
+#/tmp
+#/db/*.sqlite3
+#/db/*.sqlite3-journal
+#/public/system
+#/coverage/
+#/spec/tmp
+#/public/uploads
+#rerun.txt
+#pickle-email-*.html
 
 # TODO Comment out these rules if you are OK with secrets being uploaded to the repo
-config/initializers/secret_token.rb
+#config/initializers/secret_token.rb
 # config/secrets.yml
 
 # dotenv
@@ -136,14 +136,14 @@ config/initializers/secret_token.rb
 # .env
 
 ## Environment normalization:
-/.bundle
-/vendor/bundle
+#/.bundle
+#/vendor/bundle
 
 # these should all be checked in to normalize the environment:
 # Gemfile.lock, .ruby-version, .ruby-gemset
 
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
-.rvmrc
+#.rvmrc
 
 # if using bower-rails ignore default bower_components path bower.json files
 /vendor/assets/bower_components
@@ -161,17 +161,17 @@ bower.json
 # Ruby
 ##################
 
-*.gem
-*.rbc
-/.config
-/coverage/
-/InstalledFiles
-/pkg/
-/spec/reports/
-/spec/examples.txt
-/test/tmp/
-/test/version_tmp/
-/tmp/
+#*.gem
+#*.rbc
+#/.config
+#/coverage/
+#/InstalledFiles
+#/pkg/
+#/spec/reports/
+#/spec/examples.txt
+#/test/tmp/
+#/test/version_tmp/
+#/tmp/
 
 # Used by dotenv library to load environment variables.
 # .env
@@ -238,3 +238,5 @@ Session.vim
 .vimrc.local
 
 .tern-port
+
+.DS_Store
