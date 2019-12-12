@@ -23,6 +23,13 @@ if which nodebrew &> /dev/null; then
   fi
   export PATH=$HOME/.nodebrew/current/bin:$PATH
 fi
+if which nvm &> /dev/null; then
+  if [ ! -e $HOME/.nvm ]; then
+    mkdir $HOME/.nvm
+  fi
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+fi
 if which rbenv &> /dev/null; then
   eval "$(rbenv init - zsh)"
 fi
