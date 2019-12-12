@@ -11,6 +11,7 @@ export EDITOR=/usr/local/bin/vim
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/local/opt/v8@3.15/bin:$PATH
 export PATH=/usr/local/opt/openssl/bin:$PATH
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
