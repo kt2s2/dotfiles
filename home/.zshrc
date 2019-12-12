@@ -118,6 +118,8 @@ alias gphm='git push heroku master'
 alias glom='git pull origin master'
 alias gf='git fetch --prune'
 
+alias hb='hub browse'
+
 alias t='tmux'
 alias tl='tmux ls'
 alias ta='tmux a -t'
