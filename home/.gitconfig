@@ -13,3 +13,5 @@
   ui = true
 [init]
   templatedir = ~/.git_tmp
+[url "git@github.com:"]
+  insteadOf = https://github.com/
