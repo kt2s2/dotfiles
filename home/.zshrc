@@ -32,6 +32,7 @@ if which pyenv &> /dev/null; then
   fi
   export PATH=$HOME/.pyenv/bin:$PATH
 fi
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 
 
 # Ctrl Aとかが効かなくなっていた問題の解決
