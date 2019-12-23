@@ -8,6 +8,7 @@ case $OSTYPE in
 esac
 
 export EDITOR=/usr/local/bin/vim
+export BUNDLER_EDITOR=code
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
