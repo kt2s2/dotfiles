@@ -140,6 +140,10 @@ alias phis='percol_insert_history'
 
 alias deleteallswaps='find . -name ".*.sw*"|xargs rm'
 
+alias vs='code'
+alias vsb='(){ code `bundle info --path $1` }'
+alias vsab='(){ code -a `bundle info --path $1` }'
+
 
 ##################
 # ^Rをpecoでhistory検索
