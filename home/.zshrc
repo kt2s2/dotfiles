@@ -19,29 +19,89 @@ export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export XDG_CONFIG_HOME=$HOME/.config
 
-if which nodebrew &> /dev/null; then
-  if [ ! -e $HOME/.nodebrew ]; then
-    nodebrew setup
-  fi
-  export PATH=$HOME/.nodebrew/current/bin:$PATH
+
+# === Setup nodenv ===
+which nodenv >/dev/null 2>&1
+if [ "$?" -ne 0 ]; then # nodenvコマンドがインストールされていなければ
+  brew install nodenv
 fi
-if which nvm &> /dev/null; then
-  if [ ! -e $HOME/.nvm ]; then
-    mkdir $HOME/.nvm
-  fi
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+eval "$(nodenv init - zsh)"
+export PATH="$HOME/.nodenv/bin:$PATH"
+which node >/dev/null 2>&1
+if [ "$?" -ne 0 ]; then
+  nodenv install 10.19.0
+  nodenv rehash
+  nodenv global 10.19.0
 fi
-if which rbenv &> /dev/null; then
-  eval "$(rbenv init - zsh)"
+
+
+# === Setup rbenv ===
+which rbenv >/dev/null 2>&1
+if [ "$?" -ne 0 ]; then # rbenvコマンドがインストールされていなければ
+  brew install rbenv
 fi
-if which pyenv &> /dev/null; then
-  if [ ! -e $HOME/.pyenv ]; then
-    eval "$(pyenv init - zsh)"
-  fi
-  export PATH=$HOME/.pyenv/bin:$PATH
+eval "$(rbenv init - zsh)"
+export PATH="$HOME/.rbenv/bin:$PATH"
+
+
+# === Setup pyenv ===
+which pyenv >/dev/null 2>&1
+if [ "$?" -ne 0 ]; then # pyenvコマンドがインストールされていなければ
+  brew install pyenv
 fi
-export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+eval "$(pyenv init - zsh)"
+export PATH="$HOME/.pyenv/bin:$PATH"
+
+
+# === Setup goenv ===
+which goenv >/dev/null 2>&1
+if [ "$?" -ne 0 ]; then
+  brew install goenv
+fi
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init - zsh)"
+export GOENV_DISABLE_GOPATH=1
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$GOROOT/bin:$PATH"
+
+
+
+# === Setup pure-prompt ===
+npm list -g pure-prompt >/dev/null 2>&1
+if [ "$?" -ne 0 ]; then # pure-promptがインストールされていなければ
+  npm install --global pure-prompt
+fi
+autoload -U promptinit; promptinit
+prompt pure
+
+
+# === Setup direnv ===
+which direnv >/dev/null 2>&1
+if [ "$?" -ne 0 ]; then
+  brew install direnv
+fi
+eval "$(direnv hook zsh)"
+
+
+# === Setup autojump ===
+AUTO_JUMP_SRC_PATH=$HOME/src/github.com/wting/autojump
+if [ ! -e $AUTO_JUMP_SRC_PATH ]; then # autojumpがダウンロードされていなければ
+  mkdir -p ~/src/github.com/wting
+  git clone https://github.com/wting/autojump.git $AUTO_JUMP_SRC_PATH
+fi
+if [ ! -e $HOME/.autojump ]; then # .autojumpが存在しなければ
+  pushd $AUTO_JUMP_SRC_PATH
+  ./install.py
+  popd
+fi
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
+
+
+# === Setup flutter ===
+export PATH="$PATH:$HOME/Projects/flutter/bin"
 
 
 # Ctrl Aとかが効かなくなっていた問題の解決
@@ -166,32 +226,3 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
-##################
-# autojump
-##################
-AUTO_JUMP_SRC_PATH=$HOME/src/github.com/wting/autojump
-if [ ! -e $AUTO_JUMP_SRC_PATH ]; then
-  mkdir -p ~/src/github.com/wting
-  git clone https://github.com/wting/autojump.git $AUTO_JUMP_SRC_PATH
-fi
-if [ ! -e $HOME/.autojump ]; then
-  pushd $AUTO_JUMP_SRC_PATH
-  ./install.py
-  popd
-fi
-[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
-
-#################
-# direnv
-#################
-if which direnv &> /dev/null; then
-  eval "$(direnv hook zsh)"
-fi
-
-
-#################
-# pure
-#################
-autoload -U promptinit; promptinit
-prompt pure
