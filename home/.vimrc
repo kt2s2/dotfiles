@@ -4,68 +4,6 @@
 
 
 "---------------------------------------------------------------------------
-" Plugin:
-"
-
-call plug#begin('~/.vim/plugged')
-
-" ファイル検索
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/neomru.vim'
-" ディレクトツリー
-Plug 'scrooloose/nerdtree'
-" Railsファイル検索
-Plug 'tpope/vim-rails'
-" rubyのend自動補完
-Plug 'tpope/vim-endwise'
-" コメントアウトをctrl -でトグルできる
-Plug 'tomtom/tcomment_vim'
-" 2対で囲んでいる文字を変換する command: cs'"
-Plug 'tpope/vim-surround'
-" ANSIカラー情報が埋め込まれたファイルの文字を色付けする command: :AnsiEsc
-Plug 'vim-scripts/AnsiEsc.vim'
-" 行末の半角スペースを可視化
-Plug 'bronson/vim-trailing-whitespace'
-
-
-
-"-------------
-" Unite.vim
-"-------------
-" 入力モードで開始
-let g:unite_enable_start_insert = 1
-" バッファ一覧
-noremap <C-B> :Unite buffer<CR>
-" ファイル一覧
-noremap <C-N> :Unite -buffer-name=file file<CR>
-" 最近開いたファイルの一覧
-noremap <C-M> :Unite file_mru<CR>
-" ウィンドウを分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-S> unite#do_action('split')
-au FileType unite inoremap <silent> <buffer> <expr> <C-S> unite#do_action('split')
-" ウィンドウを縦に分割して開く
-au FileType unite nnoremap <silent> <buffer> <expr> <C-V> unite#do_action('vsplit')
-au FileType unite inoremap <silent> <buffer> <expr> <C-V> unite#do_action('vsplit')
-" <Ctrl-[>キーを2回押すと終了する
-au FileType unite nnoremap <silent> <buffer> <C-[><C-[> :q<CR>
-au FileType unite inoremap <silent> <buffer> <C-[><C-[> <ESC>:q<CR>
-
-
-
-"-------------
-" NERDTree
-"-------------
-map <C-E> :NERDTreeToggle<CR>
-
-
-
-
-call plug#end()
-
-
-
-
-"---------------------------------------------------------------------------
 " Color:
 "
 
