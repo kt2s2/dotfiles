@@ -7,8 +7,13 @@ case $OSTYPE in
   linux*)
 esac
 
+########################
+# PATH
+########################
+
 export EDITOR=/usr/local/bin/vim
 export BUNDLER_EDITOR=code
+
 
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
@@ -24,14 +29,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 which nodenv >/dev/null 2>&1
 if [ "$?" -ne 0 ]; then # nodenvコマンドがインストールされていなければ
   brew install nodenv
-fi
-eval "$(nodenv init - zsh)"
-export PATH="$HOME/.nodenv/bin:$PATH"
-which node >/dev/null 2>&1
-if [ "$?" -ne 0 ]; then
-  nodenv install 10.19.0
-  nodenv rehash
-  nodenv global 10.19.0
 fi
 
 
@@ -67,42 +64,22 @@ export PATH="$PATH:$GOPATH/bin"
 export PATH="$GOROOT/bin:$PATH"
 
 
-
-# === Setup pure-prompt ===
-npm list -g pure-prompt >/dev/null 2>&1
-if [ "$?" -ne 0 ]; then # pure-promptがインストールされていなければ
-  npm install --global pure-prompt
+# === setup nvm
+if which nvm &> /dev/null; then
+  if [ ! -e $HOME/.nvm ]; then
+    mkdir $HOME/.nvm
+  fi
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 fi
-autoload -U promptinit; promptinit
-prompt pure
-
-
-# === Setup direnv ===
-which direnv >/dev/null 2>&1
-if [ "$?" -ne 0 ]; then
-  brew install direnv
-fi
-eval "$(direnv hook zsh)"
-
-
-# === Setup autojump ===
-AUTO_JUMP_SRC_PATH=$HOME/src/github.com/wting/autojump
-if [ ! -e $AUTO_JUMP_SRC_PATH ]; then # autojumpがダウンロードされていなければ
-  mkdir -p ~/src/github.com/wting
-  git clone https://github.com/wting/autojump.git $AUTO_JUMP_SRC_PATH
-fi
-if [ ! -e $HOME/.autojump ]; then # .autojumpが存在しなければ
-  pushd $AUTO_JUMP_SRC_PATH
-  ./install.py
-  popd
-fi
-[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
-autoload -U compinit && compinit -u
-
 
 # === Setup flutter ===
 export PATH="$PATH:$HOME/Projects/flutter/bin"
 
+
+########################
+# PATH
+########################
 
 # Ctrl Aとかが効かなくなっていた問題の解決
 bindkey -e
@@ -180,10 +157,20 @@ alias gaa='git add .'
 alias gc='git commit'
 alias gcmsg='git commit -m'
 alias gcam='git commit --amend'
-alias gfm='git pull origin B'
-alias gfmr='git pull --rebase origin B'
+alias gfm='gf && git merge origin/$(git_current_branch_name)'
+alias gfmr='gf && grb origin/$(git_current_branch_name)'
 alias gp='git push origin B'
 alias gf='git fetch --prune'
+
+alias grb='git rebase'
+alias grbc='grb --continue'
+alias grba='grb --abort'
+alias grbs='grb --skip'
+
+alias gchp='git cherry-pick'
+alias gchpc='gchp --continue'
+alias gchpa='gchp --abort'
+alias gchps='gchp --skip'
 
 alias hb='hub browse'
 
@@ -195,6 +182,9 @@ alias tk='tmux kill-session -t'
 
 alias dk='docker'
 alias dkc='docker-compose'
+alias dkcrun='docker-compose run --rm'
+alias dkce='docker-compose exec'
+alias dkcres='docker-compose restart'
 
 alias phis='percol_insert_history'
 
@@ -226,3 +216,40 @@ function peco-history-selection() {
 zle -N peco-history-selection
 bindkey '^R' peco-history-selection
 
+##################
+# autojump
+##################
+AUTO_JUMP_SRC_PATH=$HOME/src/github.com/wting/autojump
+if [ ! -e $AUTO_JUMP_SRC_PATH ]; then
+  mkdir -p ~/src/github.com/wting
+  git clone https://github.com/wting/autojump.git $AUTO_JUMP_SRC_PATH
+fi
+if [ ! -e $HOME/.autojump ]; then
+  pushd $AUTO_JUMP_SRC_PATH
+  ./install.py
+  popd
+fi
+[[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]] && source $HOME/.autojump/etc/profile.d/autojump.sh
+autoload -U compinit && compinit -u
+
+#################
+# direnv
+#################
+which direnv >/dev/null 2>&1
+if [ "$?" -ne 0 ]; then
+  brew install direnv
+fi
+eval "$(direnv hook zsh)"
+
+
+#################
+# pure
+#################
+npm list -g pure-prompt >/dev/null 2>&1
+if [ "$?" -ne 0 ]; then # pure-promptがインストールされていなければ
+  npm install --global pure-prompt
+fi
+autoload -U promptinit; promptinit
+prompt pure
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
