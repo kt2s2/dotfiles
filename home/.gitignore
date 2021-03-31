@@ -244,3 +244,10 @@ Session.vim
 server.key
 server.csr
 server.crt
+
+##################
+# vscode
+##################
+
+.vscode
+.dockercontainer
