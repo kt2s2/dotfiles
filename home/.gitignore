@@ -218,7 +218,6 @@ build-iPhoneSimulator/
 ##################
 
 .sass-cache/
-*.css.map
 
 
 ##################
