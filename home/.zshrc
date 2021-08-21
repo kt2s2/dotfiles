@@ -181,10 +181,10 @@ alias tre='tmux rename -t'
 alias tk='tmux kill-session -t'
 
 alias dk='docker'
-alias dkc='docker-compose'
-alias dkcrun='docker-compose run --rm'
-alias dkce='docker-compose exec'
-alias dkcres='docker-compose restart'
+alias dkc='docker compose'
+alias dkcrun='docker compose run --rm'
+alias dkce='docker compose exec'
+alias dkcres='docker compose restart'
 
 alias phis='percol_insert_history'
 
