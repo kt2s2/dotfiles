@@ -1,6 +1,6 @@
 [user]
   name = sainu
-  email = saino.katsutoshi@moneyforward.co.jp
+  email = sainu@users.noreply.github.com
 [core]
   excludesfile = ~/.gitignore
 [filter "lfs"]

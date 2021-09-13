@@ -1,0 +1,21 @@
+FROM debian:buster-slim
+
+ENV LANG C.UTF-8
+
+ENV APP_DIR /dotfiles
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  curl
+
+ARG GROUP_ID=1100
+ARG USER_ID=1100
+RUN groupadd --system --gid ${GROUP_ID} app && \
+  useradd --system --gid ${GROUP_ID} --create-home --uid ${USER_ID} app && \
+  mkdir -p ${APP_DIR} && \
+  chown app:app ${APP_DIR}
+
+USER ${USER_ID}:${GROUP_ID}
+
+WORKDIR ${APP_DIR}
+
+COPY . .

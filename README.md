@@ -1,21 +1,15 @@
 # dotfiles
 
-## symlink
+## Setup dotfiles
 
 ```
-cd ~/dotfiles
+git clone git@github.com:sainu/dotfiles
+cd dotfiles
 ./setup.sh
 ```
 
-## install apps
+**debug** mode uses local dotfiles.
 
 ```
-cd ~/dotfiles
-serverkit apply recipe.yml.erb --variables=variables.yml
-```
-
-## serverkit
-
-```
-$ curl -LSfs https://raw.githubusercontent.com/sa-inu/dotfiles/master/install.sh | sh
+./setup.sh -d
 ```
