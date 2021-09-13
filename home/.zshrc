@@ -183,9 +183,9 @@ alias tk='tmux kill-session -t'
 
 alias dk='docker'
 alias dkc='docker compose'
-alias dkcrun='docker compose run --rm'
-alias dkce='docker compose exec'
-alias dkcres='docker compose restart'
+alias dkcrn='docker compose run --rm'
+alias dkcec='docker compose exec'
+alias dkcrs='docker compose restart'
 
 alias phis='percol_insert_history'
 
