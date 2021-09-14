@@ -142,8 +142,10 @@ fi
 echo
 read -p "Do you wish to change default shell? (zsh/n) " sh
 if [ $sh = "zsh" ]; then
-  chsh -s /bin/zsh
-  echo -e "${GREEN}DONE${NC} Change shell to /bin/zsh"
+  command_exists zsh || install zsh
+  chsh -s $(which zsh)
+  source $HOME/.zshrc
+  echo -e "${GREEN}DONE${NC} Change shell to $(which zsh)"
 elif [[ $sh != "n" ]]; then
   echo -e "${RED}Input ($sh) not supported :(${NC}"
 fi
