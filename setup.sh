@@ -38,6 +38,33 @@ done
 
 
 
+function install() {
+  echo
+  echo "${GREEN}INSTALL${NC} Install $1 to setup dotfiles"
+  if type brew > /dev/null 2>&1; then
+    brew $1
+  elif type apt-get > /dev/null 2>&1; then
+    apt-get install -y --no-install-recommends $1
+  fi
+}
+
+
+function command_exists() {
+  echo
+  if type $1 > /dev/null 2>&1; then
+    echo "${GREEN}EXISTS${NC} $1 command to setup dotfiles"
+  else
+    echo "${RED}NOT FOUND${NC} $1 command to setup dotfiles"
+  fi
+  return type $1 > /dev/null 2>&1
+}
+
+
+# dependencies
+command_exists curl || install curl
+command_exists unzip || install unzip
+
+
 # download dotfiles
 
 tempfile=/tmp/dotfiles.zip
