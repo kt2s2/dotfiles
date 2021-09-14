@@ -39,7 +39,7 @@ done
 
 
 function install() {
-  echo "${GREEN}INSTALL${NC} Install $1 to setup dotfiles..."
+  echo -e "${GREEN}INSTALL${NC} Install $1 to setup dotfiles..."
   if command_exists brew; then
     brew $1
   elif command_exists apt-get; then
@@ -50,11 +50,11 @@ function install() {
 
 function command_exists() {
   if type $1 > /dev/null 2>&1; then
-    echo "${GREEN}EXISTS${NC} $1 command to setup dotfiles"
+    echo -e "${GREEN}EXISTS${NC} $1 command to setup dotfiles"
     # 0 = true
     return 0
   else
-    echo "${RED}NOT FOUND${NC} $1 command to setup dotfiles"
+    echo -e "${RED}NOT FOUND${NC} $1 command to setup dotfiles"
     # 1 = false
     return 1
   fi
@@ -89,7 +89,7 @@ pushd ${workspace}/dotfiles-master > /dev/null
 if [ $OS = 'Mac' ]; then
   # Install homebrew
   if !(command_exists brew); then
-    echo "${GREEN}INSTALL${NC} Install homebrew..."
+    echo -e "${GREEN}INSTALL${NC} Install homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   fi
 fi
