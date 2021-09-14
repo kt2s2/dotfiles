@@ -1,5 +1,35 @@
 export LANG=ja_JP.UTF-8
 
+
+RED='\033[1;31m'
+GREEN='\033[1;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+
+
+function install() {
+  echo "Install $1..."
+  if command_exists brew; then
+    brew $1
+  elif command_exists apt-get; then
+    apt-get install -y --no-install-recommends $1
+  fi
+}
+
+
+function command_exists() {
+  if type $1 > /dev/null 2>&1; then
+    echo -e "${GREEN}EXISTS${NC} $1"
+    return true
+  else
+    echo -e "${RED}Not found $1 ${NC}"
+    return false
+  fi
+}
+
+
+
 case $OSTYPE in
   darwin*)
     export HOMEBREW_CASK_OPTS='--appdir=/Applications'
@@ -26,36 +56,24 @@ export XDG_CONFIG_HOME=$HOME/.config
 
 
 # === Setup nodenv ===
-which nodenv >/dev/null 2>&1
-if [ "$?" -ne 0 ]; then # nodenvコマンドがインストールされていなければ
-  brew install nodenv
-fi
+command_exists nodenv || install nodenv
 eval "$(nodenv init - zsh)"
 
 
 # === Setup rbenv ===
-which rbenv >/dev/null 2>&1
-if [ "$?" -ne 0 ]; then # rbenvコマンドがインストールされていなければ
-  brew install rbenv
-fi
+command_exists rbenv || install rbenv
 eval "$(rbenv init - zsh)"
 export PATH="$HOME/.rbenv/bin:$PATH"
 
 
 # === Setup pyenv ===
-which pyenv >/dev/null 2>&1
-if [ "$?" -ne 0 ]; then # pyenvコマンドがインストールされていなければ
-  brew install pyenv
-fi
+command_exists pyenv || install pyenv
 eval "$(pyenv init - zsh)"
 export PATH="$HOME/.pyenv/bin:$PATH"
 
 
 # === Setup goenv ===
-which goenv >/dev/null 2>&1
-if [ "$?" -ne 0 ]; then
-  brew install goenv
-fi
+command_exists goenv || install goenv
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init - zsh)"
@@ -66,11 +84,11 @@ export PATH="$GOROOT/bin:$PATH"
 
 
 # === setup nvm
-if which nvm &> /dev/null; then
-  if [ ! -e $HOME/.nvm ]; then
-    mkdir $HOME/.nvm
-  fi
+if command_exists nvm; then
   export NVM_DIR="$HOME/.nvm"
+  if [ ! -d $NVM_DIR ]; then
+    mkdir $NVM_DIR
+  fi
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 fi
 
@@ -220,10 +238,7 @@ bindkey '^R' peco-history-selection
 #################
 # direnv
 #################
-which direnv >/dev/null 2>&1
-if [ "$?" -ne 0 ]; then
-  brew install direnv
-fi
+command_exists direnv || install direnv
 eval "$(direnv hook zsh)"
 
 
