@@ -88,8 +88,10 @@ pushd ${workspace}/dotfiles-master > /dev/null
 
 if [ $OS = 'Mac' ]; then
   # Install homebrew
-  echo "Install homebrew..."
-  which brew > /dev/null || ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  if !(command_exists brew); then
+    echo "${GREEN}INSTALL${NC} Install homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  fi
 fi
 
 
