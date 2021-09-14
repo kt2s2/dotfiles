@@ -41,9 +41,9 @@ done
 function install() {
   echo
   echo "${GREEN}INSTALL${NC} Install $1 to setup dotfiles"
-  if type brew > /dev/null 2>&1; then
+  if command_exists brew; then
     brew $1
-  elif type apt-get > /dev/null 2>&1; then
+  elif command_exists apt-get; then
     apt-get install -y --no-install-recommends $1
   fi
 }
