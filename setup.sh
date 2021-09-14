@@ -39,7 +39,7 @@ done
 
 
 function install() {
-  echo "${GREEN}INSTALL${NC} Install $1 to setup dotfiles"
+  echo "${GREEN}INSTALL${NC} Install $1 to setup dotfiles..."
   if command_exists brew; then
     brew $1
   elif command_exists apt-get; then
