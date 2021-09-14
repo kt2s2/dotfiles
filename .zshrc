@@ -21,10 +21,12 @@ function install() {
 function command_exists() {
   if type $1 > /dev/null 2>&1; then
     echo -e "${GREEN}EXISTS${NC} $1"
-    return true
+    # 0 = true
+    return 0
   else
     echo -e "${RED}Not found $1 ${NC}"
-    return false
+    # 1 = false
+    return 1
   fi
 }
 
