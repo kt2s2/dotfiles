@@ -39,7 +39,6 @@ done
 
 
 function install() {
-  echo
   echo "${GREEN}INSTALL${NC} Install $1 to setup dotfiles"
   if command_exists brew; then
     brew $1
@@ -50,13 +49,13 @@ function install() {
 
 
 function command_exists() {
-  echo
   if type $1 > /dev/null 2>&1; then
     echo "${GREEN}EXISTS${NC} $1 command to setup dotfiles"
+    return true
   else
     echo "${RED}NOT FOUND${NC} $1 command to setup dotfiles"
+    return false
   fi
-  return type $1 > /dev/null 2>&1
 }
 
 
