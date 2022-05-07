@@ -9,6 +9,7 @@ GREEN='\033[1;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 DEBUG=0
+execution_mode=remote
 
 
 
@@ -29,6 +30,9 @@ while [ $# -gt 0 ];do
     --debug|-d)
       set -uex
       DEBUG=1
+      ;;
+    --local|-l)
+      execution_mode=local
       ;;
     *)
       ;;
@@ -62,7 +66,18 @@ function command_exists() {
 }
 
 
+# ========== Print execution mode ==========
+echo "=========================="
+if [ $execution_mode = "local" ]; then
+  echo "Execution Mode: Local"
+else
+  echo "Execution Mode: Remote"
+fi
+echo "=========================="
+
+
 # ========== Install dependencies ==========
+echo
 echo "Install dependencies"
 command_exists curl || install curl
 command_exists unzip || install unzip
@@ -76,7 +91,7 @@ workspace=/tmp/dotfiles
 rm -rf ${workspace} ${tempfile}
 
 echo "Download dotfiles repository"
-if [ $DEBUG = 1 ]; then
+if [ $execution_mode = "local" ]; then
   mkdir -p ${workspace}/dotfiles-master
   cp -r ./ ${workspace}/dotfiles-master/
 else
@@ -119,7 +134,7 @@ if [ $yn = "y" -o $yn = "Y" ]; then
       src_file_path=`pwd`/$file
 
       cp -f $src_file_path $dist_file_path
-      echo -e "${GREEN}OVERRIDE${NC} ${dist_file_path} from ${src_file_path}"
+      echo -e "${GREEN}OVERRIDE${NC} ${dist_file_path}"
     fi
   done
 else
