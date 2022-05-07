@@ -70,8 +70,9 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 
 # === Setup pyenv ===
 command_exists pyenv || install pyenv
-eval "$(pyenv init - zsh)"
-export PATH="$HOME/.pyenv/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 
 # === Setup goenv ===
