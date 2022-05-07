@@ -7,7 +7,15 @@ YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
 
-
+function command_exists() {
+  if command -v $1 >/dev/null; then
+    # 0 = true
+    return 0
+  else
+    # 1 = false
+    return 1
+  fi
+}
 function install() {
   echo "Install $1..."
   if command_exists brew; then
@@ -16,20 +24,6 @@ function install() {
     apt-get install -y --no-install-recommends $1
   fi
 }
-
-
-function command_exists() {
-  if type $1 > /dev/null 2>&1; then
-    echo -e "${GREEN}EXISTS${NC} $1"
-    # 0 = true
-    return 0
-  else
-    echo -e "${RED}Not found $1 ${NC}"
-    # 1 = false
-    return 1
-  fi
-}
-
 
 
 case $OSTYPE in
@@ -95,13 +89,6 @@ if command_exists nvm; then
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 fi
 
-# === Setup flutter ===
-export PATH="$PATH:$HOME/Projects/flutter/bin"
-
-
-########################
-# PATH
-########################
 
 # Ctrl Aとかが効かなくなっていた問題の解決
 bindkey -e
