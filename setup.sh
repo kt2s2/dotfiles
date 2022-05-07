@@ -115,9 +115,11 @@ if [ $yn = "y" -o $yn = "Y" ]; then
     fi
 
     if [ $yn = "y" -o $yn = "Y" ]; then
-      rm -rf $HOME/$file
-      cp `pwd`/$file $HOME/$file
-      echo -e "${GREEN}CREATE${NC} $HOME/$file"
+      dist_file_path=$HOME/$file
+      src_file_path=`pwd`/$file
+
+      cp -f $src_file_path $dist_file_path
+      echo -e "${GREEN}OVERRIDE${NC} ${dist_file_path} from ${src_file_path}"
     fi
   done
 else
