@@ -100,9 +100,9 @@ fi
 echo
 read -p "Install dotfiles? (y/n) " yn
 if [ $yn = "y" -o $yn = "Y" ]; then
-  DOT_FILES=(.gitconfig .gitignore .pryrc .tmux.conf .vimrc .zshrc)
+  dot_files=(.gitconfig .gitignore .pryrc .tmux.conf .vimrc .zshrc)
 
-  for file in ${DOT_FILES[@]}
+  for file in ${dot_files[@]}
   do
     if [ -e $HOME/$file ]; then
       echo -ne "${YELLOW}EXISTS${NC} $HOME/$file"
@@ -162,3 +162,7 @@ popd > /dev/null
 
 # Cleanup
 rm -rf ${tempfile} ${workspace}
+echo
+echo -e "${GREEN}CLEAN UP${NC}"
+echo -e "    ${tempfile}"
+echo -e "    ${workspace}"
