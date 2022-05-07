@@ -8,8 +8,13 @@ cd dotfiles
 ./setup.sh
 ```
 
-**debug** mode uses local dotfiles.
+**debug** mode prints debug information.
 
 ```
 ./setup.sh -d
+```
+
+**local** mode uses local dotfiles.
+```
+./setup.sh -l
 ```
