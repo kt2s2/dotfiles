@@ -18,7 +18,7 @@ if [ $(uname) = 'Darwin' ]; then
 elif [ $(uname) = 'Linux' ]; then
   OS='Linux'
 else
-  echo "Your platform ($(uname)) is not supported."
+  echo -e "${RED}Your platform ($(uname)) is not supported.${NC}"
   exit 1
 fi
 
@@ -39,7 +39,8 @@ done
 
 
 function install() {
-  echo -e "${GREEN}INSTALL${NC} Install $1 to setup dotfiles..."
+  echo
+  echo -e "${GREEN}INSTALL${NC} $1 to setup dotfiles..."
   if command_exists brew; then
     brew $1
   elif command_exists apt-get; then
@@ -50,30 +51,31 @@ function install() {
 
 function command_exists() {
   if type $1 > /dev/null 2>&1; then
-    echo -e "${GREEN}EXISTS${NC} $1 command to setup dotfiles"
+    echo -e "${GREEN}EXISTS${NC} $1"
     # 0 = true
     return 0
   else
-    echo -e "${RED}NOT FOUND${NC} $1 command to setup dotfiles"
+    echo -e "${RED}NOT FOUND${NC} $1"
     # 1 = false
     return 1
   fi
 }
 
 
-# dependencies
+# ========== Install dependencies ==========
+echo "Install dependencies"
 command_exists curl || install curl
 command_exists unzip || install unzip
 
 
-# download dotfiles
-
+# ========== Download dotfiles ==========
+echo
 tempfile=/tmp/dotfiles.zip
 workspace=/tmp/dotfiles
 
 rm -rf ${workspace} ${tempfile}
 
-echo "Download dotfiles repository..."
+echo "Download dotfiles repository"
 if [ $DEBUG = 1 ]; then
   mkdir -p ${workspace}/dotfiles-master
   cp -r ./ ${workspace}/dotfiles-master/
@@ -81,16 +83,19 @@ else
   curl -LSfs -o ${tempfile} https://github.com/sainu/dotfiles/archive/master.zip
   unzip -oq ${tempfile} -d ${workspace}
 fi
+echo -e "${GREEN}COMPLETE${NC} to download dotfiles"
 
 pushd ${workspace}/dotfiles-master > /dev/null
 
 
 
+# ========== Install package manager ==========
+echo
+echo "Install package manager for ${OS}"
 if [ $OS = 'Mac' ]; then
-  # Install homebrew
   if !(command_exists brew); then
-    echo -e "${GREEN}INSTALL${NC} Install homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    echo -e "${GREEN}COMPLETE${NC} to install homebrew"
   fi
 fi
 
@@ -115,6 +120,8 @@ if [ $yn = "y" -o $yn = "Y" ]; then
       echo -e "${GREEN}CREATE${NC} $HOME/$file"
     fi
   done
+else
+  echo -e "${YELLOW}SKIP${NC}"
 fi
 
 
@@ -128,6 +135,8 @@ if [ $OS = 'Mac' ]; then
     echo -e "${GREEN}DONE${NC} Set setting to show all files in Finder App"
     killall Finder
     echo -e "${GREEN}DONE${NC} Restart Finder App"
+  else
+    echo -e "${YELLOW}SKIP${NC}"
   fi
 
   # .DS_Storeを作らないようにする
@@ -136,6 +145,8 @@ if [ $OS = 'Mac' ]; then
   if [ $yn = "y" -o $yn = "Y" ]; then
     defaults write com.apple.desktopservices DSDontWriteNetworkStores true
     echo -e "${GREEN}DONE${NC} Set setting to not write .DS_Store"
+  else
+    echo -e "${YELLOW}SKIP${NC}"
   fi
 fi
 
@@ -149,8 +160,8 @@ if [ $sh = "zsh" ]; then
   chsh -s $(which zsh)
   source $HOME/.zshrc
   echo -e "${GREEN}DONE${NC} Change shell to $(which zsh)"
-elif [[ $sh != "n" ]]; then
-  echo -e "${RED}Input ($sh) not supported :(${NC}"
+else
+  echo -e "${YELLOW}SKIP${NC}"
 fi
 
 
