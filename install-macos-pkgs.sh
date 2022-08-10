@@ -38,3 +38,6 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
 echo 'source "${ZDOTDIR:-$HOME}/.myzshrc.zsh"' >> "${ZDOTDIR:-$HOME}/.zshrc"
+
+# === mysql ===
+brew install mysql@5.7
