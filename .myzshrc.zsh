@@ -56,6 +56,9 @@ export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$GOROOT/bin:$PATH"
 
+# === mysql@5.7 ===
+export PATH="/opt/homebrew/opt/mysql@5.7/bin:$PATH"
+
 
 # === setup nvm
 # if command_exists nvm; then
