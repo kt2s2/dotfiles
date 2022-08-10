@@ -58,7 +58,8 @@ export PATH="$GOROOT/bin:$PATH"
 
 # === mysql@5.7 ===
 export PATH="/opt/homebrew/opt/mysql@5.7/bin:$PATH"
-
+export LDFLAGS="-L/opt/homebrew/opt/mysql@5.7/lib"
+export CPPFLAGS="-I/opt/homebrew/opt/mysql@5.7/include"
 
 # === setup nvm
 # if command_exists nvm; then
