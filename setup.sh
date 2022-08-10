@@ -120,7 +120,8 @@ fi
 echo
 read -p "Install dotfiles? (y/n) " yn
 if [ $yn = "y" -o $yn = "Y" ]; then
-  dot_files=(.gitconfig .gitignore .pryrc .tmux.conf .vimrc .zshrc)
+  dot_files=(.gitconfig .gitignore .pryrc .tmux.conf .vimrc .myzshrc.zsh
+  )
 
   for file in ${dot_files[@]}
   do
