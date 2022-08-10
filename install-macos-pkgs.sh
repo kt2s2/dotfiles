@@ -6,6 +6,7 @@ brew install rbenv
 RUBY_VERSION=`rbenv install -L | awk '/^2\.7\./' | tail -1`
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
+rbenv rehash
 
 # === pyenv ===
 brew install pyenv
